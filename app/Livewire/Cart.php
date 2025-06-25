@@ -1,0 +1,102 @@
+<?php
+
+namespace App\Livewire;
+
+use App\Models\Product;
+use Livewire\Component;
+
+class Cart extends Component
+{
+    public $cartItems = [];
+    protected $listeners = ['addToCart'];
+    public function addToCart($payload)
+    {
+        $productId = $payload['id'];
+
+        $product = Product::with(['category', 'inventory'])->findOrFail($productId);
+
+        foreach ($this->cartItems as $item) {
+            if ($item->id == $product->id) {
+                $item->quantity++;
+                return;
+            }
+        }
+
+        $this->cartItems[] = (object)[
+            'id' => $product->id,
+            'name' => $product->name,
+            'category' => $product->category->name,
+            'description' => $product->description,
+            'price' => $product->price,
+            'stock' => $product->inventory->stock,
+            'quantity' => 1,
+        ];
+
+        session()->put('cartItems', $this->cartItems);
+    }
+
+    public function mount()
+    {
+        $this->cartItems = session()->get('cartItems', []);
+    }
+
+    public function increaseQuantity($id)
+    {  
+        foreach ($this->cartItems as $item) {
+            if ($item->id == $id && $item->quantity < $item->stock){
+                $item->quantity++;
+            }
+        }
+        session()->put('cartItems', $this->cartItems);
+    }
+
+    public function decreaseQuantity($id)
+    {  
+        foreach ($this->cartItems as $item) {
+            if ($item->id == $id && $item->quantity > 1){
+                $item->quantity--;
+            }
+        }
+        session()->put('cartItems', $this->cartItems);
+    }
+    
+    public function removeItem($id)
+    {
+        foreach ($this->cartItems as $index => $item) {
+            if ($item->id == $id){
+                unset($this->cartItems[$index]);
+            }
+        }
+        session()->put('cartItems', $this->cartItems);
+    }
+
+    public function getTotalItemsProperty()
+    {
+        return count($this->cartItems);
+    }
+
+    public function totalPrice($id)
+    {
+        foreach ($this->cartItems as $item) {
+            if ($item->id == $id) {
+                return $item->quantity * $item->price;
+            }
+        }
+
+        return 0;
+    }
+
+    public function getTotalAmountProperty()
+    {
+        $total = 0;
+        foreach ($this->cartItems as $item) {
+            $total += $item->quantity * $item->price;
+        }
+        return $total;
+    }
+
+    public function render()
+    {
+        return view('livewire.cart');
+    }
+}
