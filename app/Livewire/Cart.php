@@ -14,7 +14,7 @@ class Cart extends Component
         $productId = $payload['id'];
 
         $product = Product::with(['category', 'inventory'])->findOrFail($productId);
-        
+
         foreach ($this->cartItems as $item) {
             if ($item->id == $product->id){
                 if ($item->quantity < $item->stock){
@@ -36,7 +36,7 @@ class Cart extends Component
             'stock' => $product->inventory->stock,
             'quantity' => 1,
         ];
-        
+
         notyf()->success('You’ve added the item to your cart.');
 
         session()->put('cartItems', $this->cartItems);
@@ -48,7 +48,7 @@ class Cart extends Component
     }
 
     public function increaseQuantity($id)
-    {  
+    {
         foreach ($this->cartItems as $item) {
             if ($item->id == $id && $item->quantity < $item->stock){
                 $item->quantity++;
@@ -58,7 +58,7 @@ class Cart extends Component
     }
 
     public function decreaseQuantity($id)
-    {  
+    {
         foreach ($this->cartItems as $item) {
             if ($item->id == $id && $item->quantity > 1){
                 $item->quantity--;
@@ -66,7 +66,7 @@ class Cart extends Component
         }
         session()->put('cartItems', $this->cartItems);
     }
-    
+
     public function removeItem($id)
     {
         foreach ($this->cartItems as $index => $item) {
