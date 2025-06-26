@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('fullname');
             $table->string('username');
-            $table->integer('phone_number');
+            $table->string('phone_number');
             $table->string('password');
             $table->enum('role', ['customer', 'admin', 'admin_officer', 'cashier', 'technician']);
             $table->enum('status',  ['active', 'revoked']);

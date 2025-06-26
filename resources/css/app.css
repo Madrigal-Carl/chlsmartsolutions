@@ -12,6 +12,12 @@
     --font-poppins: "Poppins", sans-serif;
 }
 
+input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-text-fill-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 html {
     scroll-behavior: smooth;
 }

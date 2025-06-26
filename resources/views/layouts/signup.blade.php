@@ -51,12 +51,13 @@
                         <div class="absolute left-0 top-1/2 bg-white w-full h-[0.5px]"></div>
                     </div>
                 </div>
-                <form action="" class="flex flex-col text-start">
+                <form action="/signup" method="POST" class="flex flex-col text-start">
+                    @csrf
                     <label for="fullname" class="block mb-2 text-sm text-white">Full Name</label>
-                    <input id="fullname" type="text"
+                    <input id="fullname" type="text" name="fullname" value="{{ old('fullname') }}"
                         class="outline outline-[#E0E0E0] w-full rounded-md px-3 py-2 bg-transparent text-white mb-4" />
                     <label for="username" class="block mb-2 text-sm text-white">Username</label>
-                    <input id="username" type="text"
+                    <input id="username" type="text" name="username" value="{{ old('username') }}"
                         class="outline outline-[#E0E0E0] w-full rounded-md px-3 py-2 bg-transparent text-white mb-4" />
                     <div class="relative">
                         <div class="absolute top-9 left-3 text-white flex items-center justify-center gap-2">
@@ -64,12 +65,12 @@
                             <div class="w-px bg-white h-5"></div>
                         </div>
                         <label for="phone" class="block mb-2 text-sm text-white">Phone number</label>
-                        <input id="phone" type="text" pattern="9[0-9]{9}" maxlength="10" inputmode="numeric"
-                            value="9"
+                        <input id="phone" type="text" name="phone" maxlength="10" inputmode="numeric"
+                            value="{{ old('phone', '9') }}"
                             class="outline outline-[#E0E0E0] w-full rounded-md pl-16 pr-3 py-2 bg-transparent text-white mb-4" />
                     </div>
                     <label for="password" class="block mb-2 text-sm text-white">Password</label>
-                    <input id="password" type="password" minlength="8"
+                    <input id="password" type="password" name="password"
                         class="outline outline-[#E0E0E0] w-full rounded-md px-3 py-2 bg-transparent text-white" />
 
                     <button
