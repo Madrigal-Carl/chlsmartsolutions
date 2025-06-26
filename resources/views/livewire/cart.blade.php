@@ -11,6 +11,12 @@
                 d="M28.1875 29.25C29.6027 29.25 30.75 30.3412 30.75 31.6875C30.75 33.0336 29.6027 34.125 28.1875 34.125C26.7723 34.125 25.625 33.0336 25.625 31.6875C25.625 30.3412 26.7723 29.25 28.1875 29.25Z"
                 fill="white" />
         </svg>
+        @if ($this->totalItems > 0)
+            <div
+                class="absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {{ $this->totalItems }}
+            </div>
+        @endif
     </button>
 
     <div x-show="open" x-cloak @click.outside="open = false" x-transition

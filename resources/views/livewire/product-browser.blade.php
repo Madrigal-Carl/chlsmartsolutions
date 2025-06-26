@@ -75,7 +75,7 @@
                     </div>
 
                     <div class="md:w-[65%] flex flex-col">
-                        <h2 class="text-[0.6rem] md:text-sm text-gray-500">{{ $selectedProduct->category->name }}</h2>
+                        <h2 class="text-[0.6rem] md:text-xs text-gray-500">{{ $selectedProduct->category->name }}</h2>
                         <h1 class="text-sm md:text-xl font-bold">{{ $selectedProduct->name }}</h1>
                         <div class="flex items-center justify-between">
                             <p class="text-green-700 font-semibold text-sm md:text-lg">
