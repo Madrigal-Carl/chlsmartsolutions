@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
 
             return match ($role) {
                 'admin' => redirect()->route('admin.dashboard'),
-                default => redirect()->route('landingPage'),
+                default => redirect()->route('landing.page'),
             };
         }
 

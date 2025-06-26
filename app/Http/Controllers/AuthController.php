@@ -38,7 +38,7 @@ class AuthController
 
         Auth::login($user);
         notyf()->success('You\'re now signed in.');
-        return redirect()->route('landingPage');
+        return redirect()->route('landing.page');
     }
 
     public function userSignup(Request $request)
@@ -77,7 +77,7 @@ class AuthController
         ]);
 
         notyf()->success('Your account was created successfully.');
-        return redirect()->route('signinPage');
+        return redirect()->route('signin.page');
     }
 
     public function userSignout(Request $request)
@@ -87,6 +87,6 @@ class AuthController
         $request->session()->regenerateToken();
 
         notyf()->success('Successfully signed out.');
-        return redirect()->route('landingPage');
+        return redirect()->route('landing.page');
     }
 }

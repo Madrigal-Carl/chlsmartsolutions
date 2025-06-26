@@ -45,7 +45,7 @@
             </svg>
             <p class="text-sm">Settings</p>
         </button>
-        <form method="POST" action="{{ route('signout') }}">
+        <form method="POST" action="/signout">
             @csrf
             <button type="submit"
                 class="cursor-pointer flex items-center gap-2 p-2 border-b border-[#DCDCDC] last:border-none">

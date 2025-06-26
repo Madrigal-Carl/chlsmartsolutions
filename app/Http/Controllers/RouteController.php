@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RouteController
 {
@@ -23,6 +24,7 @@ class RouteController
 
     public function goToCheckoutPage()
     {
+        $user = Auth::user();
         $cartItems = session()->get('cartItems', []);
         $total = 0;
 
@@ -33,6 +35,7 @@ class RouteController
         return view('customer/checkout', [
             'cartItems' => $cartItems,
             'total' => $total,
+            'user' => $user,
         ]);
     }
 }

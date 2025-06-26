@@ -22,9 +22,8 @@
                     <div class="flex items-center justify-between">
                         <div
                             class="flex flex-col md:flex-row md:items-center font-medium font-poppins text-sm md:gap-4">
-                            <p>Daniel Dela Cruz</p>
-                            <p>danieldelacruz@gmail.com</p>
-                            <p>(+63) 9308864291</p>
+                            <p>{{ $user->fullname }}</p>
+                            <p>(+63) {{ $user->phone_number }}</p>
                         </div>
                         <div class="border border-[#5AA526] text-[#5AA526] text-[0.7rem] p-1 rounded-sm">
                             Default
@@ -81,62 +80,67 @@
                 </div>
                 <div class="flex flex-col w-full">
                     <h1 class="font-bold text-lg font-inter">Select Payment Method</h1>
-                    <label class="block w-full cursor-pointer relative ">
-                        <input type="radio" name="payment_method" value="in_store" class="peer hidden">
-                        <div
-                            class="flex flex-col w-full rounded-md border border-[#D6D6D6] font-poppins py-2 mt-4 peer-checked:border-[#0097B8] transition-all cursor-pointer">
+                    <form method="POST" action="/order">
+                        @csrf
+                        <input type="text" class="hidden" name="total" value="{{ $total }}">
+                        <label class="block w-full cursor-pointer relative ">
+                            <input type="radio" name="payment_method" value="in_store" class="peer hidden">
+                            <div
+                                class="flex flex-col w-full rounded-md border border-[#D6D6D6] font-poppins py-2 mt-4 peer-checked:border-[#0097B8] transition-all cursor-pointer">
 
-                            <div class="flex items-center gap-4 py-1 px-4">
-                                <img class="h-8 min-w-9" src="{{ asset('images/customer/in_store.png') }}"
-                                    alt="">
-                                <p class="text-[#5E5E5E] font-medium">In-store Payment</p>
+                                <div class="flex items-center gap-4 py-1 px-4">
+                                    <img class="h-8 min-w-9" src="{{ asset('images/customer/in_store.png') }}"
+                                        alt="">
+                                    <p class="text-[#5E5E5E] font-medium">In-store Payment</p>
+                                </div>
+                                <hr class="w-full border-[#D6D6D6] h-px my-1">
+                                <p class="text-[#8C8C8C] text-[0.7rem]  px-4">Pay when you pick-up</p>
                             </div>
-                            <hr class="w-full border-[#D6D6D6] h-px my-1">
-                            <p class="text-[#8C8C8C] text-[0.7rem]  px-4">Pay when you pick-up</p>
-                        </div>
-                        <div
-                            class="absolute top-[1.7rem] right-[0.95rem] size-5 rounded-full border border-black peer-checked:hidden">
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0097B8"
-                            class="absolute top-6 right-3 w-[1.65rem] h-[1.65rem] hidden peer-checked:block">
-                            <path fill-rule="evenodd"
-                                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </label>
+                            <div
+                                class="absolute top-4 right-4 size-5 rounded-full border border-black peer-checked:hidden">
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0097B8"
+                                class="absolute top-[0.8rem] right-[0.8rem] w-[1.65rem] h-[1.65rem] hidden peer-checked:block">
+                                <path fill-rule="evenodd"
+                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </label>
 
-                    <label class="block w-full cursor-pointer relative ">
-                        <input type="radio" name="payment_method" value="in_store" class="peer hidden">
-                        <div
-                            class="flex flex-col w-full rounded-md border border-[#D6D6D6] font-poppins py-2 mt-4 peer-checked:border-[#0097B8] transition-all cursor-pointer">
+                        <label class="block w-full cursor-pointer relative ">
+                            <input type="radio" name="payment_method" value="e-wallet" class="peer hidden">
+                            <div
+                                class="flex flex-col w-full rounded-md border border-[#D6D6D6] font-poppins py-2 mt-4 peer-checked:border-[#0097B8] transition-all cursor-pointer">
 
-                            <div class="flex items-center gap-4 py-1 px-4">
-                                <img class="h-8 min-w-9" src="{{ asset('images/customer/gcash-logo.png') }}"
-                                    alt="">
-                                <div class="text-[#5E5E5E] font-medium flex items-center gap-2">
-                                    <p>G-cash</p>
-                                    <div class="border-l border-[#5E5E5E] pl-2">
-                                        e-Wallet
+                                <div class="flex items-center gap-4 py-1 px-4">
+                                    <img class="h-8 min-w-9" src="{{ asset('images/customer/gcash-logo.png') }}"
+                                        alt="">
+                                    <div class="text-[#5E5E5E] font-medium flex items-center gap-2">
+                                        <p>G-cash</p>
+                                        <div class="border-l border-[#5E5E5E] pl-2">
+                                            e-Wallet
+                                        </div>
                                     </div>
                                 </div>
+                                <hr class="w-full border-[#D6D6D6] h-px my-1">
+                                <p class="text-[#8C8C8C] text-[0.7rem]  px-4">Pay through online payment</p>
                             </div>
-                            <hr class="w-full border-[#D6D6D6] h-px my-1">
-                            <p class="text-[#8C8C8C] text-[0.7rem]  px-4">Pay through online payment</p>
-                        </div>
-                        <div
-                            class="absolute top-[1.7rem] right-[0.95rem] size-5 rounded-full border border-black peer-checked:hidden">
-                        </div>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0097B8"
-                            class="absolute top-6 right-3 w-[1.65rem] h-[1.65rem] hidden peer-checked:block">
-                            <path fill-rule="evenodd"
-                                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </label>
+                            <div
+                                class="absolute top-4 right-4 size-5 rounded-full border border-black peer-checked:hidden">
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0097B8"
+                                class="absolute top-[0.8rem] right-[0.8rem] w-[1.65rem] h-[1.65rem] hidden peer-checked:block">
+                                <path fill-rule="evenodd"
+                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </label>
 
-                    <button class="w-full bg-black font-poppins font-semibold text-lg text-white py-2 rounded-md mt-6">
-                        Checkout
-                    </button>
+                        <button type="submit"
+                            class="cursor-pointer w-full bg-black font-poppins font-semibold text-lg text-white py-2 rounded-md mt-6">
+                            Checkout
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
