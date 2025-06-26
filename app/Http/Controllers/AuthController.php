@@ -79,4 +79,14 @@ class AuthController
         notyf()->success('Your account was created successfully.');
         return redirect()->route('signinPage');
     }
+
+    public function userSignout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        notyf()->success('Successfully signed out.');
+        return redirect()->route('landingPage');
+    }
 }

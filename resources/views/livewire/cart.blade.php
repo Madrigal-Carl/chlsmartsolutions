@@ -20,8 +20,8 @@
     </button>
 
     <div x-show="open" x-cloak @click.outside="open = false" x-transition
-        class="absolute top-full left-1/2 transform -translate-x-[65%] md:-translate-x-[70%] mt-3 w-[350px] md:w-[700px] max-h-[400px] md:max-h-[550px] bg-[#F5F5F5] rounded-lg shadow-lg z-40 p-4 font-inter">
-        <div class="absolute -top-2 md:-top-2 left-[63%] md:left-[69%] w-4 h-4 bg-[#F5F5F5] rotate-45 z-[-1]"></div>
+        class="absolute top-full left-1/2 transform -translate-x-[75%] md:-translate-x-[75%] mt-3 w-[325px] md:w-[700px] max-h-[400px] md:max-h-[550px] bg-[#F5F5F5] rounded-lg shadow-lg z-40 p-4 font-inter">
+        <div class="absolute -top-2 md:-top-2 left-[72.5%] md:left-[74%] w-4 h-4 bg-[#F5F5F5] rotate-45 z-[-1]"></div>
 
         <div class="flex flex-col px-4">
             <h2 class="flex items-center text-xl md:text-3xl font-bold">Your C
