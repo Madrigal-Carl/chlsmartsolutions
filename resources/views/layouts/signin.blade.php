@@ -29,8 +29,8 @@
                     </div>
                 </div>
                 <form action="" class="flex flex-col text-start">
-                    <label for="email" class="block mb-2 text-sm text-white">Email Address</label>
-                    <input id="email" type="text"
+                    <label for="username" class="block mb-2 text-sm text-white">Username</label>
+                    <input id="username" type="text"
                         class="outline outline-[#E0E0E0] w-full rounded-md px-3 py-2 bg-transparent text-white mb-4" />
                     <label for="password" class="block mb-2 text-sm text-white">Password</label>
                     <input id="password" type="password"

@@ -52,11 +52,11 @@
                     </div>
                 </div>
                 <form action="" class="flex flex-col text-start">
-                    <label for="name" class="block mb-2 text-sm text-white">Full Name</label>
-                    <input id="name" type="text"
+                    <label for="fullname" class="block mb-2 text-sm text-white">Full Name</label>
+                    <input id="fullname" type="text"
                         class="outline outline-[#E0E0E0] w-full rounded-md px-3 py-2 bg-transparent text-white mb-4" />
-                    <label for="email" class="block mb-2 text-sm text-white">Email Address</label>
-                    <input id="email" type="email"
+                    <label for="username" class="block mb-2 text-sm text-white">Username</label>
+                    <input id="username" type="text"
                         class="outline outline-[#E0E0E0] w-full rounded-md px-3 py-2 bg-transparent text-white mb-4" />
                     <div class="relative">
                         <div class="absolute top-9 left-3 text-white flex items-center justify-center gap-2">
