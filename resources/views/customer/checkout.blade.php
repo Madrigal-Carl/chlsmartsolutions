@@ -59,7 +59,7 @@
                                 </div>
                                 <div
                                     class="w-[22%] md:w-[22.5%] text-center font-inter font-semibold text-sm md:text-base">
-                                    {{ $item->quantity }}
+                                    x{{ $item->quantity }}
                                 </div>
                                 <div class="hidden md:block md:w-[22.5%] text-center font-inter font-semibold">
                                     ₱{{ number_format($item->quantity * $item->price, 2) }}

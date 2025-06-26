@@ -7,7 +7,7 @@
             <span class="hidden md:flex">SmartSolutions</span>
         </h1>
     </a>
-    <div class="flex items-center gap-4 md:gap-10">
+    <div class="flex items-center gap-6 md:gap-10">
 
         <livewire:cart />
 

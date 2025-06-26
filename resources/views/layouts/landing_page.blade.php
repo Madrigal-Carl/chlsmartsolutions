@@ -1,6 +1,6 @@
 <x-default>
 
-    <section id="home" class="px-6 md:px-18 pb-8 md:pb-14 bg-black">
+    <section id="home" class="px-6 md:px-18 h-screen md:pb-14 bg-black">
         <div class="flex flex-col gap-8 md:gap-16">
             <x-navbar />
 
@@ -42,7 +42,7 @@
     </section>
 
     <section id="about"
-        class="px-6 md:px-36 flex flex-col md:flex-row pt-14 pb-16 md:pt-18 md:pb-24 gap-8 md:gap-6 justify-between">
+        class="px-6 md:px-36 flex flex-col md:flex-row pt-14 md:pt-18 pb-16 md:pb-24 gap-8 md:gap-6 justify-between">
         <div class="flex flex-col w-full md:w-[65%] justify-between">
             <div class="flex flex-col w-full font-inter gap-6 md:py-12 justify-center">
                 <div class="flex flex-col gap-2">
@@ -94,100 +94,6 @@
         </div>
     </div>
 
-    {{-- <div class="px-6 md:px-36 flex flex-col py-10 gap-8 pb-10 md:pb-16">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <div class="flex flex-col md:flex-row md:items-center gap-6 w-full md:w-auto">
-                <div class="relative w-full md:w-[300px]">
-                    <input type="text" placeholder="Search products..."
-                        class="w-full pr-10 pl-4 py-2 text-[#797979] border border-gray-500 rounded-md focus:outline-none" />
-
-                    <div class="absolute inset-y-0 right-0 flex items-center text-[#797979] pr-3 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="size-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                    </div>
-                </div>
-
-                <div class="relative w-full md:w-[250px]">
-                    <select
-                        class="w-full px-4 py-2 text-[#797979] border border-gray-500 rounded-md focus:outline-none appearance-none">
-                        <option value="all">All Categories</option>
-                        <option value="laptops-desktops">Laptops and Desktops</option>
-                        <option value="smartphones-gadgets">Smartphones & Gadgets</option>
-                        <option value="printers">Printers</option>
-                        <option value="computer-accessories">Computer Accessories</option>
-                        <option value="audio-video">Audio & Video Devices</option>
-                        <option value="cctv-security">CCTV & Security Systems</option>
-                        <option value="networking-devices">Networking Devices</option>
-                    </select>
-
-                    <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center">
-                        <svg class="w-6 h-6 text-[#797979]" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd"
-                                d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-            <h2 class="text-lg text-gray-700">9 products found</h2>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            @for ($i = 0; $i < 8; $i++)
-                <button class="cursor-pointer">
-                    <div class="bg-gray-50 rounded-lg shadow p-4 flex flex-col items-center text-center">
-                        <div class="relative w-full">
-                            <div
-                                class="absolute top-[-6px] md:top-0 right-[-4px] md:right-0 bg-transparent text-[#5AA526] font-semibold text-xs md:text-sm px-2 py-1">
-                                ₱560.00
-                            </div>
-
-                            <img src="{{ asset('images/customer/products/Black and White Modern Tech Headphone.png') }}"
-                                alt="Product Image" class="h-32 md:h-48 object-contain w-full" />
-                        </div>
-
-                        <h3 class="font-medium text-gray-800 mb-2 text-xs md:text-sm">Wireless Headphones</h3>
-
-                        <div class="text-[8px] md:text-xs bg-[#5AA526] text-white px-2 py-1 rounded-full">
-                            Audio & Video Devices
-                        </div>
-                    </div>
-                </button>
-            @endfor
-        </div>
-
-
-        <div class="flex justify-center pt-4">
-            <div class="inline-flex items-center space-x-2">
-                <a href="#" class="text-gray-700 pr-2">
-                    <svg width="14" height="18" viewBox="0 0 11 15" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10.561 14.7161L0.717773 7.37025L10.561 0.0244141V14.7161Z" fill="#1D1B20" />
-                    </svg>
-                </a>
-
-                <a href="#"
-                    class="px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 shadow-md rounded-xl font-medium">1</a>
-                <a href="#" class="px-4 py-2 bg-[#5AA526] text-white shadow-md rounded-xl font-medium">2</a>
-                <!-- Active -->
-                <a href="#"
-                    class="px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 shadow-md rounded-xl font-medium">3</a>
-                <a href="#"
-                    class="px-4 py-2 bg-white hover:bg-gray-100 text-gray-700 shadow-md rounded-xl font-medium">4</a>
-
-                <a href="#" class="text-gray-700 pl-2">
-                    <svg width="14" height="18" viewBox="0 0 11 15" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.439453 14.7161V0.0244141L10.2826 7.37025L0.439453 14.7161Z" fill="#1D1B20" />
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </div> --}}
     <livewire:product-browser />
 
     <section id="help"
