@@ -22,6 +22,12 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        User::factory()->admin()->create();
+        User::factory()->customer()->create();
+        User::factory()->cashier()->create();
+        User::factory()->technician()->create();
+        User::factory()->adminOfficer()->create();
+
         $categories = [
             'Laptops & Desktops',
             'Smartphones & Gadgets',
