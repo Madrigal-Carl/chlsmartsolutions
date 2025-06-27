@@ -23,3 +23,7 @@ Route::middleware(['role:customer'])->group(function () {
     Route::get('/checkout', [RouteController::class, 'goToCheckoutPage'])->name('checkout.page');
     Route::post('/order', [OrderController::class, 'createOrder'])->name('create.order');
 });
+
+Route::middleware(['role:admin'])->group(function() {
+    Route::get('/admin/dashboard', [RouteController::class, 'goToAdminDashboardPage'])->name('admin.dashboard');
+});

@@ -9,17 +9,17 @@ class RouteController
 {
     public function goToLandingPage()
     {
-        return view('layouts/landing_page');
+        return view('layouts.landing_page');
     }
 
     public function goToSigninPage()
     {
-        return view('layouts/signin');
+        return view('layouts.signin');
     }
 
     public function goToSignupPage()
     {
-        return view('layouts/signup');
+        return view('layouts.signup');
     }
 
     public function goToCheckoutPage()
@@ -32,10 +32,15 @@ class RouteController
             $total += $item->quantity * $item->price;
         }
 
-        return view('customer/checkout', [
+        return view('customer.checkout', [
             'cartItems' => $cartItems,
             'total' => $total,
             'user' => $user,
         ]);
+    }
+
+    public function goToAdminDashboardPage()
+    {
+        return view('admin.dashboard');
     }
 }
