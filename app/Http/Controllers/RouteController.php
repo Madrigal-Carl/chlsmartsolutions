@@ -43,4 +43,19 @@ class RouteController
     {
         return view('admin.dashboard');
     }
+
+    public function goToAdminOfficerDashboardPage()
+    {
+        return view('admin_officer.dashboard');
+    }
+
+    public function goToCashierDashboardPage()
+    {
+        return view('cashier.dashboard');
+    }
+
+    public function goToTechnicianDashboardPage()
+    {
+        return view('technician.dashboard');
+    }
 }
