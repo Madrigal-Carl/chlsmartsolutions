@@ -10,6 +10,23 @@ use Illuminate\Support\Facades\Validator;
 
 class OrderController
 {
+    private function generateReferenceId($type, $date, $id = 0)
+    {
+        $reference_id = '';
+
+        if ($type == 'online'){
+            $reference_id .= 'OL';
+        } else if ($type == 'walk_in'){
+            $reference_id .= 'WI';
+        } else if ($type == 'government'){
+            $reference_id .= 'GV';
+        } else if ($type == 'project_based'){
+            $reference_id .= 'PB';
+        }
+
+        return $reference_id . '-' . $date . '-' . str_pad($id, 4, '0', STR_PAD_LEFT);
+    }
+
     public function createOrder(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -33,9 +50,11 @@ class OrderController
         }
 
         $order = Order::create([
+            'reference_id' => $this->generateReferenceId('online', now()->format('dmY'), Auth::user()->id),
             'user_id' => Auth::user()->id,
             'total_amount' => $request->total,
             'type' => 'online',
+            'expiry_date' => now()->addWeek()->toDateString(),
         ]);
 
         foreach($cartItems as $item){
@@ -50,5 +69,9 @@ class OrderController
 
         notyf()->success('Order placed successfully');
         return redirect()->route('landing.page');
+        // return redirect()->route('landing.page')->with([
+        //     'showCard' => true,
+        //     'orderId' => $order->id,
+        // ]);
     }
 }

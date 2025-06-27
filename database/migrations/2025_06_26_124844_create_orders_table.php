@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('reference_id');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger('total_amount');
             $table->enum('type', ['government', 'walk_in', 'project_based', 'online']);
+            $table->date('expiry_date')->nullable();
             $table->timestamps();
         });
     }
