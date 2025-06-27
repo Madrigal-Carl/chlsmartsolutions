@@ -21,6 +21,9 @@ class RedirectIfAuthenticated
 
             return match ($role) {
                 'admin' => redirect()->route('admin.dashboard'),
+                'admin_officer' => redirect()->route('admin_officer.dashboard'),
+                'cashier' => redirect()->route('cashier.dashboard'),
+                'technician' => redirect()->route('technician.dashboard'),
                 default => redirect()->route('landing.page'),
             };
         }

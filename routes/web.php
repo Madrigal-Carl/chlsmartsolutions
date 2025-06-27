@@ -6,7 +6,9 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RouteController;
 
 
-Route::get('/', [RouteController::class, 'goToLandingPage'])->name('landing.page');
+Route::middleware('guest_or_customer')->group(function() {
+    Route::get('/', [RouteController::class, 'goToLandingPage'])->name('landing.page');
+});
 
 Route::middleware(['role:customer, admin, adminofficer, cashier, technician'])->group(function(){
     Route::post('/signout', [AuthController::class, 'userSignout'])->name('signout');
