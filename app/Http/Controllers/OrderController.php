@@ -12,19 +12,15 @@ class OrderController
 {
     private function generateReferenceId($type, $date, $id = 0)
     {
-        $reference_id = '';
+        $prefix = match ($type) {
+            'online' => 'OL',
+            'walk_in' => 'WI',
+            'government' => 'GV',
+            'project_based' => 'PB',
+            default => 'XX',
+        };
 
-        if ($type == 'online'){
-            $reference_id .= 'OL';
-        } else if ($type == 'walk_in'){
-            $reference_id .= 'WI';
-        } else if ($type == 'government'){
-            $reference_id .= 'GV';
-        } else if ($type == 'project_based'){
-            $reference_id .= 'PB';
-        }
-
-        return $reference_id . '-' . $date . '-' . str_pad($id, 4, '0', STR_PAD_LEFT);
+        return $prefix . '-' . $date . '-' . str_pad($id, 4, '0', STR_PAD_LEFT);
     }
 
     public function createOrder(Request $request)
