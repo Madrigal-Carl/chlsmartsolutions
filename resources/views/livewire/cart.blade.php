@@ -79,7 +79,8 @@
                                 <td class="px-4 py-2 w-[20%]">
                                     <div
                                         class="flex items-center justify-center border border-gray-300 divide-x divide-gray-300 rounded">
-                                        <button class="w-10 h-8 flex items-center justify-center hover:bg-gray-100"
+                                        <button
+                                            class="cursor-pointer w-10 h-8 flex items-center justify-center hover:bg-gray-100"
                                             wire:click='decreaseQuantity({{ $item->id }})'>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -89,7 +90,8 @@
                                         <div class="w-10 h-8 flex items-center justify-center text-sm font-bold">
                                             {{ $item->quantity }}
                                         </div>
-                                        <button class="w-10 h-8 flex items-center justify-center hover:bg-gray-100"
+                                        <button
+                                            class="cursor-pointer w-10 h-8 flex items-center justify-center hover:bg-gray-100"
                                             wire:click='increaseQuantity({{ $item->id }})'>
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                 stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

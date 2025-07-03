@@ -46,7 +46,7 @@ class OrderController
         }
 
         $order = Order::create([
-            'reference_id' => $this->generateReferenceId('online', now()->format('dmY'), Auth::user()->id),
+            'reference_id' => $this->generateReferenceId('online', now()->format('mdY'), Auth::user()->id),
             'user_id' => Auth::user()->id,
             'total_amount' => $request->total,
             'type' => 'online',
@@ -64,10 +64,10 @@ class OrderController
         session()->forget('cartItems');
 
         notyf()->success('Order placed successfully');
-        return redirect()->route('landing.page');
-        // return redirect()->route('landing.page')->with([
-        //     'showCard' => true,
-        //     'orderId' => $order->id,
-        // ]);
+        return redirect()->route('landing.page')->with([
+            'showCard' => true,
+            'orderId' => $order->id,
+            'referenceId' => $order->reference_id,
+        ]);
     }
 }
