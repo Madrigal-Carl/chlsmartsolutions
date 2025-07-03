@@ -18,7 +18,7 @@ class ProductBrowser extends Component
     public $categories = [];
     public $showModal = false;
     public $selectedProduct = null;
-    
+
 
     public function updated($property)
     {

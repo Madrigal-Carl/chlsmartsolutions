@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->text('description');
             $table->decimal('price', 8, 2)->default(0);
+            $table->string('image_url')->default('/images/chlss_logo.png');
             $table->timestamps();
         });
     }

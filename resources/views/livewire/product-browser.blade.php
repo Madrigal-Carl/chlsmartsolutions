@@ -47,8 +47,8 @@
                             ₱{{ number_format($product->price, 2) }}
                         </div>
 
-                        <img src="{{ asset('images/customer/products/Black and White Modern Tech Headphone.png') }}"
-                            alt="Product Image" class="h-32 md:h-48 object-contain w-full" />
+                        <img src="{{ asset($product->image_url) }}" alt="Product Image"
+                            class="h-32 md:h-48 object-contain w-full" />
                     </div>
 
                     <h3 class="line-clamp-1 font-medium text-gray-800 mb-2 text-xs md:text-sm">{{ $product->name }}</h3>
