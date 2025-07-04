@@ -6,9 +6,16 @@ use Livewire\Component;
 
 class ContentDisplay extends Component
 {
-    public $active = 'task';
+    public $items = [];
+    public $active = '';
 
     protected $listeners = ['setActive' => 'updateActive'];
+
+    public function mount($items = [])
+    {
+        $this->items = $items;
+        $this->active = $items[0]['label'] ?? '';
+    }
 
     public function updateActive($option)
     {

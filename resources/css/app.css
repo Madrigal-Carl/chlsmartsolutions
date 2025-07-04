@@ -5,6 +5,7 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@plugin "daisyui";
 
 @theme {
     --font-inter: "Inter", sans-serif;
@@ -41,4 +42,10 @@ html {
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.3);
     border-radius: 4px;
+}
+
+calendar-date::part(selected),
+calendar-month::part(selected) {
+    background-color: #5aa526 !important;
+    color: white !important;
 }

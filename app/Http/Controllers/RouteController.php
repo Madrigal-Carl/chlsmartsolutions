@@ -39,23 +39,23 @@ class RouteController
         ]);
     }
 
-    public function goToAdminDashboardPage()
+    public function goToAdminPage()
     {
-        return view('admin.dashboard');
+        return view('admin.admin');
     }
 
-    public function goToAdminOfficerDashboardPage()
+    public function goToAdminOfficerPage()
     {
-        return view('admin_officer.dashboard');
+        return view('admin_officer.admin_officer');
     }
 
-    public function goToCashierDashboardPage()
+    public function goToCashierPage()
     {
-        return view('cashier.dashboard');
+        return view('cashier.cashier');
     }
 
-    public function goToTechnicianDashboardPage()
+    public function goToTechnicianPage()
     {
-        return view('technician.dashboard');
+        return view('technician.technician');
     }
 }

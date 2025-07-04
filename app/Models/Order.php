@@ -14,6 +14,11 @@ class Order extends Model
         'expiry_date',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function orderProducts()
     {
         return $this->hasMany(OrderProduct::class);

@@ -66,7 +66,7 @@
     </div>
 
     @if ($showModal && $selectedProduct)
-        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+        <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs">
             <div class="bg-white rounded-xl shadow-lg max-w-[280px] md:max-w-2xl w-full p-8 relative font-inter">
                 <div class="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                     <div class="flex items-center md:w-[35%]">
@@ -109,7 +109,7 @@
         <div class="inline-flex items-center space-x-2">
             <button wire:click="previousPage" wire:loading.attr="disabled"
                 @if ($products->onFirstPage()) disabled @endif
-                class="text-gray-700 pr-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                class="text-gray-700 pr-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
                 <svg width="14" height="18" viewBox="0 0 11 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M10.561 14.7161L0.717773 7.37025L10.561 0.0244141V14.7161Z" fill="#1D1B20" />
@@ -125,7 +125,7 @@
             @endforeach
 
             <button wire:click="nextPage" wire:loading.attr="disabled" @if (!$products->hasMorePages()) disabled @endif
-                class="text-gray-700 pl-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                class="text-gray-700 pl-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer">
                 <svg width="14" height="18" viewBox="0 0 11 15" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path d="M0.439453 14.7161V0.0244141L10.2826 7.37025L0.439453 14.7161Z" fill="#1D1B20" />

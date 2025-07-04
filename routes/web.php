@@ -30,18 +30,18 @@ Route::middleware('role:customer')->group(function () {
 });
 
 Route::middleware('role:admin')->group(function() {
-    Route::get('/admin/dashboard', [RouteController::class, 'goToAdminDashboardPage'])->name('admin.dashboard');
+    Route::get('/admin', [RouteController::class, 'goToAdminPage'])->name('admin');
 });
 
 Route::middleware('role:admin_officer')->group(function() {
-    Route::get('/admin_officer/dashboard', [RouteController::class, 'goToAdminOfficerDashboardPage'])->name('admin_officer.dashboard');
+    Route::get('/admin_officer', [RouteController::class, 'goToAdminOfficerPage'])->name('admin_officer');
 });
 
 Route::middleware('role:cashier')->group(function() {
-    Route::get('/cashier/dashboard', [RouteController::class, 'goToCashierDashboardPage'])->name('cashier.dashboard');
+    Route::get('/cashier', [RouteController::class, 'goToCashierPage'])->name('cashier');
 });
 
 Route::middleware('role:technician')->group(function() {
-    Route::get('/technician/dashboard', [RouteController::class, 'goToTechnicianDashboardPage'])->name('technician.dashboard');
+    Route::get('/technician', [RouteController::class, 'goToTechnicianPage'])->name('technician');
 });
 

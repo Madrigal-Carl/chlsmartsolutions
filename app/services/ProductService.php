@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\Product;
 
-class ProductService 
+class ProductService
 {
     public function getAllProducts()
     {
