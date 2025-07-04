@@ -195,7 +195,7 @@
                         <p class="text-xs">Task #{{ str_pad($selectedTask->id, 4, '0', STR_PAD_LEFT) }}</p>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <p class="font-poppins font-semibold">Troubleshooting Assistance</p>
+                        <p class="font-poppins font-semibold capitalize">{{ $selectedTask->title }}</p>
                         <div class="flex items-center gap-4">
                             @if ($selectedTask->priority == 'low')
                                 <div class="bg-[#0000001A] py-2 px-4 w-fit rounded-full">
