@@ -34,10 +34,15 @@ class TechDashboard extends Component
     public function updateStatus($id, ActivityLogService $activityLogService)
     {
         $task = Task::find($id);
-        $task->status = 'completed';
-        $task->save();
-        $activityLogService->saveLog($id, Auth::user()->id);
-        $this->closeModal();
+        if ($task->status != 'completed'){
+            $task->status = 'completed';
+            $task->save();
+            $activityLogService->saveLog($id, Auth::user()->id);
+            $this->dispatch('notificationRead')->to('sidebar');
+            $this->closeModal();
+            return;
+        }
+        notyf()->error('Task already been completed');
     }
 
     public function closeModal()

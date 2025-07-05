@@ -13,6 +13,13 @@
                     <div class="absolute left-0 top-0 w-18 h-full border-l-6 border-[#50FF7F]"></div>
                 @endif
 
+                @if ($item['label'] == 'notification' && $unreadNotif > 0)
+                    <div
+                        class="absolute left-15 top-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
+                        {{ $unreadNotif }}
+                    </div>
+                @endif
+
                 <div class="flex items-center gap-5 {{ $active === $item['label'] ? 'text-[#50FF7F]' : 'text-white' }}">
                     {!! $item['icon'] !!}
                     <p class="capitalize text-sm">{{ $item['label'] }}</p>

@@ -13,7 +13,7 @@
             </div>
             <div class="relative">
                 <select wire:change="$set('selectedPrio', $event.target.value)"
-                    class="w-[225px] px-4 py-1 text-[#4E4E4E] border border-gray-700 rounded-md focus:outline-none appearance-none"
+                    class="w-[225px] px-4 py-2 text-[#4E4E4E] border border-gray-500 rounded-md focus:outline-none appearance-none"
                     name="priority" id="priority">
                     <option value="0">All Priorities</option>
                     <option value="1">High Priority</option>
@@ -145,7 +145,7 @@
         </div>
     </div>
     <div class="flex flex-col items-center w-[30%] h-fill gap-4">
-        <div class="bg-white flex flex-col w-full rounded-md font-poppins max-h-[370px]">
+        <div class="bg-white flex flex-col w-full rounded-md font-poppins min-h-[380px]">
             <div class="flex items-center px-4 pt-4 pb-2 gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path fill-rule="evenodd"
@@ -157,7 +157,7 @@
             <div class="flex flex-col px-4 max-h-[310px] overflow-hidden overflow-y-auto custom-scrollbar">
                 @forelse ($logs as $log)
                     <div class="border-b border-[#EEF2F5] last:border-none py-3">
-                        <p class="text-xs">{{ \Carbon\Carbon::parse($task->created_at)->format('F d') }}: Task
+                        <p class="text-xs">{{ \Carbon\Carbon::parse($log->created_at)->format('F d') }}: Task
                             #{{ $log->task_id }} marked as completed</p>
                     </div>
                 @empty
