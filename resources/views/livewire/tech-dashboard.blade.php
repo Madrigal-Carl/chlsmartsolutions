@@ -145,7 +145,7 @@
         </div>
     </div>
     <div class="flex flex-col items-center w-[30%] h-fill gap-4">
-        <div class="bg-white flex flex-col w-full rounded-md font-poppins min-h-[380px]">
+        <div class="bg-white flex flex-col w-full rounded-md font-poppins max-h-[365px]">
             <div class="flex items-center px-4 pt-4 pb-2 gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path fill-rule="evenodd"
@@ -154,7 +154,7 @@
                 </svg>
                 <p class="font-semibold">Recent Activity</p>
             </div>
-            <div class="flex flex-col px-4 max-h-[310px] overflow-hidden overflow-y-auto custom-scrollbar">
+            <div class="flex flex-col px-4 max-h-[295px] overflow-hidden overflow-y-auto custom-scrollbar">
                 @forelse ($logs as $log)
                     <div class="border-b border-[#EEF2F5] last:border-none py-3">
                         <p class="text-xs">{{ \Carbon\Carbon::parse($log->created_at)->format('F d') }}: Task

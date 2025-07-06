@@ -44,8 +44,12 @@ html {
     border-radius: 4px;
 }
 
-calendar-date::part(selected),
 calendar-month::part(selected) {
     background-color: #5aa526 !important;
     color: white !important;
+}
+
+calendar-month::part(heading) {
+    color: black !important;
+    font-weight: 700;
 }
