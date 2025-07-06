@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger('total_amount');
             $table->enum('type', ['government', 'walk_in', 'project_based', 'online']);
+            $table->enum('status', ['pending', 'completed', 'expired'])->default('pending');
             $table->date('expiry_date')->nullable();
             $table->timestamps();
         });
