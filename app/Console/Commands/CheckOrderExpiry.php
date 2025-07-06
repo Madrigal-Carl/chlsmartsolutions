@@ -29,8 +29,7 @@ class CheckOrderExpiry extends Command
     {
         $today = Carbon::today();
 
-        // Find expired tasks
-        $expiredTasks = Order::whereNotNull('expiry_date')->whereDate('expiry_date', '<', $today)->get();
+        $expiredTasks = Order::whereNotNull('expiry_date')->whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
 
         foreach ($expiredTasks as $task) {
             $task->status = 'expired';

@@ -30,7 +30,7 @@ class CheckTaskExpiry extends Command
         $today = Carbon::today();
 
         // Find expired tasks
-        $expiredTasks = Task::whereDate('expiry_date', '<', $today)->get();
+        $expiredTasks = Task::whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
 
         foreach ($expiredTasks as $task) {
             $task->status = 'missed';
