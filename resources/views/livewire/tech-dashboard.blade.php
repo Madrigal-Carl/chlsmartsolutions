@@ -11,9 +11,9 @@
                 </svg>
                 <p>Filter by:</p>
             </div>
-            <div class="relative">
+            <div class="relative text-[#797979]">
                 <select wire:change="$set('selectedPrio', $event.target.value)"
-                    class="w-[225px] px-4 py-2 text-[#4E4E4E] border border-gray-500 rounded-md focus:outline-none appearance-none"
+                    class="w-[225px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                     name="priority" id="priority">
                     <option value="0">All Priorities</option>
                     <option value="1">High Priority</option>
@@ -21,7 +21,7 @@
                     <option value="3">Low Priority</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
-                    <svg class="w-6 h-6 text-[#797979]" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd"
                             d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z"
                             clip-rule="evenodd" />
