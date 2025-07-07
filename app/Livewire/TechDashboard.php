@@ -42,7 +42,7 @@ class TechDashboard extends Component
             $this->closeModal();
             return;
         }
-        notyf()->error('Task already been completed');
+        notyf()->error('Task already been completed.');
     }
 
     public function closeModal()

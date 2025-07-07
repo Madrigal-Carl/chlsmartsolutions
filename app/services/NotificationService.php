@@ -6,6 +6,15 @@ use App\Models\Notification;
 
 class NotificationService
 {
+    public function createNotif($id, $title, $message)
+    {
+        Notification::create([
+            'user_id' => $id,
+            'title' => $title,
+            'message' => $message,
+        ]);
+    }
+
     public function getFilteredNotification($id ,$filter)
     {
         $query = Notification::where('user_id', $id);
