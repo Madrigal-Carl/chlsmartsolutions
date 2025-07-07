@@ -54,7 +54,7 @@ class TechDashboard extends Component
     public function render(TaskService $taskService)
     {
         $tasks = $taskService->getTasksByDate($this->selectedDate, $this->selectedPrio);
-        $logs = ActivityLog::where('user_id', Auth::user()->id)->get();
+        $logs = ActivityLog::where('user_id', Auth::user()->id)->latest()->take(10)->get();
 
         return view('livewire.tech-dashboard', [
             'tasks' => $tasks,

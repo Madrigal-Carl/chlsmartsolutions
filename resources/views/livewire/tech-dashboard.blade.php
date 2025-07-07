@@ -68,15 +68,15 @@
                             {{ \Carbon\Carbon::parse($task->expiry_date)->format('F d, Y') }}</div>
                         <div class="w-[17.5%] border-r border-[#EEF2F5] py-2 flex items-center justify-center h-full">
                             @if ($task->status == 'pending')
-                                <div class="bg-[#FFF3D7] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#EFC68D] text-[0.6rem] capitalize">{{ $task->status }}</p>
+                                <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
+                                    <p class="text-[#c77a0e] text-[0.6rem] capitalize">{{ $task->status }}</p>
                                 </div>
                             @elseif ($task->status == 'completed')
-                                <div class="bg-[#E5F1E8] py-2 px-4 w-fit rounded-full">
+                                <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
                                     <p class="text-[#16A34A] text-[0.6rem] capitalize">{{ $task->status }}</p>
                                 </div>
                             @else
-                                <div class="bg-[#DC26261A] py-2 px-4 w-fit rounded-full">
+                                <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
                                     <p class="text-[#DC2626] text-[0.6rem] capitalize">{{ $task->status }}</p>
                                 </div>
                             @endif
@@ -215,15 +215,15 @@
                             @endif
 
                             @if ($selectedTask->status == 'pending')
-                                <div class="bg-[#FFF3D7] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#EFC68D] text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
+                                <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
+                                    <p class="text-[#c77a0e] text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
                                 </div>
                             @elseif ($selectedTask->status == 'completed')
-                                <div class="bg-[#E5F1E8] py-2 px-4 w-fit rounded-full">
+                                <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
                                     <p class="text-[#16A34A] text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
                                 </div>
                             @else
-                                <div class="bg-[#DC26261A] py-2 px-4 w-fit rounded-full">
+                                <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
                                     <p class="text-[#DC2626] text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
                                 </div>
                             @endif
@@ -233,13 +233,13 @@
                 <div class="flex flex-col w-full">
                     <div class="flex justify-between">
                         <div class="flex flex-col gap-2">
-                            <p class="font-semibold text-sm">Due Date:</p>
-                            <p class="text-xs">
+                            <p class="font-medium text-sm">Due Date:</p>
+                            <p class="text-xs text-[#747474]">
                                 {{ \Carbon\Carbon::parse($selectedTask->expiry_date)->format('F d, Y') }}</p>
                         </div>
                         <div class="flex flex-col gap-2">
-                            <p class="font-semibold text-sm">Customer Information</p>
-                            <div class="flex items-center gap-2">
+                            <p class="font-medium text-sm">Customer Information</p>
+                            <div class="flex items-center gap-2 text-[#747474]">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-5">
                                     <path fill-rule="evenodd"
@@ -248,7 +248,7 @@
                                 </svg>
                                 <p class="text-xs">{{ $selectedTask->customer_name }}</p>
                             </div>
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2 text-[#747474]">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                     class="size-4.5">
                                     <path fill-rule="evenodd"
@@ -265,7 +265,7 @@
                 </div>
                 <div class="flex flex-col w-full gap-2">
                     <p class="font-semibold text-sm">Description:</p>
-                    <p class="text-xs text-justify">
+                    <p class="text-xs text-justify text-[#828282]">
                         {{ $selectedTask->description }}
                     </p>
                 </div>
