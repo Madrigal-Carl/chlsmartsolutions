@@ -7,18 +7,27 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AuthController
 {
     public function userSignin(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|min:8|max:25|exists:users,username',
+            'username' => [
+                'required',
+                'min:8',
+                'max:25',
+                Rule::exists('users', 'username')->where(function ($query) use ($request) {
+                    $query->whereRaw('BINARY username = ?', [$request->username]);
+                }),
+            ],
             'password' => 'required|min:8|max:25',
         ], [
             'username.required' => 'Username is required.',
             'username.min' => 'Username must be at least 8 characters.',
             'username.max' => 'Username must not exceed 25 characters.',
+            'username.exists' => 'Username does not exist.',
             'password.required' => 'Password is required.',
             'password.min' => 'Password must be at least 8 characters.',
             'password.max' => 'Password must not exceed 25 characters.',
@@ -62,6 +71,7 @@ class AuthController
             'username.required' => 'Username is required.',
             'username.min' => 'Username must be at least 8 characters.',
             'username.max' => 'Username must not exceed 25 characters.',
+            'username.unique' => 'Username already been used.',
             'phone.required' => 'Phone number is required.',
             'phone.regex' => 'Phone number must be a valid phone number.',
             'password.required' => 'Password is required.',
