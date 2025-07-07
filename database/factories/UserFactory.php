@@ -14,7 +14,7 @@ class UserFactory extends Factory
     {
         return [
             'fullname' => $this->faker->name(),
-            'username' => 'carlcustomer', // default fallback
+            'username' => 'carlcustomer',
             'phone_number' => '9123456789',
             'password' => Hash::make('CarlMadrigal05'),
             'role' => 'customer',
@@ -26,6 +26,7 @@ class UserFactory extends Factory
         return $this->state(fn () => [
             'role' => 'admin',
             'username' => 'carladmin',
+            'phone_number' => '9123456781',
         ]);
     }
 
@@ -34,6 +35,7 @@ class UserFactory extends Factory
         return $this->state(fn () => [
             'role' => 'customer',
             'username' => 'carlcustomer',
+            'phone_number' => '9123456782',
         ]);
     }
 
@@ -42,6 +44,7 @@ class UserFactory extends Factory
         return $this->state(fn () => [
             'role' => 'cashier',
             'username' => 'carlcashier',
+            'phone_number' => '9123456783',
         ]);
     }
 
@@ -50,6 +53,7 @@ class UserFactory extends Factory
         return $this->state(fn () => [
             'role' => 'technician',
             'username' => 'carltechnician',
+            'phone_number' => '9123456785',
         ]);
     }
 
@@ -58,6 +62,7 @@ class UserFactory extends Factory
         return $this->state(fn () => [
             'role' => 'admin_officer',
             'username' => 'carladminofficer',
+            'phone_number' => '9123456785',
         ]);
     }
 }
