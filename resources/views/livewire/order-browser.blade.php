@@ -58,16 +58,16 @@
                     <div class="w-[25%] py-4">₱{{ number_format($order->total_amount, 2) }}</div>
                     <div class="w-[20%] pr-1 border-x border-[#EEF2F5] py-3 flex items-center justify-center">
                         @if ($order->status == 'pending')
-                            <div class="bg-[#FFF3D7] py-2 px-4 w-fit rounded-full">
-                                <p class="text-[#EFC68D] text-[0.6rem] capitalize">{{ $order->status }}</p>
+                            <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
+                                <p class="text-[#c77a0e] text-xs font-medium capitalize">{{ $order->status }}</p>
                             </div>
                         @elseif ($order->status == 'completed')
-                            <div class="bg-[#E5F1E8] py-2 px-4 w-fit rounded-full">
-                                <p class="text-[#16A34A] text-[0.6rem] capitalize">{{ $order->status }}</p>
+                            <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
+                                <p class="text-[#16A34A] text-xs font-medium capitalize">{{ $order->status }}</p>
                             </div>
                         @else
-                            <div class="bg-[#DC26261A] py-2 px-4 w-fit rounded-full">
-                                <p class="text-[#DC2626] text-[0.6rem] capitalize">{{ $order->status }}</p>
+                            <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
+                                <p class="text-[#DC2626] text-xs font-medium capitalize">{{ $order->status }}</p>
                             </div>
                         @endif
                     </div>
@@ -134,14 +134,55 @@
     @if ($showModal && $selectedOrder)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs">
             <div
-                class="bg-white rounded-xl shadow-lg max-w-[280px] md:max-w-lg gap-4 w-full p-8 relative font-inter flex flex-col items-center justify-center">
-                <div class="flex flex-col w-full gap-4">
-                    <div class="flex flex-col font-poppins">
-                        <h1 class="font-semibold text-xl">Order Details</h1>
-                        <p class="text-xs">Order #{{ str_pad($selectedOrder->id, 4, '0', STR_PAD_LEFT) }}</p>
+                class="bg-white rounded-xl shadow-lg max-w-[280px] md:max-w-lg gap-6 w-full p-8 relative font-inter flex flex-col items-center justify-center">
+                <div class="flex flex-col w-full gap-4 font-poppins">
+                    <div class="flex w-full items-center justify-between">
+                        <div class="flex flex-col">
+                            <h1 class="font-semibold text-xl mb-2">Order Details</h1>
+                            <p class="text-sm">Order #: {{ str_pad($selectedOrder->id, 4, '0', STR_PAD_LEFT) }}</p>
+                            <p class="text-sm">Reference Id#: {{ $selectedOrder->reference_id }}</p>
+                        </div>
+                        <div>
+                            @if ($selectedOrder->status == 'pending')
+                                <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
+                                    <p class="text-[#c77a0e] text-sm capitalize">{{ $selectedOrder->status }}</p>
+                                </div>
+                            @elseif ($selectedOrder->status == 'completed')
+                                <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
+                                    <p class="text-[#16A34A] text-sm capitalize">{{ $selectedOrder->status }}</p>
+                                </div>
+                            @else
+                                <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
+                                    <p class="text-[#DC2626] text-sm capitalize">{{ $selectedOrder->status }}</p>
+                                </div>
+                            @endif
+                        </div>
                     </div>
-
                 </div>
+                <div class="flex flex-col gap-2 w-full">
+                    <div class="flex items-center text-center text-[#747474]">
+                        <div class="w-[50%]">ITEMS</div>
+                        <div class="w-[15%]">QTY</div>
+                        <div class="w-[35%]">PRICE</div>
+                    </div>
+                    <div
+                        class="flex flex-col items-center max-h-[150px] overflow-hidden overflow-y-auto custom-scrollbar">
+                        @for ($i = 0; $i < 6; $i++)
+                            <div class="flex items-center w-full">
+                                <div class="w-[50%]">Lenovo - Ideapad Slim 3</div>
+                                <div class="w-[15%] text-center">x1</div>
+                                <div class="w-[35%] text-center">
+                                    ₱10,000.00</div>
+                            </div>
+                        @endfor
+                    </div>
+                    <hr class="w-full h-px border-[#BBBBBB] mt-4">
+                    <div class="w-full flex items-center justify-between">
+                        <p class="font-bold">Total:</p>
+                        <p class="w-[35%] text-center">₱30,000.00</p>
+                    </div>
+                </div>
+
 
 
                 <div class="flex items-center justify-center w-full gap-4 mt-6">
