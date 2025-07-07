@@ -191,7 +191,7 @@
             <p class="flex items-center gap-2 text[#6F6F6F] text-sm">Total : <span
                     class="text-[#EE4D2D]">₱{{ number_format($this->totalAmount, 2) }}</span>
             </p>
-            <a href="{{ count($cartItems) > 0 ? '/checkout' : '/' }}"
+            <a href="{{ count($cartItems) > 0 ? '/checkout' : '/signin' }}"
                 class="bg-[#5AA526] py-1 px-4 rounded-lg text-white text-sm font-bold">
                 Buy now
             </a>

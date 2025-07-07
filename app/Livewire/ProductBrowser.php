@@ -54,7 +54,7 @@ class ProductBrowser extends Component
             $this->dispatch('addToCart', ['id' => $this->selectedProduct->id])
                 ->to(Cart::class);
         }
-
+        notyf()->error('Product is not yet available');
         $this->closeModal();
     }
 

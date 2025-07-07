@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Inventory;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,12 @@ class OrderController
             'product_id' => $item->id,
             'quantity' => $item->quantity,
             ]);
+        }
+
+        foreach($cartItems as $item){
+            $product = Inventory::where('product_id', $item->id)->first();
+            $product->stock -= $item->quantity;
+            $product->save();
         }
 
         session()->forget('cartItems');
