@@ -26,7 +26,7 @@ class RouteController
     {
         $user = Auth::user();
         $cartItems = session()->get('cartItems', []);
-        $total = 0;
+        $total = 0.0;
 
         foreach ($cartItems as $item) {
             $total += $item->quantity * $item->price;

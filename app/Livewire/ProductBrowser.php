@@ -50,11 +50,13 @@ class ProductBrowser extends Component
 
     public function addToCart()
     {
-        if ($this->selectedProduct->inventory->stock > 0) {
-            $this->dispatch('addToCart', ['id' => $this->selectedProduct->id])
-                ->to(Cart::class);
+        if ($this->selectedProduct->inventory->stock < 0) {
+            notyf()->error('Product is not yet available');
+            $this->closeModal();
+            return;
         }
-        notyf()->error('Product is not yet available');
+        $this->dispatch('addToCart', ['id' => $this->selectedProduct->id])
+                ->to(Cart::class);
         $this->closeModal();
     }
 

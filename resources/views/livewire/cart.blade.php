@@ -106,7 +106,8 @@
                                     ₱{{ number_format($this->totalPrice($item->id), 2) }}
                                 </td>
                                 <td class="px-4 py-2 w-[15%] text-center rounded-r-lg">
-                                    <button class="text-red-500 font-bold" wire:click='removeItem({{ $item->id }})'>
+                                    <button class="text-red-500 font-bold cursor-pointer"
+                                        wire:click='removeItem({{ $item->id }})'>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                             class="size-6">
                                             <path fill-rule="evenodd"

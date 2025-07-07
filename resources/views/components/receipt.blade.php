@@ -51,7 +51,7 @@
                 <hr class="w-full h-px border-[#BBBBBB] mt-4">
                 <div class="w-full flex items-center justify-between">
                     <p class="font-bold">Total:</p>
-                    <p class="w-[35%] text-center">₱30,000.00</p>
+                    <p class="w-[35%] text-center">₱{{ session('total') }}</p>
                 </div>
             </div>
             <div class="w-full flex flex-col items-center justify-center text-center text-[#747474]">

@@ -160,26 +160,27 @@
                     </div>
                 </div>
                 <div class="flex flex-col gap-2 w-full">
-                    <div class="flex items-center text-center text-[#747474]">
+                    <h1 class="font-medium">Order items({{ count($selectedOrder->orderProducts) }})</h1>
+                    <div class="flex items-center text-center text-xs text-[#747474]">
                         <div class="w-[50%]">ITEMS</div>
                         <div class="w-[15%]">QTY</div>
                         <div class="w-[35%]">PRICE</div>
                     </div>
                     <div
                         class="flex flex-col items-center max-h-[150px] overflow-hidden overflow-y-auto custom-scrollbar">
-                        @for ($i = 0; $i < 6; $i++)
+                        @foreach ($selectedOrder->orderProducts as $order)
                             <div class="flex items-center w-full">
-                                <div class="w-[50%]">Lenovo - Ideapad Slim 3</div>
-                                <div class="w-[15%] text-center">x1</div>
+                                <div class="w-[50%]">{{ $order->product->name }}</div>
+                                <div class="w-[15%] text-center">x{{ $order->quantity }}</div>
                                 <div class="w-[35%] text-center">
-                                    ₱10,000.00</div>
+                                    ₱{{ number_format($order->product->price * $order->quantity, 2) }}</div>
                             </div>
-                        @endfor
+                        @endforeach
                     </div>
                     <hr class="w-full h-px border-[#BBBBBB] mt-4">
                     <div class="w-full flex items-center justify-between">
                         <p class="font-bold">Total:</p>
-                        <p class="w-[35%] text-center">₱30,000.00</p>
+                        <p class="w-[35%] text-center">₱{{ number_format($selectedOrder->total_amount, 2) }}</p>
                     </div>
                 </div>
 

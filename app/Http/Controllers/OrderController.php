@@ -74,6 +74,7 @@ class OrderController
         return redirect()->route('landing.page')->with([
             'showCard' => true,
             'orderId' => $order->id,
+            'total' => $order->total_amount,
             'referenceId' => $order->reference_id,
         ]);
     }
