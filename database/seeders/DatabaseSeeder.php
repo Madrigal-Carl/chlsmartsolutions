@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Task;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Database\Seeder;
@@ -46,5 +47,6 @@ class DatabaseSeeder extends Seeder
 
         Product::factory()->count(20)->create();
         Task::factory()->count(15)->create();
+        Order::factory()->count(20)->create();
     }
 }

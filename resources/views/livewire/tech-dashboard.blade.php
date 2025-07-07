@@ -271,7 +271,7 @@
                 </div>
                 <div class="flex items-center justify-center w-full gap-4 mt-6">
                     <button wire:click='updateStatus({{ $selectedTask->id }})'
-                        class="cursor-pointer flex gap-2 items-center py-2 px-4 bg-[#3B82F6] rounded-md text-white">
+                        class="cursor-pointer flex gap-2 items-center py-2 px-4 bg-[#16A34A] rounded-md text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round"

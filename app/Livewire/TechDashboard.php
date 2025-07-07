@@ -18,7 +18,7 @@ class TechDashboard extends Component
     public $selectedDate;
     public $selectedPrio = 0;
     public $selectedTask = null;
-    public $showModal = true;
+    public $showModal = false;
 
     public function mount()
     {

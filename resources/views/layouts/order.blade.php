@@ -7,5 +7,5 @@
         </button>
     </div>
 
-
+    <livewire:order-browser />
 </div>
