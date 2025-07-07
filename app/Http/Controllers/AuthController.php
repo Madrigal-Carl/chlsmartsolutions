@@ -62,7 +62,7 @@ class AuthController
         $validator = Validator::make($request->all(), [
             'fullname' => 'required|max:35|regex:/^[A-Za-z\s]+$/',
             'username' => 'required|unique:users,username|min:8|max:25',
-            'phone' => 'required|regex:/^9[0-9]{9}$/',
+            'phone' => 'required|regex:/^9[0-9]{9}$/|unique:users,phone_number',
             'password' => 'required|min:8|max:25',
         ], [
             'fullname.required' => 'Full name is required.',

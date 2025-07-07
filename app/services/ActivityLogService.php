@@ -19,6 +19,7 @@ class ActivityLogService
             'user_id' => $user_id,
             'title' => 'Task Completed',
             'message' => 'The task titled "' . Str::title($log->task->title) . '" requested by ' . $log->task->customer_name . ' has been successfully completed.',
+            'visible_to' => ['technician'],
         ]);
 
         notyf()->success('Task has been completed');

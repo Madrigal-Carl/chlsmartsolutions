@@ -49,8 +49,10 @@ class OrderBrowser extends Component
             app(NotificationService::class)->createNotif(
                 Auth::user()->id,
                 'Order Completed',
-                "{$order->reference_id} ordered by {$order->user->fullname} has been successfully completed."
+                "{$order->reference_id} ordered by {$order->user->fullname} has been successfully completed.",
+                ['admin', 'cashier', 'admin_officer'],
             );
+
             notyf()->success('Order has been completed.');
             $this->dispatch('notificationRead')->to('sidebar');
             $this->closeModal();

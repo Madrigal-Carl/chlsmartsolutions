@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Order;
+use App\Services\NotificationService;
 use Carbon\Carbon;
 
 class CheckOrderExpiry extends Command
@@ -29,13 +30,21 @@ class CheckOrderExpiry extends Command
     {
         $today = Carbon::today();
 
-        $expiredTasks = Order::whereNotNull('expiry_date')->whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
+        $expiredOrder = Order::whereNotNull('expiry_date')->whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
+        $notifier = app(NotificationService::class);
 
-        foreach ($expiredTasks as $task) {
-            $task->status = 'expired';
-            $task->save();
+        foreach ($expiredOrder as $order) {
+            $order->status = 'expired';
+            $order->save();
 
-            $this->info("Task ID {$task->id} has expired.");
+            $notifier->createNotif(
+                $order->user_id,
+                'Order Expired',
+                "The order {$order->reference_id} has expired.",
+                ['admin', 'cashier', 'admin_officer'],
+            );
+
+            $this->info("Task ID {$order->id} has expired.");
         }
 
         $this->info('Checked for expired tasks.');

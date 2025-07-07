@@ -19,7 +19,7 @@ class OrderFactory extends Factory
     {
         return [
             'reference_id' => 'OL-' . now()->format('dmY') . '-' . $this->faker->unique()->numerify('####'),
-            'user_id' => User::factory(),
+            'user_id' => 2,
             'total_amount' => $this->faker->numberBetween(1000, 500000),
             'type' => $this->faker->randomElement(['government', 'walk_in', 'project_based', 'online']),
             'status' => $this->faker->randomElement(['pending', 'completed', 'expired']),

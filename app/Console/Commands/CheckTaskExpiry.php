@@ -2,9 +2,10 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Models\Task;
 use Carbon\Carbon;
+use App\Models\Task;
+use Illuminate\Console\Command;
+use App\Services\NotificationService;
 
 class CheckTaskExpiry extends Command
 {
@@ -31,10 +32,18 @@ class CheckTaskExpiry extends Command
 
         // Find expired tasks
         $expiredTasks = Task::whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
+        $notifier = app(NotificationService::class);
 
         foreach ($expiredTasks as $task) {
             $task->status = 'missed';
             $task->save();
+
+            $notifier->createNotif(
+                $task->user_id,
+                'Order Expired',
+                "The order {$task->reference_id} has expired.",
+                ['technician'],
+            );
 
             $this->info("Task ID {$task->id} has expired.");
         }

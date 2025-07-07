@@ -10,6 +10,10 @@ class Notification extends Model
         'user_id',
         'title',
         'message',
+        'visible_to',
     ];
 
+    protected $casts = [
+        'visible_to' => 'array',
+    ];
 }

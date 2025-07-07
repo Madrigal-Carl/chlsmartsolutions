@@ -6,18 +6,23 @@ use App\Models\Notification;
 
 class NotificationService
 {
-    public function createNotif($id, $title, $message)
+    public function createNotif($id, $title, $message, $visible_to)
     {
         Notification::create([
             'user_id' => $id,
             'title' => $title,
             'message' => $message,
+            'visible_to' => $visible_to,
         ]);
     }
 
-    public function getFilteredNotification($id ,$filter)
+    public function getFilteredNotification($id ,$filter, $role)
     {
-        $query = Notification::where('user_id', $id);
+        if ($role == 'technician'){
+            $query = Notification::where('user_id', $id);
+        } else {
+            $query = Notification::whereJsonContains('visible_to', $role);
+        }
 
         if ($filter == 1) {
             $query->whereNull('read_at');

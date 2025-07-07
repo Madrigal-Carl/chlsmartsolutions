@@ -20,7 +20,7 @@ class NotificationList extends Component
 
     public function loadNotifications(NotificationService $notificationService)
     {
-        $this->notifications = $notificationService->getFilteredNotification(Auth::user()->id, $this->selectedMessage);
+        $this->notifications = $notificationService->getFilteredNotification(Auth::user()->id, $this->selectedMessage, Auth::user()->role);
     }
 
     public function markAsRead($id, NotificationService $notificationService)
