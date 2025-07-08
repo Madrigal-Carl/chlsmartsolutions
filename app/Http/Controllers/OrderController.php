@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\Inventory;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
@@ -44,6 +45,18 @@ class OrderController
 
         if ($request->payment_method == 'e-wallet'){
             return; //for now
+        }
+
+        foreach($cartItems as $item){
+            $product = Product::with('inventory')->where('id', $item->id)->first();
+            if ($product->inventory->stock < $item->quantity){
+                $cartItems = array_filter($cartItems, function ($item) {
+                    return $item->id !== $item->id;
+                });
+                session()->put('cartItems', $cartItems);
+                notyf()->error("{$item->name} out of stock");
+                return redirect()->route('landing.page');
+            }
         }
 
         $order = Order::create([
