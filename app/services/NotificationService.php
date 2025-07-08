@@ -18,11 +18,10 @@ class NotificationService
 
     public function getFilteredNotification($id ,$filter, $role)
     {
-        if ($role == 'technician'){
-            $query = Notification::where('user_id', $id);
-        } else {
-            $query = Notification::whereJsonContains('visible_to', $role);
-        }
+        $query = match ($role) {
+            'technician' => Notification::where('user_id', $id),
+            default => Notification::whereJsonContains('visible_to', $role),
+        };
 
         if ($filter == 1) {
             $query->whereNull('read_at');
