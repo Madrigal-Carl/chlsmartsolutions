@@ -4,7 +4,6 @@ namespace App\Livewire;
 
 use App\Models\Order;
 use Livewire\Component;
-use App\Models\Notification;
 use Livewire\WithPagination;
 use App\Services\OrderService;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +16,8 @@ class OrderBrowser extends Component
     public $search = '';
     public $selectedOrder = null;
     public $showModal = false;
-    public string $activeTab = 'addOrder';
+    public $type = null;
+    public string $activeTab = 'orderBrowse';
 
     public function selectOrder($order_id)
     {
@@ -63,5 +63,29 @@ class OrderBrowser extends Component
         }
 
         notyf()->error('Order has expired.');
+    }
+
+    public function goToCheckout()
+    {
+        if (empty(session('cartItems'))) {
+            notyf()->error('Your product list is empty.');
+            return;
+        }
+
+        if (!$this->type) {
+            notyf()->error('Please select a customer type.');
+            return;
+        }
+
+        $total = 0.0;
+        $products = session()->get('cartItems', []);
+        foreach ($products as $product){
+            $total += $product->quantity * $product->price;
+        }
+
+        $this->dispatch('submit-form', [
+            'total_amount' => $total,
+            'payment_method' => 'in_store',
+        ]);
     }
 }

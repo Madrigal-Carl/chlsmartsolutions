@@ -13,14 +13,14 @@ class Cart extends Component
     {
         $productId = $payload['id'];
 
-        $product = Product::with(['category', 'inventory'])->findOrFail($productId);
+        $product = Product::with(['inventory'])->findOrFail($productId);
 
         foreach ($this->cartItems as $item) {
             if ($item->id == $product->id){
                 if ($item->quantity < $item->stock){
                     $item->quantity++;
                     session()->put('cartItems', $this->cartItems);
-                    notyf()->success('You’ve added the item to your cart.');
+                    notyf()->success('You’ve added the product to your cart.');
                     return;
                 }
                 return;
@@ -36,7 +36,7 @@ class Cart extends Component
             'quantity' => 1,
         ];
 
-        notyf()->success('You’ve added the item to your cart.');
+        notyf()->success('You’ve added the product to your cart.');
 
         session()->put('cartItems', $this->cartItems);
     }

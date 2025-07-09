@@ -207,6 +207,6 @@
             <x-footer />
         </div>
 
-        <x-receipt />
+        <livewire:receipt />
     </div>
 </x-default>

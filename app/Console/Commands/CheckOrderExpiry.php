@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Models\Order;
-use App\Services\NotificationService;
 use Carbon\Carbon;
+use App\Models\Order;
+use App\Models\Inventory;
+use Illuminate\Console\Command;
+use App\Services\NotificationService;
 
 class CheckOrderExpiry extends Command
 {
@@ -30,12 +31,18 @@ class CheckOrderExpiry extends Command
     {
         $today = Carbon::today();
 
-        $expiredOrder = Order::whereNotNull('expiry_date')->whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
+        $expiredOrder = Order::with('orderProducts.product.inventory')->whereNotNull('expiry_date')->whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
         $notifier = app(NotificationService::class);
 
         foreach ($expiredOrder as $order) {
             $order->status = 'expired';
             $order->save();
+
+            foreach ($order->orderProducts as $orderProduct) {
+                $product = $orderProduct->product;
+                $product->inventory->stock += $orderProduct->quantity;
+                $product->inventory->save();
+            }
 
             $notifier->createNotif(
                 $order->user_id,

@@ -14,7 +14,7 @@ class ContentDisplay extends Component
     public function mount($items = [])
     {
         $this->items = $items;
-        $this->active = $items[0]['label'] ?? '';
+        $this->active = session('sidebar_active', $items[0]['label'] ?? '');
     }
 
     public function updateActive($option)

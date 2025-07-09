@@ -30,9 +30,11 @@ class OrderController
         $validator = Validator::make($request->all(), [
             'total_amount' => 'required',
             'payment_method' => 'required',
+            'type' => 'required',
         ], [
             'total_amount.required' => 'Total Amount is required',
-            'payment_method.required' => 'Please select payment type.'
+            'payment_method.required' => 'Please select payment type.',
+            'type.required' => 'Please select a customer type.'
         ]);
 
         $cartItems = session()->get('cartItems', []);
@@ -59,12 +61,17 @@ class OrderController
             }
         }
 
+        $expiry = now()->addDays(3)->toDateString();
+        if ($request->type == 'online'){
+            $expiry = null;
+        }
+
         $order = Order::create([
-            'reference_id' => $this->generateReferenceId('online', now()->format('mdY'), Auth::user()->id),
+            'reference_id' => $this->generateReferenceId($request->type, now()->format('mdY'), Auth::user()->id),
             'user_id' => Auth::user()->id,
             'total_amount' => $request->total_amount,
-            'type' => 'online',
-            'expiry_date' => now()->addWeek()->toDateString(),
+            'type' => $request->type,
+            'expiry_date' => $expiry,
         ]);
 
         foreach($cartItems as $item){
@@ -84,11 +91,12 @@ class OrderController
         session()->forget('cartItems');
 
         notyf()->success('Order placed successfully');
-        return redirect()->route('landing.page')->with([
+        session([
             'showCard' => true,
             'orderId' => $order->id,
             'total' => $order->total_amount,
             'referenceId' => $order->reference_id,
         ]);
+        return redirect()->route('landing.page');
     }
 }

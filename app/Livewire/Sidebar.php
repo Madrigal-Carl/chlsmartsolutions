@@ -24,12 +24,13 @@ class Sidebar extends Component
     {
         $this->updateUnreadCount();
         $this->items = $items;
-        $this->active = $items[0]['label'] ?? '';
+        $this->active = session('sidebar_active', $items[0]['label'] ?? '');
     }
 
     public function setActive($option)
     {
         $this->active = $option;
+        session()->put('sidebar_active', $option);
         $this->dispatch('setActive', $option);
     }
     public function render()

@@ -23,7 +23,7 @@ class OrderFactory extends Factory
             'total_amount' => $this->faker->numberBetween(1000, 500000),
             'type' => $this->faker->randomElement(['government', 'walk_in', 'project_based', 'online']),
             'status' => $this->faker->randomElement(['pending', 'completed', 'expired']),
-            'expiry_date' => $this->faker->optional()->dateTimeBetween('-1 month', '+1 month')?->format('Y-m-d'),
+            'expiry_date' => $this->faker->optional()->dateTimeBetween('-1 month', '+3 days')?->format('Y-m-d'),
         ];
     }
 }

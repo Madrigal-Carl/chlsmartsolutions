@@ -4,7 +4,8 @@
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-6">
                 <div class="relative text-[#797979]">
-                    <input type="text" placeholder="Search order..." wire:change="$set('search', $event.target.value)"
+                    <input type="text" placeholder="Search order..."
+                        wire:input.debounce.300ms="$set('search', $event.target.value)"
                         class="w-full pr-10 pl-4 py-2  border border-gray-500 rounded-md focus:outline-none" />
 
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -62,24 +63,46 @@
                         <div class="w-[25%] py-4">₱{{ number_format($order->total_amount, 2) }}</div>
                         <div class="w-[20%] pr-1 border-x border-[#EEF2F5] py-3 flex items-center justify-center">
                             @if ($order->status == 'pending')
-                                <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#c77a0e] text-xs font-medium capitalize">{{ $order->status }}
-                                    </p>
+                                <div
+                                    class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full text-[#c77a0e] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-ellipsis-icon lucide-ellipsis">
+                                        <circle cx="12" cy="12" r="1" />
+                                        <circle cx="19" cy="12" r="1" />
+                                        <circle cx="5" cy="12" r="1" />
+                                    </svg>
+                                    <p class="text-xs capitalize">{{ $order->status }}</p>
                                 </div>
                             @elseif ($order->status == 'completed')
-                                <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#16A34A] text-xs font-medium capitalize">{{ $order->status }}
-                                    </p>
+                                <div
+                                    class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full text-[#16A34A] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-check-icon lucide-check">
+                                        <path d="M20 6 9 17l-5-5" />
+                                    </svg>
+                                    <p class="text-xs capitalize">{{ $order->status }}</p>
                                 </div>
                             @else
-                                <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#DC2626] text-xs font-medium capitalize">{{ $order->status }}
-                                    </p>
+                                <div
+                                    class="bg-[#dc262633] py-2 px-4 w-fit rounded-full text-[#DC2626] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-x-icon lucide-x">
+                                        <path d="M18 6 6 18" />
+                                        <path d="m6 6 12 12" />
+                                    </svg>
+                                    <p class="text-xs capitalize">{{ $order->status }}</p>
                                 </div>
                             @endif
                         </div>
                         <div class="w-[15%] pr-4 py-3 flex items-center justify-center gap-2 text-xs">
-                            <button wire:click='selectOrder({{ $order->id }})' class="cursor-pointer text-[#3B82F6]">
+                            <button wire:click='selectOrder({{ $order->id }})'
+                                class="cursor-pointer text-[#3B82F6]">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                     stroke-linecap="round" stroke-linejoin="round"
@@ -153,19 +176,40 @@
                             </div>
                             <div>
                                 @if ($selectedOrder->status == 'pending')
-                                    <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
-                                        <p class="text-[#c77a0e] text-sm capitalize">{{ $selectedOrder->status }}
-                                        </p>
+                                    <div
+                                        class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full text-[#c77a0e] flex gap-1 items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-ellipsis-icon lucide-ellipsis">
+                                            <circle cx="12" cy="12" r="1" />
+                                            <circle cx="19" cy="12" r="1" />
+                                            <circle cx="5" cy="12" r="1" />
+                                        </svg>
+                                        <p class="text-xs capitalize">{{ $selectedOrder->status }}</p>
                                     </div>
                                 @elseif ($selectedOrder->status == 'completed')
-                                    <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
-                                        <p class="text-[#16A34A] text-sm capitalize">{{ $selectedOrder->status }}
-                                        </p>
+                                    <div
+                                        class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full text-[#16A34A] flex gap-1 items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-check-icon lucide-check">
+                                            <path d="M20 6 9 17l-5-5" />
+                                        </svg>
+                                        <p class="text-xs capitalize">{{ $selectedOrder->status }}</p>
                                     </div>
                                 @else
-                                    <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
-                                        <p class="text-[#DC2626] text-sm capitalize">{{ $selectedOrder->status }}
-                                        </p>
+                                    <div
+                                        class="bg-[#dc262633] py-2 px-4 w-fit rounded-full text-[#DC2626] flex gap-1 items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="lucide lucide-x-icon lucide-x">
+                                            <path d="M18 6 6 18" />
+                                            <path d="m6 6 12 12" />
+                                        </svg>
+                                        <p class="text-xs capitalize">{{ $selectedOrder->status }}</p>
                                     </div>
                                 @endif
                             </div>
@@ -222,7 +266,7 @@
     @endif
 
     @if ($activeTab === 'addOrder')
-        <div class="flex flex-col gap-8">
+        <div class="flex flex-col gap-10">
             <div class="flex flex-col gap-4">
                 <div class="flex items-center gap-4">
                     <button wire:click="$set('activeTab', 'orderBrowse')" class="cursor-pointer">
@@ -236,16 +280,19 @@
                     <h1 class="font-poppins font-semibold text-lg">Purchase Information</h1>
                 </div>
                 <div class="flex items-center font-inter gap-6">
-                    <div class="flex flex-col text-[#797979]">
+                    <div class="flex flex-col text-[#797979] gap-1">
                         <p class="text-sm font-medium">Customer Type</p>
-                        <div class="relative">
-                            <select
+                        <form action="/order" method="POST" id="form" class="relative">
+                            @csrf
+                            <input type="text" class="hidden" name="total_amount" id="total_amount">
+                            <input type="text" class="hidden" name="payment_method" id="payment_method">
+                            <select wire:change="$set('type', $event.target.value)"
                                 class="w-[250px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                                 name="type" id="type">
                                 <option selected disabled>Select a type</option>
-                                <option value="1">Walk-in</option>
-                                <option value="2">Project-based</option>
-                                <option value="3">Government</option>
+                                <option value="walk_in">Walk-in</option>
+                                <option value="government">Project-based</option>
+                                <option value="project_based">Government</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -254,14 +301,9 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <div class="flex flex-col">
-                        <p class="text-sm font-medium text-[#797979]">Customer Name</p>
-                        <input type="text" placeholder="Enter a name"
-                            class="w-[250px] pr-10 pl-4 py-2  border border-gray-500 rounded-md focus:outline-none" />
-                    </div>
-                    <div class="flex flex-col text-[#797979]">
+                    <div class="flex flex-col text-[#797979] gap-1">
                         <p class="text-sm font-medium">Current Date</p>
                         <div class="flex items-center relative text-[#797979]">
                             <input type="date" disabled value="{{ now()->format('Y-m-d') }}"
@@ -281,14 +323,29 @@
                 </div>
             </div>
 
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-6">
                 <div class="flex items-center gap-4 justify-between">
-                    <h1 class="font-poppins font-semibold text-lg">New Order</h1>
-                </div>
-                <div>
+                    <h1 class="font-poppins font-semibold text-lg">Create New Order</h1>
 
+                    <livewire:product-search />
+                </div>
+
+                <livewire:order-list />
+
+                <div class="flex items-start justify-end w-full">
+                    <button wire:click="goToCheckout"
+                        class="bg-[#2563EB] text-white rounded-md px-4 py-2 flex items-center gap-2 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" class="lucide lucide-check-icon lucide-check">
+                            <path d="M20 6 9 17l-5-5" />
+                        </svg>
+                        <p>Create Order</p>
+                    </button>
                 </div>
             </div>
         </div>
     @endif
+
+    <livewire:receipt />
 </div>

@@ -83,6 +83,7 @@
                     <form method="POST" action="/order">
                         @csrf
                         <input type="text" class="hidden" name="total_amount" value="{{ $total }}">
+                        <input type="text" class="hidden" name="type" value="online">
                         <label class="block w-full cursor-pointer relative ">
                             <input type="radio" name="payment_method" value="in_store" class="peer hidden">
                             <div

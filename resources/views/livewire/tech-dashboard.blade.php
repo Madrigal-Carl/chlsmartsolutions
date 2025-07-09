@@ -68,16 +68,40 @@
                             {{ \Carbon\Carbon::parse($task->expiry_date)->format('F d, Y') }}</div>
                         <div class="w-[17.5%] border-r border-[#EEF2F5] py-2 flex items-center justify-center h-full">
                             @if ($task->status == 'pending')
-                                <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#c77a0e] text-[0.6rem] capitalize">{{ $task->status }}</p>
+                                <div
+                                    class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full text-[#c77a0e] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-ellipsis-icon lucide-ellipsis">
+                                        <circle cx="12" cy="12" r="1" />
+                                        <circle cx="19" cy="12" r="1" />
+                                        <circle cx="5" cy="12" r="1" />
+                                    </svg>
+                                    <p class="text-[0.6rem] capitalize">{{ $task->status }}</p>
                                 </div>
                             @elseif ($task->status == 'completed')
-                                <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#16A34A] text-[0.6rem] capitalize">{{ $task->status }}</p>
+                                <div
+                                    class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full text-[#16A34A] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-check-icon lucide-check">
+                                        <path d="M20 6 9 17l-5-5" />
+                                    </svg>
+                                    <p class="text-[0.6rem] capitalize">{{ $task->status }}</p>
                                 </div>
                             @else
-                                <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#DC2626] text-[0.6rem] capitalize">{{ $task->status }}</p>
+                                <div
+                                    class="bg-[#dc262633] py-2 px-4 w-fit rounded-full text-[#DC2626] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-x-icon lucide-x">
+                                        <path d="M18 6 6 18" />
+                                        <path d="m6 6 12 12" />
+                                    </svg>
+                                    <p class="text-[0.6rem] capitalize">{{ $task->status }}</p>
                                 </div>
                             @endif
 
@@ -215,16 +239,40 @@
                             @endif
 
                             @if ($selectedTask->status == 'pending')
-                                <div class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#c77a0e] text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
+                                <div
+                                    class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full text-[#c77a0e] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-ellipsis-icon lucide-ellipsis">
+                                        <circle cx="12" cy="12" r="1" />
+                                        <circle cx="19" cy="12" r="1" />
+                                        <circle cx="5" cy="12" r="1" />
+                                    </svg>
+                                    <p class="text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
                                 </div>
                             @elseif ($selectedTask->status == 'completed')
-                                <div class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#16A34A] text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
+                                <div
+                                    class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full text-[#16A34A] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-check-icon lucide-check">
+                                        <path d="M20 6 9 17l-5-5" />
+                                    </svg>
+                                    <p class="text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
                                 </div>
                             @else
-                                <div class="bg-[#dc262633] py-2 px-4 w-fit rounded-full">
-                                    <p class="text-[#DC2626] text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
+                                <div
+                                    class="bg-[#dc262633] py-2 px-4 w-fit rounded-full text-[#DC2626] flex gap-1 items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="lucide lucide-x-icon lucide-x">
+                                        <path d="M18 6 6 18" />
+                                        <path d="m6 6 12 12" />
+                                    </svg>
+                                    <p class="text-[0.6rem] capitalize">{{ $selectedTask->status }}</p>
                                 </div>
                             @endif
                         </div>
