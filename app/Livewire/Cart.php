@@ -30,7 +30,6 @@ class Cart extends Component
         $this->cartItems[] = (object)[
             'id' => $product->id,
             'name' => $product->name,
-            'category' => $product->category->name,
             'description' => $product->description,
             'price' => $product->price,
             'stock' => $product->inventory->stock,

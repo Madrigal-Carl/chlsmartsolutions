@@ -82,7 +82,7 @@
                     <h1 class="font-bold text-lg font-inter">Select Payment Method</h1>
                     <form method="POST" action="/order">
                         @csrf
-                        <input type="text" class="hidden" name="total" value="{{ $total }}">
+                        <input type="text" class="hidden" name="total_amount" value="{{ $total }}">
                         <label class="block w-full cursor-pointer relative ">
                             <input type="radio" name="payment_method" value="in_store" class="peer hidden">
                             <div
