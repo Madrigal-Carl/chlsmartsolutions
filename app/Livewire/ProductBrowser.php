@@ -50,7 +50,7 @@ class ProductBrowser extends Component
 
     public function addToCart()
     {
-        if ($this->selectedProduct->inventory->stock < 0) {
+        if ($this->selectedProduct->inventory->stock < 1) {
             notyf()->error('Product is not yet available');
             $this->closeModal();
             return;
