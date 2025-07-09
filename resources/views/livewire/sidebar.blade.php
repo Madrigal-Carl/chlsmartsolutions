@@ -14,7 +14,7 @@
                 @endif
 
                 @if ($item['label'] == 'notification' && $unreadNotif > 0)
-                    <div
+                    <div wire:poll.3s
                         class="absolute left-15 top-1 bg-red-500 text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">
                         {{ $unreadNotif }}
                     </div>

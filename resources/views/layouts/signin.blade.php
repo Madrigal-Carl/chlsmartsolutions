@@ -15,7 +15,7 @@
                     <p class="text-[0.6rem] md:text-[0.8rem] font-extralight">Enter your information to sign in to your
                         account </p>
                 </div>
-                <div class="w-12/13 flex flex-col items-center pt-4 pb-6 px-10 gap-4">
+                <div class="flex flex-col items-center pt-4 pb-6 px-10 gap-4">
                     <div
                         class="w-full flex items-center justify-center gap-2 py-2 px-8 border border-[#D1D1D180] rounded-lg">
                         <img class="h-5 md:h-6" src="{{ asset('images/google_icon.png') }}" alt="google_icon.png">

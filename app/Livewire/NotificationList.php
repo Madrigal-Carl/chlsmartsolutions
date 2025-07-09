@@ -43,8 +43,9 @@ class NotificationList extends Component
         $this->loadNotifications($notificationService);
     }
 
-    public function render()
+    public function render(NotificationService $notificationService)
     {
+        $this->loadNotifications($notificationService);
         return view('livewire.notification-list');
     }
 

@@ -16,8 +16,8 @@ class OrderBrowser extends Component
     public $selectedStatus = 0;
     public $search = '';
     public $selectedOrder = null;
-    public $showModal = true;
-
+    public $showModal = false;
+    public string $activeTab = 'addOrder';
 
     public function selectOrder($order_id)
     {

@@ -34,6 +34,7 @@ class Sidebar extends Component
     }
     public function render()
     {
+        $this->updateUnreadCount();
         return view('livewire.sidebar');
     }
 }

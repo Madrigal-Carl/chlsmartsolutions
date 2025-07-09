@@ -28,10 +28,10 @@ class OrderController
     public function createOrder(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'total' => 'required',
+            'total_amount' => 'required',
             'payment_method' => 'required',
         ], [
-            'total.required' => 'Total Amount is required',
+            'total_amount.required' => 'Total Amount is required',
             'payment_method.required' => 'Please select payment type.'
         ]);
 
@@ -62,7 +62,7 @@ class OrderController
         $order = Order::create([
             'reference_id' => $this->generateReferenceId('online', now()->format('mdY'), Auth::user()->id),
             'user_id' => Auth::user()->id,
-            'total_amount' => $request->total,
+            'total_amount' => $request->total_amount,
             'type' => 'online',
             'expiry_date' => now()->addWeek()->toDateString(),
         ]);
