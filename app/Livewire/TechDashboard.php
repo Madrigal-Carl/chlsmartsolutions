@@ -51,6 +51,14 @@ class TechDashboard extends Component
         $this->selectedTask = null;
     }
 
+    public function updated($property)
+    {
+        if ($property === 'selectedDate' || $property === 'selectedPrio') {
+            $this->gotoPage(1);
+        }
+    }
+
+
     public function render(TaskService $taskService)
     {
         $tasks = $taskService->getTasksByDate($this->selectedDate, $this->selectedPrio);

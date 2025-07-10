@@ -23,17 +23,12 @@ class ProductBrowser extends Component
     public function updated($property)
     {
         if ($property === 'selectedCategory' || $property === 'search') {
-            $this->resetPage();
+            $this->gotoPage(1);
         }
     }
     public function mount(CategoryService $categoryService)
     {
         $this->categories = $categoryService->getAllCategory();
-    }
-
-    public function resetPage()
-    {
-        $this->gotoPage(1);
     }
 
     public function selectProduct($productId)

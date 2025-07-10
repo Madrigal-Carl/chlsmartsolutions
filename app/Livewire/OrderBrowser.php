@@ -31,6 +31,13 @@ class OrderBrowser extends Component
         $this->selectedOrder = null;
     }
 
+    public function updated($property)
+    {
+        if ($property === 'selectedStatus' || $property === 'search') {
+            $this->gotoPage(1);
+        }
+    }
+
     public function render(OrderService $orderService)
     {
         $orders = $orderService->getFilteredOrders($this->selectedStatus, $this->search);
