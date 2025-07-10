@@ -8,7 +8,7 @@
             <div class="flex flex-col font-poppins">
                 <p class=" text-xs">Online Sales</p>
                 <h1 class="text-[#1E3A8A] font-bold text-base">₱{{ number_format($this->getSales('online'), 2) }}</h1>
-                <p class="text-[0.6rem]">4 transactions</p>
+                <p class="text-[0.6rem]">{{ $this->getTransaction('online') }} transactions</p>
             </div>
         </div>
         <div class="flex items-center bg-[#16A34A0F] text-[#22C55E] border-l-6 border-[#22C55E] pl-4 px-14 py-2 gap-4">
@@ -19,7 +19,7 @@
             <div class="flex flex-col font-poppins">
                 <p class=" text-xs">Walk-in Sales</p>
                 <h1 class="text-[#14532D] font-bold text-base">₱{{ number_format($this->getSales('walk_in'), 2) }}</h1>
-                <p class="text-[0.6rem]">4 transactions</p>
+                <p class="text-[0.6rem]">{{ $this->getTransaction('walk_in') }} transactions</p>
             </div>
         </div>
         <div class="flex items-center bg-[#A855F70F] text-[#A852EE] border-l-6 border-[#A852EE] pl-4 px-14 py-2 gap-4">
@@ -31,7 +31,7 @@
                 <p class=" text-xs">Government Sales</p>
                 <h1 class="text-[#581C87] font-bold text-base">₱{{ number_format($this->getSales('government'), 2) }}
                 </h1>
-                <p class="text-[0.6rem]">4 transactions</p>
+                <p class="text-[0.6rem]">{{ $this->getTransaction('government') }} transactions</p>
             </div>
         </div>
         <div class="flex items-center bg-[#F973160F] text-[#F97316] border-l-6 border-[#F97316] pl-4 px-14 py-2 gap-4">
@@ -43,7 +43,7 @@
                 <p class=" text-xs">Project Sales</p>
                 <h1 class="text-[#7C2D12] font-bold text-base">₱{{ number_format($this->getSales('project_based'), 2) }}
                 </h1>
-                <p class="text-[0.6rem]">4 transactions</p>
+                <p class="text-[0.6rem]">{{ $this->getTransaction('project_based') }} transactions</p>
             </div>
         </div>
     </div>

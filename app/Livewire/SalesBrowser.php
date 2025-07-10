@@ -40,6 +40,11 @@ class SalesBrowser extends Component
         return $total;
     }
 
+    public function getTransaction($type)
+    {
+        return count(Order::where('type', $type)->get());
+    }
+
     public function render(ProductService $productService)
     {
         $products = $productService->getSortedSales($this->selectedType, $this->selectedCategory, $this->search);
