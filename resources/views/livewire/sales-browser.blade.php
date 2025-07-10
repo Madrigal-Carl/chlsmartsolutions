@@ -133,7 +133,7 @@
                     }
                 @endphp
 
-                <div class="flex items-center text-sm text-[#878787] p-4 border-b border-[#E5E7EB] last:border-none">
+                <div class="flex items-center text-sm text-[#878787] p-4 border-b border-[#E5E7EB]">
                     <div class="w-[15%] flex items-center justify-start">
                         @if ($type == 'online')
                             <div class="bg-[#3B82F6] text-white py-2 px-4 rounded-md text-xs">Online</div>
