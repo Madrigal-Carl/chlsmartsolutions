@@ -90,7 +90,8 @@
                     </div>
                 </div>
                 <div class="relative text-[#797979]">
-                    <input type="text" placeholder="Search product..."
+                    <input type="text" wire:input.debounce.300ms="$set('search', $event.target.value)"
+                        placeholder="Search product..."
                         class="w-full pr-10 pl-4 py-2  border border-gray-500 rounded-md focus:outline-none" />
 
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
@@ -133,7 +134,7 @@
                     }
                 @endphp
 
-                <div class="flex items-center text-sm text-[#878787] p-4 border-b border-[#E5E7EB]">
+                <div class="flex items-center text-sm text-[#484848] p-4 border-b border-[#E5E7EB]">
                     <div class="w-[15%] flex items-center justify-start">
                         @if ($type == 'online')
                             <div class="bg-[#3B82F6] text-white py-2 px-4 rounded-md text-xs">Online</div>
