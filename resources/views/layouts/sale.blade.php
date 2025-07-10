@@ -7,5 +7,5 @@
         </button>
     </div>
 
-
+    <livewire:sales-browser />
 </div>
