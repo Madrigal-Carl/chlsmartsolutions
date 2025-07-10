@@ -111,44 +111,55 @@
                 <div class="w-[10%] text-center">QUANTITY</div>
                 <div class="w-[20%] text-center">AMOUNT</div>
             </div>
-            @forelse ($products as $item)
+            @forelse ($products as $product)
+                @php
+                    $type = 'N\A';
+                    $quantity = 0;
+                    $total = 0;
+
+                    $grouped = $product->orderProducts
+                        ->groupBy(function ($orderProduct) {
+                            return $orderProduct->order->type;
+                        })
+                        ->map(function ($group) {
+                            return $group->sum('quantity');
+                        })
+                        ->sortDesc();
+
+                    if ($grouped->isNotEmpty()) {
+                        $type = $grouped->keys()->first();
+                        $quantity = $grouped->first();
+                        $total = $quantity * $product->price;
+                    }
+                @endphp
+
                 <div class="flex items-center text-sm text-[#878787] p-4 border-b border-[#E5E7EB] last:border-none">
                     <div class="w-[15%] flex items-center justify-start">
-                        @if ($item->type == 'online')
-                            <div class="bg-[#3B82F6] text-white py-2 px-4 rounded-md text-xs">
-                                Online
-                            </div>
-                        @elseif ($item->type == 'walk_in')
-                            <div class="bg-[#22C55E] text-white py-2 px-4 rounded-md text-xs">
-                                Walk-in
-                            </div>
-                        @elseif ($item->type == 'government')
-                            <div class="bg-[#A852EE] text-white py-2 px-4 rounded-md text-xs">
-                                Government
-                            </div>
-                        @elseif ($item->type == 'project_based')
-                            <div class="bg-[#F97316] text-white py-2 px-4 rounded-md text-xs">
-                                Project-Based
-                            </div>
+                        @if ($type == 'online')
+                            <div class="bg-[#3B82F6] text-white py-2 px-4 rounded-md text-xs">Online</div>
+                        @elseif ($type == 'walk_in')
+                            <div class="bg-[#22C55E] text-white py-2 px-4 rounded-md text-xs">Walk-in</div>
+                        @elseif ($type == 'government')
+                            <div class="bg-[#A852EE] text-white py-2 px-4 rounded-md text-xs">Government</div>
+                        @elseif ($type == 'project_based')
+                            <div class="bg-[#F97316] text-white py-2 px-4 rounded-md text-xs">Project-Based</div>
                         @else
-                            <div class="bg-[#b8b8b8] text-white py-2 px-4 rounded-md text-xs">
-                                N/A
-                            </div>
+                            <div class="bg-[#b8b8b8] text-white py-2 px-4 rounded-md text-xs">N/A</div>
                         @endif
-
                     </div>
-                    <div class="w-[35%]">{{ $item->product->name }}</div>
-                    <div class="w-[20%] text-center">{{ $item->product->category->name }}</div>
-                    <div class="w-[10%] text-center">x{{ $item->quantity }}</div>
+                    <div class="w-[35%]">{{ $product->name }}</div>
+                    <div class="w-[20%] text-center">{{ $product->category->name }}</div>
+                    <div class="w-[10%] text-center">x{{ $quantity }}</div>
                     <div class="w-[20%] text-center font-semibold text-black">
-                        ₱{{ number_format($item->total, 2) }}
-                    </div>
+                        ₱{{ number_format($total, 2) }}</div>
                 </div>
             @empty
                 <div class="w-full py-8 flex items-center justify-center text-sm text-[#9A9A9A]">
                     No tasks found.
                 </div>
             @endforelse
+
+
 
         </div>
         <div class="w-full flex items-center justify-between h-fit p-4">

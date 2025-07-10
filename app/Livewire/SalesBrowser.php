@@ -16,7 +16,6 @@ class SalesBrowser extends Component
     public $search = '';
     public $selectedCategory = 0;
     public $selectedType = 'all';
-    protected $queryString = ['page'];
 
     public function mount(CategoryService $categoryService)
     {
@@ -40,10 +39,6 @@ class SalesBrowser extends Component
         return $total;
     }
 
-    public function pageName()
-    {
-        return 'page';
-    }
     public function render(ProductService $productService)
     {
         $products = $productService->getSortedSales($this->selectedType, $this->selectedCategory, $this->search);
