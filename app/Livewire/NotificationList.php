@@ -36,9 +36,12 @@ class NotificationList extends Component
 
     public function markAllAsRead(NotificationService $notificationService)
     {
-        Notification::where('user_id', Auth::user()->id)
-            ->whereNull('read_at')
-            ->update(['read_at' => now()]);
+        $query = Auth::user()->role === 'technician'
+            ? Notification::where('user_id', Auth::id())
+            : Notification::whereJsonContains('visible_to', Auth::user()->role);
+
+        $query->whereNull('read_at')->update(['read_at' => now()]);
+
         $this->dispatch('notificationRead')->to('sidebar');
         $this->loadNotifications($notificationService);
     }
