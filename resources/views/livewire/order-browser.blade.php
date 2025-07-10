@@ -291,8 +291,8 @@
                                 name="type" id="type">
                                 <option selected disabled>Select a type</option>
                                 <option value="walk_in">Walk-in</option>
-                                <option value="government">Project-based</option>
-                                <option value="project_based">Government</option>
+                                <option value="project_based">Project-based</option>
+                                <option value="government">Government</option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
