@@ -2,18 +2,19 @@
 
 namespace App\Livewire;
 
-use App\Models\ActivityLog;
 use App\Models\Task;
 use Livewire\Component;
+use App\Models\ActivityLog;
 use Livewire\WithPagination;
 use App\Services\TaskService;
 use Illuminate\Support\Carbon;
+use Livewire\WithoutUrlPagination;
 use App\Services\ActivityLogService;
 use Illuminate\Support\Facades\Auth;
 
 class TechDashboard extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
     public $selectedDate;
     public $selectedPrio = 0;

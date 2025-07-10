@@ -7,10 +7,11 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\ProductService;
 use App\Services\CategoryService;
+use Livewire\WithoutUrlPagination;
 
 class SalesBrowser extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
     public $categories = [];
     public $search = '';

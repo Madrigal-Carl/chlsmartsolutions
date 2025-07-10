@@ -6,12 +6,13 @@ use App\Models\Order;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\OrderService;
+use Livewire\WithoutUrlPagination;
 use Illuminate\Support\Facades\Auth;
 use App\Services\NotificationService;
 
 class OrderBrowser extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
     public $selectedStatus = 0;
     public $search = '';
     public $selectedOrder = null;

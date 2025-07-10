@@ -2,16 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Cart;
 use App\Models\Product;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Services\ProductService;
 use App\Services\CategoryService;
-use App\Livewire\Cart;
+use Livewire\WithoutUrlPagination;
 
 class ProductBrowser extends Component
 {
-    use WithPagination;
+    use WithPagination, WithoutUrlPagination;
 
     public $search = '';
     public $selectedCategory = 0;
