@@ -21,4 +21,18 @@ class OrderService
             ->orderBy('created_at', 'desc')
             ->paginate(10);
     }
+
+    public function countOrder($status)
+    {
+        return match ($status) {
+            'completed', 'pending' => Order::where('status', $status)
+                ->whereDate('created_at', now())
+                ->whereDate('expiry_date', now())
+                ->count(),
+
+            'expired' => Order::where('status', 'expired')->count(),
+
+            default => Order::count(),
+        };
+    }
 }
