@@ -47,6 +47,12 @@ class OrderBrowser extends Component
         ]);
     }
 
+    public function getOrder($status = null)
+    {
+        $orderService = app(OrderService::class);
+        return $orderService->countOrder($status);
+    }
+
     public function updateStatus($id)
     {
         $order = Order::find($id);
