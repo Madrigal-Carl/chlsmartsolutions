@@ -7,5 +7,5 @@
         </button>
     </div>
 
-
+    <livewire:task-browser />
 </div>

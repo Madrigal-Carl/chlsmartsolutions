@@ -6,23 +6,42 @@ use App\Models\Task;
 
 class TaskService
 {
-    public function getTasksByDate($date, $prio)
+    public function getTasksByDate($user_id, $date, $prio)
     {
-        $query = Task::whereDate('created_at', '<=', $date)
+        $query = Task::where('user_id', $user_id)
+            ->whereDate('created_at', '<=', $date)
             ->whereDate('expiry_date', '>=', $date);
 
-        switch ($prio) {
-            case 1:
-                $query->where('priority', 'high');
-                break;
-            case 2:
-                $query->where('priority', 'medium');
-                break;
-            case 3:
-                $query->where('priority', 'low');
-                break;
+        if ($prio != 'all') {
+            $query->where('priority', $prio);
         }
 
         return $query->orderBy('expiry_date', 'asc')->paginate(11);
     }
+
+
+    public function getFilteredTask($status, $prio)
+    {
+        return Task::with('user')
+            ->when($status && $status !== 'all', fn ($query) => $query->where('status', $status))
+            ->when($prio && $prio !== 'all', fn ($query) => $query->where('priority', $prio))
+            ->orderBy('created_at', 'desc')
+            ->paginate(9);
+    }
+
+    public function countTask($status = null)
+    {
+        return match ($status) {
+            'completed', 'pending' => Task::where('status', $status)
+                ->whereDate('created_at', now())
+                ->whereDate('expiry_date', now())
+                ->count(),
+
+            'missed' => Task::where('status', 'missed')->count(),
+
+            default => Task::count(),
+        };
+    }
+
+
 }

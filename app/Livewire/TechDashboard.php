@@ -17,7 +17,7 @@ class TechDashboard extends Component
     use WithPagination, WithoutUrlPagination;
 
     public $selectedDate;
-    public $selectedPrio = 0;
+    public $selectedPrio = 'all';
     public $selectedTask = null;
     public $showModal = false;
 
@@ -62,7 +62,7 @@ class TechDashboard extends Component
 
     public function render(TaskService $taskService)
     {
-        $tasks = $taskService->getTasksByDate($this->selectedDate, $this->selectedPrio);
+        $tasks = $taskService->getTasksByDate(Auth::user()->id, $this->selectedDate, $this->selectedPrio);
         $logs = ActivityLog::where('user_id', Auth::user()->id)->latest()->take(10)->get();
 
         return view('livewire.tech-dashboard', [

@@ -15,10 +15,10 @@
                 <select wire:change="$set('selectedPrio', $event.target.value)"
                     class="w-[225px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                     name="priority" id="priority">
-                    <option value="0">All Priorities</option>
-                    <option value="1">High Priority</option>
-                    <option value="2">Medium Priority</option>
-                    <option value="3">Low Priority</option>
+                    <option value="all">All Priorities</option>
+                    <option value="high">High Priority</option>
+                    <option value="medium">Medium Priority</option>
+                    <option value="low">Low Priority</option>
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
                     <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">

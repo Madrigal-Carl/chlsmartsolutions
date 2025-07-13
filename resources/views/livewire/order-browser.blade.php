@@ -54,7 +54,7 @@
             </svg>
             <div class="flex flex-col">
                 <p class="text-[0.6rem]">Overall</p>
-                <p class="text-sm font-medium">Expired Task</p>
+                <p class="text-sm font-medium">Expired Order</p>
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getOrder('expired') }}</h1>
         </div>
