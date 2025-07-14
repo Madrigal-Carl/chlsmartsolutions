@@ -10,7 +10,7 @@ use App\Services\ProductService;
 use App\Services\CategoryService;
 use Livewire\WithoutUrlPagination;
 
-class ProductBrowser extends Component
+class CustomerBrowser extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
@@ -61,7 +61,7 @@ class ProductBrowser extends Component
 
         $products = $productService->getSortedProducts($this->selectedCategory, $this->search);
 
-        return view('livewire.product-browser', [
+        return view('livewire.customer-browser', [
             'products' => $products
         ]);
     }

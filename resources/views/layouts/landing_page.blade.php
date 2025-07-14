@@ -101,7 +101,7 @@
             </div>
         </div>
 
-        <livewire:product-browser />
+        <livewire:customer-browser />
 
         <section id="help"
             class="px-6 md:px-36 py-12 pb-18 md:pb-22 flex flex-col md:flex-row items-center justify-between gap-6">
