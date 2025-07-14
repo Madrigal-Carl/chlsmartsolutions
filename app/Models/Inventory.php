@@ -12,7 +12,8 @@ class Inventory extends Model
     protected $fillable = [
         'product_id',
         'stock',
-        'stock_limit',
+        'stock_min_limit',
+        'stock_max_limit',
     ];
 
     public function product()

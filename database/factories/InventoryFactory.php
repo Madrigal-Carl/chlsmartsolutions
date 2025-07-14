@@ -18,7 +18,8 @@ class InventoryFactory extends Factory
     {
         return [
             'stock' => 2,
-            'stock_limit' => 15,
+            'stock_min_limit' => 5,
+            'stock_max_limit' => 15,
         ];
     }
 }

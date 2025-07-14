@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedInteger('stock')->default(0);
-            $table->unsignedInteger('stock_limit')->default(0);
+            $table->unsignedInteger('stock_min_limit')->default(0);
+            $table->unsignedInteger('stock_max_limit')->default(0);
             $table->timestamps();
         });
     }

@@ -71,7 +71,7 @@
         <div class="flex justify-center w-full">
             <div class="flex gap-4 overflow-x-auto whitespace-nowrap w-[790px] pb-4">
                 @forelse ($technicians as $technician)
-                    <div class="flex-1 rounded-md border border-[#898989] p-4 bg-white">
+                    <div class="rounded-md border border-[#898989] p-4 bg-white">
                         <div class="flex items-center justify-between mb-2 gap-4">
                             <div class="flex flex-col">
                                 <h1 class="font-medium text-sm">{{ $technician->fullname }}</h1>
