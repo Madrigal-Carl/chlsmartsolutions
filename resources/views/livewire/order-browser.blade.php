@@ -180,7 +180,7 @@
                         </div>
                     @endforelse
                     <div class="w-full flex items-center justify-between h-fit p-2">
-                        <p class="">Showing {{ $orders->firstItem() }} to {{ $orders->lastItem() }} of
+                        <p class="">Showing {{ $orders->firstItem() ?? 0 }} to {{ $orders->lastItem() }} of
                             {{ $orders->total() }}
                             entries</p>
                         <nav>

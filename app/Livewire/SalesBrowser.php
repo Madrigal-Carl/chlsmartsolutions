@@ -32,7 +32,7 @@ class SalesBrowser extends Component
 
     public function getSales($type)
     {
-        $orders = Order::where('type', $type)->get();
+        $orders = Order::where('type', $type)->where('status', 'completed')->get();
         $total = 0;
         foreach($orders as $order){
             $total += $order->total_amount;
@@ -42,7 +42,7 @@ class SalesBrowser extends Component
 
     public function getTransaction($type)
     {
-        return count(Order::where('type', $type)->get());
+        return count(Order::where('type', $type)->where('status', 'completed')->get());
     }
 
     public function render(ProductService $productService)

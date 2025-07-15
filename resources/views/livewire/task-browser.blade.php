@@ -267,42 +267,47 @@
                     </div>
                 @endforelse
             </div>
-            <nav>
-                <div class="flex items-center justify-center -space-x-px h-8">
-                    <button wire:click="previousPage" wire:loading.attr="disabled"
-                        @if ($tasks->onFirstPage()) disabled @endif
-                        class="text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center px-3 h-8 ms-0 leading-tight bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
-                        <span class="sr-only">Previous</span>
-                        <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="M5 1 1 5l4 4" />
-                        </svg>
-                    </button>
+            <div class="w-full flex items-center justify-between h-fit p-2">
+                <p class="">Showing {{ $tasks->firstItem() ?? 0 }} to {{ $tasks->lastItem() }} of
+                    {{ $tasks->total() }}
+                    entries</p>
+                <nav>
+                    <div class="flex items-center -space-x-px h-8">
+                        <button wire:click="previousPage" wire:loading.attr="disabled"
+                            @if ($tasks->onFirstPage()) disabled @endif
+                            class="text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center px-3 h-8 ms-0 leading-tight bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Previous</span>
+                            <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M5 1 1 5l4 4" />
+                            </svg>
+                        </button>
 
-                    @foreach (range(1, $tasks->lastPage()) as $page)
-                        <div wire:click="gotoPage({{ $page }})"
-                            class="flex items-center justify-center px-3 h-8 leading-tight
+                        @foreach (range(1, $tasks->lastPage()) as $page)
+                            <div wire:click="gotoPage({{ $page }})"
+                                class="flex items-center justify-center px-3 h-8 leading-tight
                                     {{ $tasks->currentPage() === $page
                                         ? 'text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
                                         : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer' }}">
-                            {{ $page }}
-                        </div>
-                    @endforeach
+                                {{ $page }}
+                            </div>
+                        @endforeach
 
 
-                    <button wire:click="nextPage" wire:loading.attr="disabled"
-                        @if (!$tasks->hasMorePages()) disabled @endif
-                        class="flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">
-                        <span class="sr-only">Next</span>
-                        <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 9 4-4-4-4" />
-                        </svg>
-                    </button>
-                </div>
-            </nav>
+                        <button wire:click="nextPage" wire:loading.attr="disabled"
+                            @if (!$tasks->hasMorePages()) disabled @endif
+                            class="flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">
+                            <span class="sr-only">Next</span>
+                            <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+            </div>
 
         </div>
     @endif

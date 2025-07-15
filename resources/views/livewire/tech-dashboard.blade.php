@@ -126,7 +126,7 @@
                 @endforelse
             </div>
             <div class="w-full flex items-center justify-between text-xs h-fit p-2">
-                <p class="">Showing {{ $tasks->firstItem() }} to {{ $tasks->lastItem() }} of
+                <p class="">Showing {{ $tasks->firstItem() ?? 0 }} to {{ $tasks->lastItem() }} of
                     {{ $tasks->total() }}
                     entries</p>
                 <nav>

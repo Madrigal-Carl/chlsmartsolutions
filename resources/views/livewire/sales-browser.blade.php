@@ -156,7 +156,7 @@
                 </div>
             @empty
                 <div class="w-full py-8 flex items-center justify-center text-sm text-[#9A9A9A]">
-                    No tasks found.
+                    No Sales found.
                 </div>
             @endforelse
 
@@ -164,7 +164,7 @@
 
         </div>
         <div class="w-full flex items-center justify-between h-fit p-4">
-            <p class="">Showing {{ $products->firstItem() }} to {{ $products->lastItem() }} of
+            <p class="">Showing {{ $products->firstItem() ?? 0 }} to {{ $products->lastItem() }} of
                 {{ $products->total() }}
                 entries</p>
             <nav>
