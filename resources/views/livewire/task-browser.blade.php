@@ -2,7 +2,7 @@
     <div class="flex items-center font-poppins gap-4">
         <div
             class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
                     <path fill-rule="evenodd"
@@ -18,7 +18,7 @@
         </div>
         <div
             class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#F97316]">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#F97316]">
                     <path fill-rule="evenodd"
@@ -37,7 +37,7 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask('pending') }}</h1>
         </div>
         <div class="flex-1 flex items-center justify- bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#22C55E]">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#22C55E]">
                     <path fill-rule="evenodd"
@@ -57,7 +57,7 @@
         </div>
         <div
             class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#DC2626]">
                     <path fill-rule="evenodd"

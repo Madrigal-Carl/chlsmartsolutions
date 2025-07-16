@@ -2,7 +2,7 @@
     <div class="flex items-center font-poppins gap-4">
         <div
             class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
                     <path
@@ -21,7 +21,7 @@
         </div>
         <div
             class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#10B981]">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#10B981]">
                     <path fill-rule="evenodd"
@@ -37,7 +37,7 @@
         </div>
         <div
             class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#EAB308]">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#EAB308]">
                     <path fill-rule="evenodd"
@@ -54,7 +54,7 @@
         </div>
         <div
             class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
-            <div class="flex items-center gap-1">
+            <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#DC2626]">
                     <path
