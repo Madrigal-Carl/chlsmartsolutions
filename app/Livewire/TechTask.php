@@ -12,7 +12,7 @@ use Livewire\WithoutUrlPagination;
 use App\Services\ActivityLogService;
 use Illuminate\Support\Facades\Auth;
 
-class TechDashboard extends Component
+class TechTask extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
@@ -65,7 +65,7 @@ class TechDashboard extends Component
         $tasks = $taskService->getTasksByDate(Auth::user()->id, $this->selectedDate, $this->selectedPrio);
         $logs = ActivityLog::where('user_id', Auth::user()->id)->latest()->take(10)->get();
 
-        return view('livewire.tech-dashboard', [
+        return view('livewire.tech-task', [
             'tasks' => $tasks,
             'logs' => $logs,
         ]);

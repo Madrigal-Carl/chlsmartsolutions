@@ -7,7 +7,7 @@
         </button>
     </div>
 
-    <livewire:tech-dashboard />
+    <livewire:tech-task />
 </div>
 
 <script type="module" src="https://unpkg.com/cally"></script>
