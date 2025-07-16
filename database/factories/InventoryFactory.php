@@ -17,8 +17,8 @@ class InventoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'stock' => 2,
-            'stock_min_limit' => rand(4, 15),
+            'stock' => rand(8, 15),
+            'stock_min_limit' => 10,
             'stock_max_limit' => 15,
         ];
     }

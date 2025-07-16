@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->text('description');
             $table->decimal('price', 8, 2)->default(0);
-            $table->string('image_url')->default('/images/chlss_logo.png');
+            $table->string('image_url')->default('/products/no_image.png');
             $table->timestamps();
         });
     }

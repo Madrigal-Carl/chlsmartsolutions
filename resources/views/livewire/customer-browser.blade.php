@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="relative w-full md:w-[250px]">
+            <div class="relative w-full md:w-[280px]">
                 <select wire:change="$set('selectedCategory', $event.target.value)"
                     class="w-full px-4 py-2 text-[#797979] border border-gray-500 rounded-md focus:outline-none appearance-none">
                     <option value="0">All Categories</option>
@@ -47,7 +47,7 @@
                             ₱{{ number_format($product->price, 2) }}
                         </div>
 
-                        <img src="{{ asset($product->image_url) }}" alt="Product Image"
+                        <img src="{{ asset('storage/' . $product->image_url) }}" alt="Product Image"
                             class="h-32 md:h-48 object-contain w-full" />
                     </div>
 

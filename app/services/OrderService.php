@@ -26,8 +26,8 @@ class OrderService
     {
         return match ($status) {
             'completed', 'pending' => Order::where('status', $status)
-                ->whereDate('created_at', now())
-                ->whereDate('expiry_date', now())
+                ->where('created_at', '<=',now())
+                ->where('expiry_date', '>=',now())
                 ->count(),
 
             'expired' => Order::where('status', 'expired')->count(),

@@ -18,7 +18,7 @@
                         <div class="w-[10%]">
                             <div class="w-full flex items-center justify-center">
                                 <input type="number" wire:model.lazy="products.{{ $loop->index }}.quantity"
-                                    class="w-[60%] text-center focus:outline-none" />
+                                    class="w-[60%] text-center focus:outline-none border-b" />
                             </div>
                         </div>
                         <div class="w-[20%]">₱{{ number_format($product->price, 2) }}</div>

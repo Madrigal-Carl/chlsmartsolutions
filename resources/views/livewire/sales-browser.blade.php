@@ -74,7 +74,7 @@
                 </div>
                 <div class="relative text-[#797979]">
                     <select wire:change="$set('selectedCategory', $event.target.value)"
-                        class="w-[230px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
+                        class="w-[280px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                         name="category" id="category">
                         <option value="0">All Category</option>
                         @foreach ($categories as $cat)
@@ -148,8 +148,8 @@
                             <div class="bg-[#b8b8b8] text-white py-2 px-4 rounded-md text-xs">N/A</div>
                         @endif
                     </div>
-                    <div class="w-[35%]">{{ $product->name }}</div>
-                    <div class="w-[20%] text-center">{{ $product->category->name }}</div>
+                    <div class="w-[35%] capitalize">{{ $product->name }}</div>
+                    <div class="w-[20%] text-center capitalize">{{ $product->category->name }}</div>
                     <div class="w-[10%] text-center">x{{ $quantity }}</div>
                     <div class="w-[20%] text-center font-semibold text-black">
                         ₱{{ number_format($total, 2) }}</div>

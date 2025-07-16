@@ -55,10 +55,48 @@ class ProductService
 
     public function getTopSellingProduct()
     {
-        return Product::with('orderProducts.order', 'category')->whereHas('orderProducts.order', function($query) {
-            $query->where('status', 'completed')
-                ->where('created_at', '<=', now())
-                ->where('created_at', '>=', now()->subWeeks(2));
-        });
+        $products = Product::with('inventory', 'orderProducts.order', 'category')->get();
+
+        return $products->filter(function ($product) {
+            $inventory = $product->inventory;
+
+            $soldQuantity = $product->orderProducts
+                ->where('order.status', 'completed')
+                ->sum('quantity');
+
+            return $soldQuantity >= ($inventory->stock_max_limit / 2);
+        })->sortByDesc(function ($product) {
+            return $product->orderProducts
+                ->where('order.status', 'completed')
+                ->sum('quantity');
+        })->values();
     }
+
+    public function getProductWithStock($category_id = 0, $search = '')
+    {
+        return Product::with(['inventory', 'orderProducts.order', 'category'])
+            ->when($category_id != 0, function ($query) use ($category_id) {
+                $query->where('category_id', $category_id);
+            })
+            ->when($search, function ($query) use ($search) {
+                $query->where('name', 'like', '%' . $search . '%');
+            })
+            ->paginate(10)
+            ->through(function ($product) {
+                $inventory = $product->inventory;
+
+                $pendingQuantity = $product->orderProducts
+                    ->where('order.status', 'pending')
+                    ->sum('quantity');
+
+                $adjustedStock = $inventory ? ($inventory->stock + $pendingQuantity) : 0;
+
+                $product->adjusted_stock = $adjustedStock;
+
+                return $product;
+            });
+    }
+
+
+
 }

@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Inventory;
 use App\Models\OrderProduct;
 use Illuminate\Http\Request;
+use App\Models\OrderInventory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -31,6 +32,7 @@ class OrderController
             'total_amount' => 'required',
             'payment_method' => 'required',
             'type' => 'required',
+            'status' => 'nullable'
         ], [
             'total_amount.required' => 'Total Amount is required',
             'payment_method.required' => 'Please select payment type.',
@@ -62,8 +64,10 @@ class OrderController
         }
 
         $expiry = now()->addDays(3)->toDateString();
-        if ($request->type == 'online'){
-            $expiry = null;
+        $status = 'pending';
+        if ($request->type != 'online'){
+            $expiry = now();
+            $status = 'completed';
         }
 
         $order = Order::create([
@@ -71,6 +75,7 @@ class OrderController
             'user_id' => Auth::user()->id,
             'total_amount' => $request->total_amount,
             'type' => $request->type,
+            'status' => $status,
             'expiry_date' => $expiry,
         ]);
 
