@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->text('description');
-            $table->decimal('price', 12, 2)->default(0);
-            $table->string('image_url')->default('/products/no_image.png');
+            $table->string('title');
+            $table->enum('category', ['monthly dues', 'employee salary', 'supplies & materials', 'miscellaneous', 'other expenses']);
+            $table->decimal('amount', 12, 2)->default(0);
+            $table->date('expense_date');
+            $table->text('remarks');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('expenses');
     }
 };

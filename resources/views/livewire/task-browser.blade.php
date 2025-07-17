@@ -339,6 +339,5 @@
             </div>
             <livewire:task-form />
         </div>
-</div>
-@endif
+    @endif
 </div>

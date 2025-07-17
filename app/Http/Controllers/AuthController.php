@@ -45,6 +45,11 @@ class AuthController
             return redirect()->back()->withInput();
         }
 
+        if ($user->status != 'active') {
+            notyf()->error('Account has been disabled');
+            return redirect()->back()->withInput();
+        }
+
         Auth::login($user);
         notyf()->success('You\'re now signed in.');
 

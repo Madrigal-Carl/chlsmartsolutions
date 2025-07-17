@@ -9,12 +9,12 @@ use Illuminate\Validation\ValidationException;
 
 class TaskForm extends Component
 {
-    public $title = '';
-    public $priority = '';
-    public $expiry_date = '';
-    public $user_id = '';
-    public $customer_name = '';
-    public $customer_phone = '';
+    public $title = null;
+    public $priority = null;
+    public $expiry_date = null;
+    public $user_id = null;
+    public $customer_name = null;
+    public $customer_phone = null;
     public $description = '';
 
 
