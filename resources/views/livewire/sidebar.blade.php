@@ -7,8 +7,7 @@
     </div>
     <div class="flex flex-col text-white font-medium tracking-widest gap-2">
         @foreach ($items as $item)
-            <button class="relative px-12 py-2 cursor-pointer" wire:loading.attr="disabled" wire:target="setActive"
-                wire:click="setActive('{{ $item['label'] }}')">
+            <div class="relative px-12 py-2">
                 @if ($active === $item['label'])
                     <div class="absolute left-0 top-0 w-18 h-full border-l-6 border-[#50FF7F]"></div>
                 @endif
@@ -20,16 +19,18 @@
                     </div>
                 @endif
 
-                <div class="flex items-center gap-5 {{ $active === $item['label'] ? 'text-[#50FF7F]' : 'text-white' }}">
+                <button
+                    class="flex items-center gap-5 cursor-pointer {{ $active === $item['label'] ? 'text-[#50FF7F]' : 'text-white' }}"
+                    wire:loading.attr="disabled" wire:target="setActive" wire:click="setActive('{{ $item['label'] }}')">
                     {!! $item['icon'] !!}
                     <p class="capitalize text-xs">{{ $item['label'] }}</p>
-                </div>
-            </button>
+                </button>
+            </div>
         @endforeach
 
         <hr class="border-[#A7A7A7] my-2 mx-4">
-        <button class="relative px-12 py-2 cursor-pointer">
-            <div class="flex items-center gap-5 text-white">
+        <button class="relative px-12 py-2">
+            <div class="flex items-center gap-5 text-white cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-settings-icon lucide-settings">

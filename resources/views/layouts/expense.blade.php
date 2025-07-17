@@ -7,4 +7,5 @@
         </button>
     </div>
 
+    <livewire:expense-browser />
 </div>
