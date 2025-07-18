@@ -17,11 +17,10 @@ class ExpenseBrowser extends Component
     protected $listeners = ['cancel' => 'closeModal'];
     public $selectedDate = 'today';
     public $startDate;
-    public $endDate;
 
     public function mount()
     {
-        $this->setToday();
+        $this->startDate = now()->toDateString();
     }
 
     public function openModal()
@@ -44,36 +43,12 @@ class ExpenseBrowser extends Component
     public function updatedSelectedDate($value)
     {
         match ($value) {
-            'today' => $this->setToday(),
-            'this_week' => $this->setThisWeek(),
-            'this_month' => $this->setThisMonth(),
-            'this_year' => $this->setThisYear(),
+            'today' => $this->startDate = now()->toDateString(),
+            'this_week' => $this->startDate = now()->startOfWeek()->toDateString(),
+            'this_month' => $this->startDate = now()->startOfMonth()->toDateString(),
+            'this_year' => $this->startDate = now()->startOfYear()->toDateString(),
             default => null,
         };
-    }
-
-    protected function setToday()
-    {
-        $this->startDate = now()->toDateString();
-        $this->endDate = now()->toDateString();
-    }
-
-    protected function setThisWeek()
-    {
-        $this->startDate = now()->startOfWeek()->toDateString();
-        $this->endDate = now()->toDateString();
-    }
-
-    protected function setThisMonth()
-    {
-        $this->startDate = now()->startOfMonth()->toDateString();
-        $this->endDate = now()->toDateString();
-    }
-
-    protected function setThisYear()
-    {
-        $this->startDate = now()->startOfYear()->toDateString();
-        $this->endDate = now()->toDateString();
     }
 
     public function getExpenseProperty()
@@ -84,8 +59,8 @@ class ExpenseBrowser extends Component
     public function render(ExpenseService $expenseService)
     {
         return view('livewire.expense-browser', [
-            'data' => $expenseService->getFilteredExpense($this->startDate, $this->endDate),
-            'expenses' => $expenseService->getFilteredExpensePaginated($this->startDate, $this->endDate, $this->category),
+            'data' => $expenseService->getFilteredExpense($this->startDate),
+            'expenses' => $expenseService->getFilteredExpensePaginated($this->startDate, $this->category),
         ]);
     }
 }

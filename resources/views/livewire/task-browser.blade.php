@@ -87,7 +87,8 @@
                         <div class="flex items-center justify-between mb-2 gap-4">
                             <div class="flex flex-col">
                                 <h1 class="font-medium text-sm">{{ $technician->fullname }}</h1>
-                                <p class="text-[0.6rem]">Main Technician</p>
+                                <p class="text-[0.6rem] capitalize">{{ $technician->technicianRole->role }} Technician
+                                </p>
                             </div>
                             <div class="bg-[#E5F1E8] text-[#16A34A] py-1 px-3 rounded-full text-xs font-medium">
                                 Available

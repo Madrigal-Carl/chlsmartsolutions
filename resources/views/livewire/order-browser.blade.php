@@ -189,7 +189,7 @@
                         </div>
                     @empty
                         <div class="w-full py-8 flex items-center justify-center text-sm text-[#9A9A9A]">
-                            No tasks found.
+                            No Order found.
                         </div>
                     @endforelse
                     <div class="w-full flex items-center justify-between h-fit p-2">

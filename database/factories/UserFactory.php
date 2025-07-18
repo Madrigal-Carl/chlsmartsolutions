@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\TechnicianRole;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
@@ -10,15 +11,17 @@ use Illuminate\Support\Facades\Hash;
  */
 class UserFactory extends Factory
 {
-    public function definition(): array
+    public function definition()
     {
-        return [
+        $user = [
             'fullname' => $this->faker->name(),
             'username' => 'carlcustomer',
             'phone_number' => $this->faker->unique()->numerify('9#########'),
             'password' => Hash::make('CarlMadrigal05'),
             'role' => 'customer',
         ];
+
+        return $user;
     }
 
     public function admin(): static
@@ -60,4 +63,18 @@ class UserFactory extends Factory
             'username' => 'carladminofficer',
         ]);
     }
+
+    public function configure()
+    {
+        return $this->afterCreating(function ($user) {
+            if ($user->role != 'technician'){
+                return;
+            }
+            TechnicianRole::factory()->create([
+                'user_id' => $user->id,
+                'role' => 'main',
+            ]);
+        });
+    }
 }
+
