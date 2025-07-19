@@ -58,6 +58,7 @@ class OrderBrowser extends Component
         $order = Order::find($id);
         if ($order->status == 'pending'){
             $order->status = 'completed';
+            $order->updated_at = now();
             $order->save();
 
             app(NotificationService::class)->createNotif(

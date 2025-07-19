@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\Task;
 use App\Models\Order;
+use App\Models\Task;
 use App\Models\Product;
 use Livewire\Component;
 
-class CashierDashboard extends Component
+class DashboardOverview extends Component
 {
     public function getTotalProductProperty()
     {
@@ -45,6 +45,6 @@ class CashierDashboard extends Component
 
     public function render()
     {
-        return view('livewire.cashier-dashboard');
+        return view('livewire.dashboard-overview');
     }
 }

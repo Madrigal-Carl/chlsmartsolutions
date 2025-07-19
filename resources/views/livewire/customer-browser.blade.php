@@ -70,7 +70,7 @@
             <div class="bg-white rounded-xl shadow-lg max-w-[280px] md:max-w-2xl w-full p-8 relative font-inter">
                 <div class="flex flex-col md:flex-row items-center gap-2 md:gap-6">
                     <div class="flex items-center md:w-[35%]">
-                        <img src="{{ asset('images/customer/products/Black and White Modern Tech Headphone.png') }}"
+                        <img src="{{ asset('storage/' . $product->image_url) }}"
                             class="w-36 h-36 md:w-full md:h-auto object-contain" />
                     </div>
 

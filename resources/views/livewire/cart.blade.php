@@ -65,8 +65,7 @@
                                     <div class="flex gap-2">
                                         <div class="w-[40%]">
                                             <img class="w-full rounded-md object-cover"
-                                                src="{{ asset('images/customer/products/Black and White Modern Tech Headphone.png') }}"
-                                                alt="Headphones">
+                                                src="{{ asset('storage/' . $item->image_url) }}" alt="">
                                         </div>
                                         <div class="flex flex-col py-2 w-[60%]">
                                             <h1 class="line-clamp-2 text-[.8rem] font-bold">
@@ -146,8 +145,7 @@
                         </svg>
                     </button>
                     <div class="flex items-center">
-                        <img class="h-15 w-15 object-cover"
-                            src="{{ asset('images/customer/products/Black and White Modern Tech Headphone.png') }}"
+                        <img class="h-15 w-15 object-cover" src="{{ asset('storage/' . $item->image_url) }}"
                             alt="">
                         <div class="flex flex-col">
                             <h1 class="text-xs font-bold line-clamp-1">{{ $item->name }}</h1>

@@ -10,7 +10,7 @@ class Sidebar extends Component
 {
     public $items = [];
     public $active = '';
-    protected $listeners = ['notificationRead' => 'updateUnreadCount'];
+    protected $listeners = ['notificationRead' => 'updateUnreadCount', 'activate' => 'setActive'];
     public $unreadNotif;
 
     public function updateUnreadCount()
@@ -33,6 +33,7 @@ class Sidebar extends Component
         session()->put('sidebar_active', $option);
         $this->dispatch('setActive', $option);
     }
+
     public function render()
     {
         $this->updateUnreadCount();

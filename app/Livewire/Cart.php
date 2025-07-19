@@ -32,6 +32,7 @@ class Cart extends Component
             'name' => $product->name,
             'description' => $product->description,
             'price' => $product->price,
+            'image_url' => $product->image_url,
             'stock' => $product->inventory->stock,
             'quantity' => 1,
         ];

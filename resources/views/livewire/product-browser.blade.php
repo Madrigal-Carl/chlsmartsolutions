@@ -283,16 +283,19 @@
                         <div
                             class="w-full flex items-center text-sm border-x border-b border-[#EEF2F5] text-[#484848]">
                             <div
-                                class="w-[35%] capitalize text-start px-1 pl-3 border-x border-[#EEF2F5] py-4 flex items-center gap-2 line-clamp-1">
-                                {{ $product->name }}</div>
+                                class="w-[35%] text-start px-1 pl-3 border-x border-[#EEF2F5] py-5.5 flex items-center gap-2">
+                                <img src="{{ asset('storage/' . $product->image_url) }}" alt=""
+                                    class="h-13 w-auto">
+                                <p class="line-clamp-1 capitalize">{{ $product->name }}</p>
+                            </div>
                             <div class="w-[15%] py-4 px-1">
                                 <p class="line-clamp-1 capitalize">{{ $product->category->name }}</p>
                             </div>
-                            <div class="w-[10%] py-4 px-1 border-x border-[#EEF2F5]">
+                            <div class="w-[10%] py-9.5 px-1 border-x border-[#EEF2F5]">
                                 {{ $product->adjusted_stock }}/{{ $product->inventory->stock_max_limit }}
                             </div>
                             <div class="w-[15%] py-4 px-1">₱{{ number_format($product->price, 2) }}</div>
-                            <div class="w-[15%] pr-1 border-x border-[#EEF2F5] py-3 flex items-center justify-center">
+                            <div class="w-[15%] pr-1 border-x border-[#EEF2F5] py-8 flex items-center justify-center">
                                 @if ($product->adjusted_stock == 0)
                                     <div
                                         class="bg-[#dc262633] py-2 px-4 w-fit rounded-full text-[#DC2626] flex gap-1 items-center justify-center">
