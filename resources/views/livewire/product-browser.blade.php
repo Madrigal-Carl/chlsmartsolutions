@@ -138,7 +138,7 @@
         </div>
 
     @endif
-    @if (count($topProducts) > 0)
+    @if (count($topProducts) > 0 && Auth::user()->role != 'cashier')
         <div class="flex flex-col gap-2 bg-white rounded-md p-4 font-poppins">
             <h1 class="text-[#203D3F] text-lg font-semibold">Stock Recommendations <span
                     class="text-[#9F9F9F] text-sm">(14-day usage)</span></h1>
@@ -244,30 +244,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex items-center gap-6">
 
-                    <button wire:click="$set('activeTab', 'addProducts')"
-                        class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                        </svg>
-                        <p class="text-sm">Add New Product</p>
-                    </button>
+                @if (Auth::user()->role != 'cashier')
+                    <div class="flex items-center gap-6">
 
-                    <button wire:click="$set('activeTab', 'categoryBrowse')"
-                        class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
-                        <p class="text-sm">Category</p>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-move-right-icon lucide-move-right">
-                            <path d="M18 8L22 12L18 16" />
-                            <path d="M2 12H22" />
-                        </svg>
-                    </button>
-                </div>
+                        <button wire:click="$set('activeTab', 'addProducts')"
+                            class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-plus-icon lucide-plus">
+                                <path d="M5 12h14" />
+                                <path d="M12 5v14" />
+                            </svg>
+                            <p class="text-sm">Add New Product</p>
+                        </button>
+
+                        <button wire:click="$set('activeTab', 'categoryBrowse')"
+                            class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
+                            <p class="text-sm">Category</p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="lucide lucide-move-right-icon lucide-move-right">
+                                <path d="M18 8L22 12L18 16" />
+                                <path d="M2 12H22" />
+                            </svg>
+                        </button>
+                    </div>
+                @endif
+
             </div>
             <div class="flex flex-col font-inter">
                 <div class="rounded-t-3xl bg-[#EEF2F5] w-full flex items-center text-center p-3">
@@ -340,8 +346,9 @@
                                 @endif
                             </div>
                             <div class="w-[10%] pr-4 py-3 flex items-center justify-center gap-2 text-xs">
-                                {{-- wire:click='selectOrder({{ $order->id }})' --}}
-                                <button class="cursor-pointer text-[#3B82F6]">
+                                <button wire:click="editProduct({{ $product->id }})"
+                                    class="text-[#3B82F6] px-4 py-2 rounded {{ Auth::user()->role === 'cashier' ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }}"
+                                    {{ Auth::user()->role === 'cashier' ? 'disabled' : '' }}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                         stroke-linecap="round" stroke-linejoin="round"
@@ -405,6 +412,7 @@
             </div>
         </div>
     @endif
+
     @if ($activeTab == 'categoryBrowse')
         <div class="flex flex-col gap-4 bg-white rounded-2xl p-4 font-poppins">
             <h1 class="text-[#203D3F] text-lg font-semibold">Category List</h1>
@@ -566,6 +574,24 @@
             </div>
 
             <livewire:product-form />
+
+        </div>
+    @endif
+    @if ($activeTab == 'editProduct')
+        <div class="flex flex-col gap-4 bg-white rounded-2xl p-4 font-poppins">
+            <div class="flex items-center gap-4">
+                <button wire:click="$set('activeTab', 'productBrowse')" class="cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-undo2-icon lucide-undo-2">
+                        <path d="M9 14 4 9l5-5" />
+                        <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" />
+                    </svg>
+                </button>
+                <h1 class="text-[#203D3F] text-lg font-semibold">Edit Product</h1>
+            </div>
+
+            <livewire:edit-product-form :id="$productId" />
 
         </div>
     @endif

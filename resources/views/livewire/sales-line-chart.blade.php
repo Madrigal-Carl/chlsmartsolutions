@@ -1,99 +1,75 @@
-<div id="chart" wire:ignore class="bg-white font-poppins p-6 rounded-lg"></div>
+<div id="chart" wire:ignore x-data x-init="() => {
+    const chartData = {{ Js::from($chartData) }};
+    const now = new Date();
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1).getTime();
+    const endOfMonth = new Date(now.getTime() + 24 * 60 * 60 * 1000).getTime();
 
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    const options = {
+        series: chartData,
+        chart: {
+            type: 'area',
+            stacked: false,
+            height: 375,
+            zoom: {
+                type: 'x',
+                enabled: true,
+                autoScaleYaxis: true
+            },
+            toolbar: { show: true, tools: { selection: false, zoom: false, zoomin: false, zoomout: false, pan: false, reset: false } },
+            fontFamily: 'poppins',
+        },
+        dataLabels: { enabled: false },
+        markers: { size: 0 },
+        title: {
+            text: 'Sales Over Time',
+            align: 'left',
+            style: {
+                fontSize: '18px',
+                fontWeight: 'bold',
+                fontFamily: 'poppins'
+            }
+        },
+        legend: { fontFamily: 'poppins' },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                inverseColors: false,
+                opacityFrom: 0.5,
+                opacityTo: 0,
+                stops: [0, 90, 100]
+            },
+        },
+        yaxis: {
+            labels: {
+                style: { fontFamily: 'poppins' },
+                formatter: val => '₱' + val.toLocaleString('en-PH', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }),
+            },
+        },
+        xaxis: {
+            type: 'datetime',
+            min: startOfMonth,
+            max: endOfMonth,
+            labels: {
+                style: { fontFamily: 'poppins' }
+            }
+        },
+        tooltip: {
+            shared: true,
+            style: { fontFamily: 'poppins' },
+            y: {
+                formatter: val => '₱' + val.toLocaleString('en-PH', {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2
+                }),
+            }
+        }
+    };
 
-<script>
-    let chartInstance = null;
-
-    document.addEventListener('livewire:init', () => {
-        Livewire.on('render-chart', (event) => {
-            const chartData = event.chartData;
-
-            const options = {
-                series: chartData,
-                chart: {
-                    type: 'area',
-                    stacked: false,
-                    height: 375,
-                    zoom: {
-                        type: 'x',
-                        enabled: true,
-                        autoScaleYaxis: true
-                    },
-                    toolbar: {
-                        show: false
-                    },
-                    fontFamily: 'poppins',
-                },
-                dataLabels: {
-                    enabled: false
-                },
-                markers: {
-                    size: 0
-                },
-                title: {
-                    text: 'Sales Over Time',
-                    align: 'left',
-                    style: {
-                        fontSize: '18px',
-                        fontWeight: 'bold',
-                        fontFamily: 'poppins'
-                    }
-                },
-                legend: {
-                    fontFamily: 'poppins'
-                },
-                fill: {
-                    type: 'gradient',
-                    gradient: {
-                        shadeIntensity: 1,
-                        inverseColors: false,
-                        opacityFrom: 0.5,
-                        opacityTo: 0,
-                        stops: [0, 90, 100]
-                    },
-                },
-                yaxis: {
-                    labels: {
-                        style: {
-                            fontFamily: 'poppins'
-                        },
-                        formatter: function(val) {
-                            return '₱' + val.toLocaleString('en-PH', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            });
-                        },
-                    },
-                },
-                xaxis: {
-                    type: 'datetime',
-                    labels: {
-                        style: {
-                            fontFamily: 'poppins'
-                        }
-                    }
-                },
-                tooltip: {
-                    shared: true,
-                    style: {
-                        fontFamily: 'poppins'
-                    },
-                    y: {
-                        formatter: function(val) {
-                            return '₱' + val.toLocaleString('en-PH', {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2
-                            });
-                        },
-                    }
-                }
-            };
-
-            if (chartInstance) chartInstance.destroy();
-
-            chartInstance = new ApexCharts(document.querySelector("#chart"), options);
-            chartInstance.render();
-        });
-    });
-</script>
+    const chart = new ApexCharts($el, options);
+    chart.render();
+}" class="bg-white font-poppins p-6 rounded-lg">
+</div>

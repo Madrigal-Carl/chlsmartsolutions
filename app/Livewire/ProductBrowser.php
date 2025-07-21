@@ -22,8 +22,8 @@ class ProductBrowser extends Component
     public $selectedStock = null;
     public $showModal = false;
     public string $activeTab = 'productBrowse';
-    // productBrowse
     public $editingId = null;
+    public $productId = null;
     public $name = '';
 
     public function mount(CategoryService $categoryService)
@@ -120,6 +120,12 @@ class ProductBrowser extends Component
         $category = Category::find($id);
         $category->delete();
         notyf()->success('Category deleted successfully.');
+    }
+
+    public function editProduct($id)
+    {
+        $this->activeTab = "editProduct";
+        $this->productId = $id;
     }
 
     public function render(ProductService $productService, CategoryService $categoryService)

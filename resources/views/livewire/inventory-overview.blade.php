@@ -5,13 +5,14 @@
         @forelse ($products as $product)
             @if ($product->inventory->stock == 0)
                 <div class="flex items-center justify-between p-2 text-sm rounded-sm w-full border-2 border-[#DC2626]">
-                    <p class="line-clamp-1 capitalize">{{ $product->name }}</p>
-                    <p class="text-[#DC2626] font-medium">{{ $product->inventory->stock }}</p>
+                    <p class="line-clamp-1 capitalizee w-[70%]">{{ $product->name }}</p>
+                    <p class="text-[#DC2626] font-medium">{{ $product->inventory->stock }}<span
+                            class="font-normal text-[0.6rem]">left</span></p>
                 </div>
             @else
                 <div class="flex items-center justify-between p-2 text-sm rounded-sm w-full border-2 border-[#EAB308]">
-                    <p class="line-clamp-1 capitalize">{{ $product->name }}</p>
-                    <p class="text-[#EAB308] font-medium">{{ $product->inventory->stock }} <span
+                    <p class="line-clamp-1 capitalize w-[70%]">{{ $product->name }}</p>
+                    <p class="text-[#EAB308] font-medium">{{ $product->inventory->stock }}<span
                             class="font-normal text-[0.6rem]">left</span></p>
                 </div>
             @endif

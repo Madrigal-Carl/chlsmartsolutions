@@ -32,7 +32,7 @@ class ProductForm extends Component
                 'stock_min_limit' => 'required|min:0',
                 'stock_max_limit' => 'required|gte:stock_min_limit',
                 'description' => 'required',
-                'image' => 'required|image|mimes:jpg,jpeg,png|max:5120',
+                'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
             ], [
                 'name.required' => 'Product name is required.',
                 'name.unique' => 'Product name already existed.',
@@ -48,7 +48,6 @@ class ProductForm extends Component
                 'stock_max_limit.required' => 'Maximum stock is required.',
                 'stock_max_limit.gte' => 'Maximum stock must be greater than or equal to minimum stock.',
                 'description.required' => 'Product description is required.',
-                'image.required' => 'Product image is required.',
                 'image.image' => 'Uploaded file must be an image.',
                 'image.mimes' => 'Image must be a JPG, JPEG, or PNG file.',
                 'image.max' => 'Image size must not exceed 5MB.',
@@ -59,17 +58,21 @@ class ProductForm extends Component
             return;
         }
 
-        $extension = $this->image->getClientOriginalExtension();
-        $filename = $this->name . '.' . $extension;
-        $path = $this->image->storeAs('products', $filename, 'public');
-
-        $product = Product::create([
+        $data = [
             'name' => $this->name,
             'category_id' => $this->categoryId,
             'price' => $this->price,
             'description' => $this->description,
-            'image_url' => $path,
-        ]);
+        ];
+
+        if ($this->image) {
+            $extension = $this->image->getClientOriginalExtension();
+            $filename = $this->name . '.' . $extension;
+            $path = $this->image->storeAs('products', $filename, 'public');
+            $data['image_url'] = $path;
+        }
+
+        $product = Product::create($data);
 
         Inventory::create([
             'product_id' => $product->id,

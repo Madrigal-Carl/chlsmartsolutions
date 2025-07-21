@@ -21,7 +21,7 @@ class ProductService
             ->paginate(8);
     }
 
-    public function getSortedSales($type, $category_id, $search = '')
+    public function getSortedSales($date, $type, $category_id, $search = '')
     {
         return Product::with([
             'category',
@@ -36,8 +36,9 @@ class ProductService
             },
             'orderProducts.order'
         ])
-        ->whereHas('orderProducts.order', function ($query) use ($type) {
-            $query->where('status', 'completed');
+        ->whereHas('orderProducts.order', function ($query) use ($type, $date) {
+            $query->where('status', 'completed')
+                ->whereBetween('updated_at', [$date, now()]);
 
             if ($type !== 'all') {
                 $query->where('type', $type);
@@ -81,6 +82,7 @@ class ProductService
             ->when($search, function ($query) use ($search) {
                 $query->where('name', 'like', '%' . $search . '%');
             })
+            ->orderByDesc('created_at')
             ->paginate(10)
             ->through(function ($product) {
                 $inventory = $product->inventory;

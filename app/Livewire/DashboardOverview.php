@@ -2,45 +2,51 @@
 
 namespace App\Livewire;
 
-use App\Models\Order;
 use App\Models\Task;
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Expense;
 use App\Models\Product;
 use Livewire\Component;
 
 class DashboardOverview extends Component
 {
-    public function getTotalProductProperty()
+    public $startDate;
+
+    public function mount($date)
     {
-        return Product::count();
+        $this->startDate = $date;
     }
 
-    public function getTaskTodayProperty()
+    public function getTotalExpensesProperty()
     {
-        return Task::whereDate('created_at', '<=', now())
-            ->whereDate('expiry_date', '>=', now())
-            ->where('status', 'pending')
-            ->count();
-    }
-
-    public function getOrderTodayProperty()
-    {
-        return Order::whereDate('created_at', '<=', now())
-            ->whereDate('expiry_date', '>=', now())
-            ->where('status', 'pending')
-            ->count();
-    }
-
-    public function getSalesTodayProperty()
-    {
-        return Order::whereDate('updated_at', now())
-            ->where('status', 'completed')
-            ->sum('total_amount');
+        return Expense::whereBetween('expense_date', [$this->startDate, now()])->sum('amount');
     }
 
     public function getTotalRevenueProperty()
     {
         return Order::where('status', 'completed')
+            ->whereBetween('updated_at', [$this->startDate, now()])
             ->sum('total_amount');
+    }
+
+    public function getOrderProperty()
+    {
+        return Order::where('status', 'completed')
+            ->whereBetween('updated_at', [$this->startDate, now()])
+            ->count();
+    }
+
+    public function getStaffProperty()
+    {
+        return User::whereNotIn('role', ['customer', 'admin'])
+        ->where('status', 'active')
+        ->count();
+    }
+
+    public function getTotalProductProperty()
+    {
+        return Product::count();
     }
 
     public function render()

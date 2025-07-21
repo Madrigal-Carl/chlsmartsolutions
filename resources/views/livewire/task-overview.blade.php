@@ -5,18 +5,18 @@
         @forelse ($tasks as $task)
             @if ($task->priority == 'high')
                 <div class="flex items-center justify-between p-2 text-sm rounded-sm w-full border border-[#BFBFBF]">
-                    <p class="line-clamp-1 capitalize">{{ $task->title }}</p>
-                    <p class="text-[#DC2626] font-medium">High</p>
+                    <p class="line-clamp-1 capitalize w-[70%]">{{ $task->title }}</p>
+                    <p class="text-[#DC2626] font-medium text-xs">High</p>
                 </div>
             @elseif ($task->priority == 'medium')
                 <div class="flex items-center justify-between p-2 text-sm rounded-sm w-full border border-[#BFBFBF]">
-                    <p class="line-clamp-1 capitalize">{{ $task->title }}</p>
-                    <p class="text-[#C31BD2] font-medium">Medium</p>
+                    <p class="line-clamp-1 capitalize w-[70%]">{{ $task->title }}</p>
+                    <p class="text-[#C31BD2] font-medium text-xs">Medium</p>
                 </div>
             @else
                 <div class="flex items-center justify-between p-2 text-sm rounded-sm w-full border border-[#BFBFBF]">
-                    <p class="line-clamp-1">{{ $task->title }}</p>
-                    <p class="text-[#9A9A9A] font-medium">Low</p>
+                    <p class="line-clamp-1 capitalize w-[70%]">{{ $task->title }}</p>
+                    <p class="text-[#9A9A9A] font-medium text-xs">Low</p>
                 </div>
             @endif
         @empty

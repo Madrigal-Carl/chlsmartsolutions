@@ -13,12 +13,12 @@ class SalesLineChart extends Component
     public function mount()
     {
         $this->chartData = $this->getChartData();
-            $this->dispatch('render-chart', chartData: $this->chartData);
     }
 
     public function getChartData()
     {
         $orders = Order::selectRaw('type, total_amount, DATE(created_at) as date')
+            ->where('status', 'completed')
             ->orderBy('created_at')
             ->get()
             ->groupBy('type');
@@ -46,8 +46,6 @@ class SalesLineChart extends Component
 
         return $series;
     }
-
-
 
     public function render()
     {

@@ -17,10 +17,24 @@ class SalesBrowser extends Component
     public $search = '';
     public $selectedCategory = 0;
     public $selectedType = 'all';
+    public $selectedDate = 'today';
+    public $startDate;
 
     public function mount(CategoryService $categoryService)
     {
         $this->categories = $categoryService->getAllCategory();
+        $this->startDate = now()->toDateString();
+    }
+
+    public function updatedSelectedDate($value)
+    {
+        match ($value) {
+            'today' => $this->startDate = now()->toDateString(),
+            'this_week' => $this->startDate = now()->startOfWeek()->toDateString(),
+            'this_month' => $this->startDate = now()->startOfMonth()->toDateString(),
+            'this_year' => $this->startDate = now()->startOfYear()->toDateString(),
+            default => null,
+        };
     }
 
     public function updated($property)
@@ -32,7 +46,9 @@ class SalesBrowser extends Component
 
     public function getSales($type)
     {
-        $orders = Order::where('type', $type)->where('status', 'completed')->get();
+        $orders = Order::where('type', $type)
+            ->whereBetween('updated_at', [$this->startDate, now()])
+            ->where('status', 'completed')->get();
         $total = 0;
         foreach($orders as $order){
             $total += $order->total_amount;
@@ -42,12 +58,14 @@ class SalesBrowser extends Component
 
     public function getTransaction($type)
     {
-        return count(Order::where('type', $type)->where('status', 'completed')->get());
+        return count(Order::where('type', $type)
+            ->whereBetween('updated_at', [$this->startDate, now()])
+            ->where('status', 'completed')->get());
     }
 
     public function render(ProductService $productService)
     {
-        $products = $productService->getSortedSales($this->selectedType, $this->selectedCategory, $this->search);
+        $products = $productService->getSortedSales($this->startDate, $this->selectedType, $this->selectedCategory, $this->search);
 
         return view('livewire.sales-browser', [
             'products' => $products,

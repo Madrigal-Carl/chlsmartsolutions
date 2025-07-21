@@ -22,6 +22,8 @@
     {{ $slot }}
     @livewireScripts
     <script src="{{ asset('js/script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs" defer></script>
 </body>
 
 </html>
