@@ -1,7 +1,7 @@
 <x-default>
 
     <div class="flex flex-col w-full relative">
-        <section id="home" class="px-6 md:px-18 h-screen md:pb-14 bg-black">
+        <section id="home" class="px-6 md:px-18 md:h-screen md:pb-14 bg-black">
             <div class="flex flex-col gap-8 md:gap-16">
                 <x-navbar />
 
@@ -14,7 +14,7 @@
                         <a href="" class="text-white font-inter text-xs md:text-sm">Offers</a>
                     </div>
                     <div class="flex items-center justify-between">
-                        <div class="flex flex-col gap-14 md:gap-10 items-center md:items-start py-6">
+                        <div class="flex flex-col gap-14 md:gap-10 items-center md:items-start py-6 pb-12 md:pb-0">
                             <div class="text-white flex flex-col gap-4 items-center md:items-start">
                                 <h1
                                     class="font-bold text-4xl md:text-7xl flex flex-col gap-4 items-center md:items-start">
