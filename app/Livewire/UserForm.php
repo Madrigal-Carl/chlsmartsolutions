@@ -6,6 +6,7 @@ use App\Models\User;
 use Livewire\Component;
 use App\Models\TechnicianRole;
 use Illuminate\Support\Facades\Hash;
+use App\Services\NotificationService;
 use Illuminate\Validation\ValidationException;
 
 class UserForm extends Component
@@ -72,6 +73,18 @@ class UserForm extends Component
         }
 
         notyf()->success('Staff created successfully.');
+        $role = match ($user->role) {
+            'admin-officer' => 'Admin Officer',
+            'cashier' => 'Cashier',
+            'technician' => 'Technician',
+        };
+
+        app(NotificationService::class)->createNotif(
+                    $user->id,
+                    "Staff Registered Successfully",
+                    "{$user->fullname} has been registered as {$role} successfully.",
+                    ['admin', 'cashier', 'admin_officer'],
+                );
 
         return redirect()->route('landing.page');
     }

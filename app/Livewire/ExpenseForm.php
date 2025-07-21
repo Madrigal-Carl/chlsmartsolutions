@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
-use Livewire\Component;
 use App\Models\Expense;
+use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
+use App\Services\NotificationService;
 use Illuminate\Validation\ValidationException;
 
 class ExpenseForm extends Component
@@ -37,8 +39,14 @@ class ExpenseForm extends Component
             return;
         }
 
-        Expense::create($validated);
+        $expense = Expense::create($validated);
         notyf()->success('Expense saved successfully.');
+        app(NotificationService::class)->createNotif(
+                    Auth::user()->id,
+                    "Expense Added Successfully",
+                    "{$expense->title} has been added successfully.",
+                    ['admin', 'cashier', 'admin_officer'],
+                );
 
         return redirect()->route('landing.page');
     }

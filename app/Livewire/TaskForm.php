@@ -4,7 +4,9 @@ namespace App\Livewire;
 
 use App\Models\Task;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use App\Services\UserService;
+use App\Services\NotificationService;
 use Illuminate\Validation\ValidationException;
 
 class TaskForm extends Component
@@ -55,7 +57,15 @@ class TaskForm extends Component
             return;
         }
 
-        Task::create($validator);
+        $task = Task::create($validator);
+
+        app(NotificationService::class)->createNotif(
+                    $task->user_id,
+                    "Task Assigned Successfully",
+                    'The task titled "' . Str::title($task->title) . '" requested by ' . $task->customer_name . ' has been assigned successfully.',
+                    ['technician'],
+                );
+
         notyf()->success('Task created successfully');
 
         return redirect()->route('landing.page');

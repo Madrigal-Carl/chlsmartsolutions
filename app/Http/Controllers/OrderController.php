@@ -9,6 +9,7 @@ use App\Models\OrderProduct;
 use Illuminate\Http\Request;
 use App\Models\OrderInventory;
 use Illuminate\Support\Facades\Auth;
+use App\Services\NotificationService;
 use Illuminate\Support\Facades\Validator;
 
 class OrderController
@@ -94,6 +95,16 @@ class OrderController
         }
 
         session()->forget('cartItems');
+
+        if ($order->status == 'completed') {
+            $selectedOrder = Order::with('user')->find($order->id);
+            app(NotificationService::class)->createNotif(
+                    $selectedOrder->user_id,
+                    "Order Completed",
+                    "{$selectedOrder->reference_id} placed by {$selectedOrder->user->fullname} has been successfully completed.",
+                    ['admin', 'cashier', 'admin_officer'],
+                );
+        }
 
         notyf()->success('Order placed successfully');
         session([

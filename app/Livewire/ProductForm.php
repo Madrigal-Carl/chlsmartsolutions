@@ -7,6 +7,8 @@ use Livewire\Component;
 use App\Models\Inventory;
 use Livewire\WithFileUploads;
 use App\Services\CategoryService;
+use Illuminate\Support\Facades\Auth;
+use App\Services\NotificationService;
 use Illuminate\Validation\ValidationException;
 
 class ProductForm extends Component
@@ -80,6 +82,13 @@ class ProductForm extends Component
             'stock_min_limit' => $this->stock_min_limit,
             'stock_max_limit' => $this->stock_max_limit,
         ]);
+
+        app(NotificationService::class)->createNotif(
+                    Auth::user()->id,
+                    "Product Added Successfully",
+                    "{$product->name} has been successfully added to your inventory.",
+                    ['admin', 'cashier', 'admin_officer'],
+                );
 
         notyf()->success('Product created successfully');
         return redirect()->route('landing.page');

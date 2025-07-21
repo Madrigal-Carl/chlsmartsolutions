@@ -30,7 +30,6 @@ class CheckTaskExpiry extends Command
     {
         $today = Carbon::today();
 
-        // Find expired tasks
         $expiredTasks = Task::whereDate('expiry_date', '<', $today)->where('status', 'pending')->get();
         $notifier = app(NotificationService::class);
 
@@ -41,7 +40,7 @@ class CheckTaskExpiry extends Command
             $notifier->createNotif(
                 $task->user_id,
                 'Order Expired',
-                "The order {$task->reference_id} has expired.",
+                "The order {$task->title} has expired.",
                 ['technician'],
             );
 
