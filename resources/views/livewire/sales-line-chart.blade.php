@@ -9,7 +9,7 @@
         chart: {
             type: 'area',
             stacked: false,
-            height: 300,
+            height: {{ $height }},
             zoom: {
                 type: 'x',
                 enabled: true,

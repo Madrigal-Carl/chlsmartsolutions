@@ -2,22 +2,20 @@
 
 namespace App\Livewire;
 
-use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\Order;
+use App\Models\Expense;
 use App\Models\Product;
 use Livewire\Component;
 
-class CashierDashboard extends Component
+class AdminOfficerDashboard extends Component
 {
-    public $chartData;
     public $selectedDate = 'this_year';
     public $startDate;
 
     public function mount()
     {
         $this->startDate = now()->startOfYear()->toDateString();
-        $this->chartData = $this->getChartData();
     }
 
     public function updatedSelectedDate($value)
@@ -30,39 +28,6 @@ class CashierDashboard extends Component
             default => null,
         };
     }
-
-    public function getChartData()
-    {
-        $orders = Order::selectRaw('type, total_amount, DATE(created_at) as date')
-            ->where('status', 'completed')
-            ->orderBy('created_at')
-            ->get()
-            ->groupBy('type');
-
-        $typeLabels = [
-            'walk_in' => 'Walk-In',
-            'online' => 'Online',
-            'government' => 'Government',
-            'project_based' => 'Project-Based',
-        ];
-
-        $series = [];
-
-        foreach ($orders as $type => $typeOrders) {
-            $data = $typeOrders->map(fn($order) => [
-                'x' => Carbon::parse($order->date)->format('Y-m-d'),
-                'y' => (float) $order->total_amount
-            ])->values()->all();
-
-            $series[] = [
-                'name' => $typeLabels[$type] ?? ucfirst($type),
-                'data' => $data
-            ];
-        }
-
-        return $series;
-    }
-
     public function getTotalProductProperty()
     {
         return Product::count();
@@ -91,16 +56,13 @@ class CashierDashboard extends Component
             ->sum('total_amount');
     }
 
-    public function getTotalRevenueProperty()
+    public function getTotalExpensesProperty()
     {
-        return Order::where('status', 'completed')
-            ->whereBetween('updated_at', [$this->startDate, now()])
-            ->sum('total_amount');
+        return Expense::whereBetween('expense_date', [$this->startDate, now()])->sum('amount');
     }
 
     public function render()
     {
-
-        return view('livewire.cashier-dashboard');
+        return view('livewire.admin-officer-dashboard');
     }
 }

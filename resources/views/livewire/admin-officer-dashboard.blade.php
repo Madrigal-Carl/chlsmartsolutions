@@ -21,21 +21,25 @@
             Download Report
         </button>
     </div>
+
     <div class="flex gap-4 font-poppins">
         <div class="w-[69%] flex flex-col gap-4">
             <div class="w-full flex items-center gap-3">
                 <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
                     <div class="rounded-full bg-[#FF7555] text-white flex justify-center items-center size-13">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="lucide lucide-trending-up-icon lucide-trending-up">
-                            <path d="M16 7h6v6" />
-                            <path d="m22 7-8.5 8.5-5-5L2 17" />
+                            stroke-linejoin="round" class="lucide lucide-file-text-icon lucide-file-text">
+                            <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
+                            <path d="M14 2v4a2 2 0 0 0 2 2h4" />
+                            <path d="M10 9H8" />
+                            <path d="M16 13H8" />
+                            <path d="M16 17H8" />
                         </svg>
                     </div>
-                    <p class="font-medium text-xs mt-3">Total Sales</p>
-                    <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">All-time revenue</p>
-                    <h1 class="text-[#FF7555] font-semibold mt-6">₱{{ number_format($this->totalRevenue, 2) }}</h1>
+                    <p class="font-medium text-xs mt-3">Total Expenses</p>
+                    <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">All-time expenses</p>
+                    <h1 class="text-[#FF7555] font-semibold mt-6">₱{{ number_format($this->totalExpenses, 2) }}</h1>
                 </div>
                 <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
                     <div class="rounded-full bg-[#39A1EA] text-white flex justify-center items-center size-13">
@@ -108,8 +112,7 @@
                     <h1 class="text-[#29AB91] font-semibold mt-6">{{ $this->totalProduct }}</h1>
                 </div>
             </div>
-            <livewire:sales-line-chart :date="$startDate" :key="'sales-line-chart' . $startDate" :height="375" />
-
+            <livewire:expenses-line-chart :date="$startDate" :key="'expenses-line-chart' . $startDate" :height="375" />
         </div>
         <div class="w-[29%] flex flex-col gap-4">
             <livewire:order-overview />

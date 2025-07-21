@@ -10,10 +10,12 @@ class SalesLineChart extends Component
 {
     public $chartData;
     public $startDate;
+    public $height;
 
-    public function mount($date)
+    public function mount($date, $height = 300)
     {
         $this->startDate = $date;
+        $this->height = $height;
         $this->chartData = $this->getChartData();
     }
 
