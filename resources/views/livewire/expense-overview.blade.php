@@ -1,10 +1,10 @@
 <div class="w-full bg-white rounded-lg flex flex-col p-4">
-    <h1 class="text-[#203D3F] font-semibold">Orders Overview</h1>
-    <p class="text-[0.6rem] text-[#BDBEC3] mb-1">Available Orders Today</p>
-    @forelse ($orders as $order)
+    <h1 class="text-[#203D3F] font-semibold">Expenses Overview</h1>
+    <p class="text-[0.6rem] text-[#BDBEC3] mb-2">Recent transactions</p>
+    @forelse ($expenses as $expense)
         <div class="flex items-center justify-between py-2 text-sm">
-            <p class="w-3/4">{{ $order->reference_id }}</p>
-            <p class="text-[#FF7555] font-medium">₱{{ number_format($order->total_amount, 2) }}</p>
+            <p class="w-1/2">{{ \Carbon\Carbon::parse($expense->expense_date)->format('F d, Y') }}</p>
+            <p class="text-[#FF7555] font-medium">₱{{ number_format($expense->amount, 2) }}</p>
         </div>
     @empty
         <div class="flex flex-col items-center justify-center p-6 text-[#BDBEC3] gap-1">
@@ -23,8 +23,8 @@
             <p class="text-xs mt-1">No Orders Available</p>
         </div>
     @endforelse
-    @if ($orders->count() >= $take)
-        <div wire:click="setActive('order')" class="flex py-2 text-sm cursor-pointer">
+    @if ($expenses->count() >= $take)
+        <div wire:click="setActive('expense')" class="flex py-2 text-sm cursor-pointer">
             <p class="text-[#203D3F] font-medium">See more...</p>
         </div>
     @endif

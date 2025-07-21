@@ -8,6 +8,12 @@ use Livewire\Component;
 class TaskOverview extends Component
 {
     public $active = '';
+    public $take = 2;
+
+    public function mount($take = 2)
+    {
+        $this->take = $take;
+    }
 
     public function setActive($option)
     {
@@ -22,7 +28,7 @@ class TaskOverview extends Component
                 ->whereDate('expiry_date', '>=', now())
                 ->where('status', 'pending')
                 ->orderByRaw("FIELD(priority, 'high', 'medium', 'low')")
-                ->take(2)
+                ->take($this->take)
                 ->get();
 
         return view('livewire.task-overview', [

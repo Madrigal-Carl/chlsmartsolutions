@@ -2,10 +2,10 @@
 
 namespace App\Livewire;
 
-use App\Models\Order;
+use App\Models\Expense;
 use Livewire\Component;
 
-class OrderOverview extends Component
+class ExpenseOverview extends Component
 {
     public $active = '';
     public $take = 2;
@@ -22,16 +22,15 @@ class OrderOverview extends Component
         $this->dispatch('activate', $option)->to('sidebar');
     }
 
+    public function getExpense()
+    {
+        return Expense::orderBy('created_at', 'desc')->take($this->take)->get();
+    }
+
     public function render()
     {
-        $order = Order::whereDate('created_at', '<=', now())
-            ->whereDate('expiry_date', '>=', now())
-            ->where('status', 'pending')
-            ->take($this->take)
-            ->get();
-
-        return view('livewire.order-overview', [
-            'orders' => $order,
+        return view('livewire.expense-overview', [
+            'expenses' => $this->getExpense()
         ]);
     }
 }

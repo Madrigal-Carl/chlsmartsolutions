@@ -8,6 +8,12 @@ use Livewire\Component;
 class InventoryOverview extends Component
 {
     public $active = '';
+    public $take = 2;
+
+    public function mount($take = 2)
+    {
+        $this->take = $take;
+    }
 
     public function setActive($option)
     {
@@ -30,7 +36,7 @@ class InventoryOverview extends Component
             $adjustedStock = $inventory->stock + $pendingQuantity;
 
             return $adjustedStock === 0 || $adjustedStock <= $inventory->stock_min_limit;
-        })->take(2)->values();
+        })->take($this->take)->values();
     }
 
 

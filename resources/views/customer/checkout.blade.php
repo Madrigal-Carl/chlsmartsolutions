@@ -45,7 +45,7 @@
                         @foreach ($cartItems as $item)
                             <div class="flex items-center border-b border-[#DCDCDC] last:border-none py-4">
                                 <div class="w-[78%] md:w-[55%] font-poppins">
-                                    <div class="flex items-center">
+                                    <div class="flex items-center gap-3">
                                         <img class="block h-18 object-cover"
                                             src="{{ asset('storage/' . $item->image_url) }}" alt="">
                                         <div class="flex flex-col items-start">

@@ -21,7 +21,7 @@
         dataLabels: { enabled: false },
         markers: { size: 0 },
         title: {
-            text: 'Sales Over Time',
+            text: 'Expenses Over Time',
             align: 'left',
             style: {
                 fontSize: '18px',

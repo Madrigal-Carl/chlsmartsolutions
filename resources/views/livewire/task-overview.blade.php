@@ -35,7 +35,7 @@
             </div>
         @endforelse
     </div>
-    @if ($tasks->count() >= 2)
+    @if ($tasks->count() >= $take)
         <div wire:click="setActive('task')" class="flex py-2 text-sm cursor-pointer">
             <p class="text-[#203D3F] font-medium">See more...</p>
         </div>

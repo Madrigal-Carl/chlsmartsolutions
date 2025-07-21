@@ -15,12 +15,12 @@ class ExpenseBrowser extends Component
     public $category = 'monthly dues';
     public $showModal = false;
     protected $listeners = ['cancel' => 'closeModal'];
-    public $selectedDate = 'today';
+    public $selectedDate = 'this_year';
     public $startDate;
 
     public function mount()
     {
-        $this->startDate = now()->toDateString();
+        $this->startDate = now()->startOfYear()->toDateString();
     }
 
     public function openModal()

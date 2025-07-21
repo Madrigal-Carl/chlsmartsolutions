@@ -17,13 +17,13 @@ class SalesBrowser extends Component
     public $search = '';
     public $selectedCategory = 0;
     public $selectedType = 'all';
-    public $selectedDate = 'today';
+    public $selectedDate = 'this_year';
     public $startDate;
 
     public function mount(CategoryService $categoryService)
     {
         $this->categories = $categoryService->getAllCategory();
-        $this->startDate = now()->toDateString();
+        $this->startDate = $this->startDate = now()->startOfYear()->toDateString();
     }
 
     public function updatedSelectedDate($value)

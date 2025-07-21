@@ -10,7 +10,6 @@ use Livewire\Component;
 
 class CashierDashboard extends Component
 {
-    public $active = '';
     public $chartData;
 
     public function mount()
@@ -50,13 +49,6 @@ class CashierDashboard extends Component
         return $series;
     }
 
-    public function setActive($option)
-    {
-        $this->active = $option;
-        session()->put('sidebar_active', $option);
-        $this->dispatch('activate', $option)->to('sidebar');
-    }
-
     public function getTotalProductProperty()
     {
         return Product::count();
@@ -91,42 +83,9 @@ class CashierDashboard extends Component
             ->sum('total_amount');
     }
 
-    public function getStocks()
-    {
-        $products = Product::with('inventory', 'orderProducts.order')->get();
-
-        return $products->filter(function ($product) {
-            $inventory = $product->inventory;
-
-            $pendingQuantity = $product->orderProducts
-                ->where('order.status', 'pending')
-                ->sum('quantity');
-
-            $adjustedStock = $inventory->stock + $pendingQuantity;
-
-            return $adjustedStock === 0 || $adjustedStock <= $inventory->stock_min_limit;
-        })->take(2)->values();
-    }
-
     public function render()
     {
-        $tasks = Task::whereDate('created_at', '<=', now())
-                ->whereDate('expiry_date', '>=', now())
-                ->where('status', 'pending')
-                ->orderByRaw("FIELD(priority, 'high', 'medium', 'low')")
-                ->take(2)
-                ->get();
 
-        $order = Order::whereDate('created_at', '<=', now())
-            ->whereDate('expiry_date', '>=', now())
-            ->where('status', 'pending')
-            ->take(2)
-            ->get();
-
-        return view('livewire.cashier-dashboard', [
-            'orders' => $order,
-            'products' => $this->getStocks(),
-            'tasks' => $tasks,
-        ]);
+        return view('livewire.cashier-dashboard');
     }
 }

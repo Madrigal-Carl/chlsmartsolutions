@@ -33,7 +33,7 @@
             </div>
         @endforelse
     </div>
-    @if ($products->count() >= 2)
+    @if ($products->count() >= $take)
         <div wire:click="setActive('product')" class="flex py-2 text-sm cursor-pointer">
             <p class="text-[#203D3F] font-medium">See more...</p>
         </div>

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->text('description');
             $table->decimal('price', 12, 2)->default(0);
-            $table->string('image_url')->default('/products/no_image.png');
+            $table->string('image_url')->default('products/no_image.png');
             $table->timestamps();
         });
     }

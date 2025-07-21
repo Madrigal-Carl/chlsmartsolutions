@@ -9,15 +9,18 @@ use Livewire\Component;
 class SalesLineChart extends Component
 {
     public $chartData;
+    public $startDate;
 
-    public function mount()
+    public function mount($date)
     {
+        $this->startDate = $date;
         $this->chartData = $this->getChartData();
     }
 
     public function getChartData()
     {
         $orders = Order::selectRaw('type, total_amount, DATE(created_at) as date')
+            ->whereBetween('updated_at', [$this->startDate, now()])
             ->where('status', 'completed')
             ->orderBy('created_at')
             ->get()

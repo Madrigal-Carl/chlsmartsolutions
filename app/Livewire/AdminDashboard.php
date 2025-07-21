@@ -6,12 +6,12 @@ use Livewire\Component;
 
 class AdminDashboard extends Component
 {
-    public $selectedDate = 'today';
+    public $selectedDate = 'this_year';
     public $startDate;
 
     public function mount()
     {
-        $this->startDate = now()->toDateString();
+        $this->startDate = now()->startOfYear()->toDateString();
     }
 
     public function updatedSelectedDate($value)

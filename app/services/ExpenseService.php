@@ -10,14 +10,14 @@ class ExpenseService
     {
         return Expense::where('category', $category)
             ->whereBetween('expense_date', [$startDate, now()])
-            ->orderBy('expense_date', 'desc')
+            ->orderBy('created_at', 'desc')
             ->paginate(10);
     }
 
     public function getFilteredExpense($startDate)
     {
         return Expense::whereBetween('expense_date', [$startDate, now()])
-            ->orderBy('expense_date', 'desc')
+            ->orderBy('created_at', 'desc')
             ->get();
     }
 }
