@@ -10,3 +10,4 @@ Artisan::command('inspire', function () {
 
 Schedule::command('app:check-task-expiry')->daily();
 Schedule::command('app:check-order-expiry')->daily();
+Schedule::command('cache:clear')->daily();
