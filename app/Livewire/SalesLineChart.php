@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Carbon\Carbon;
 use App\Models\Order;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class SalesLineChart extends Component
 {
@@ -21,12 +22,12 @@ class SalesLineChart extends Component
 
     public function getChartData()
     {
-        $orders = Order::selectRaw('type, total_amount, DATE(created_at) as date')
+        $orders = Order::selectRaw('type, DATE(created_at) as date, SUM(total_amount) as total_amount')
             ->whereBetween('updated_at', [$this->startDate, now()])
             ->where('status', 'completed')
-            ->orderBy('created_at')
-            ->get()
-            ->groupBy('type');
+            ->groupBy('type', DB::raw('DATE(created_at)'))
+            ->orderBy('date')
+            ->get();
 
         $typeLabels = [
             'walk_in' => 'Walk-In',
@@ -35,9 +36,11 @@ class SalesLineChart extends Component
             'project_based' => 'Project-Based',
         ];
 
+        $groupedOrders = $orders->groupBy('type');
+
         $series = [];
 
-        foreach ($orders as $type => $typeOrders) {
+        foreach ($groupedOrders as $type => $typeOrders) {
             $data = $typeOrders->map(fn($order) => [
                 'x' => Carbon::parse($order->date)->format('Y-m-d'),
                 'y' => (float) $order->total_amount
@@ -51,6 +54,7 @@ class SalesLineChart extends Component
 
         return $series;
     }
+
 
     public function render()
     {

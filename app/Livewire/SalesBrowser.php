@@ -63,6 +63,11 @@ class SalesBrowser extends Component
             ->where('status', 'completed')->get());
     }
 
+    public function exportSales()
+    {
+        return redirect()->to(route('export.sales', ['startDate' => $this->startDate]));
+    }
+
     public function render(ProductService $productService)
     {
         $products = $productService->getSortedSales($this->startDate, $this->selectedType, $this->selectedCategory, $this->search);

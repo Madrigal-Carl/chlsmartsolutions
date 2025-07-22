@@ -15,7 +15,7 @@
                 enabled: true,
                 autoScaleYaxis: true
             },
-            toolbar: { show: true, tools: { selection: false, zoom: false, zoomin: false, zoomout: false, pan: false, reset: false } },
+            toolbar: { show: false },
             fontFamily: 'poppins',
         },
         dataLabels: { enabled: false },

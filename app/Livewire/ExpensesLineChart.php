@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Carbon\Carbon;
 use App\Models\Expense;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class ExpensesLineChart extends Component
 {
@@ -19,30 +20,33 @@ class ExpensesLineChart extends Component
         $this->chartData = $this->getChartData();
     }
 
-        public function getChartData()
+    public function getChartData()
     {
-        $expenses = Expense::selectRaw('category, amount, DATE(expense_date) as date')
+        $expenses = Expense::selectRaw('category, DATE(expense_date) as date, SUM(amount) as amount')
             ->whereBetween('expense_date', [$this->startDate, now()])
-            ->orderBy('expense_date')
-            ->get()
-            ->groupBy('category');
+            ->groupBy('category', DB::raw('DATE(expense_date)'))
+            ->orderBy('date')
+            ->get();
+
+        $groupedExpenses = $expenses->groupBy('category');
 
         $series = [];
 
-        foreach ($expenses as $expense => $typeExpense) {
+        foreach ($groupedExpenses as $category => $typeExpense) {
             $data = $typeExpense->map(fn($exp) => [
                 'x' => Carbon::parse($exp->date)->format('Y-m-d'),
                 'y' => (float) $exp->amount
             ])->values()->all();
 
             $series[] = [
-                'name' => ucfirst($expense),
+                'name' => ucfirst($category),
                 'data' => $data
             ];
         }
 
         return $series;
     }
+
 
     public function render()
     {

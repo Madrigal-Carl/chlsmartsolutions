@@ -25,6 +25,11 @@ class AdminDashboard extends Component
         };
     }
 
+    public function exportAllReports()
+    {
+        return redirect()->to(route('export.all', ['startDate' => $this->startDate]));
+    }
+
     public function render()
     {
         return view('livewire.admin-dashboard');

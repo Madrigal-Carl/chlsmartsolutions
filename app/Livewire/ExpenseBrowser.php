@@ -56,6 +56,11 @@ class ExpenseBrowser extends Component
         return Expense::all();
     }
 
+    public function exportExpenses()
+    {
+        return redirect()->to(route('export.expenses', ['startDate' => $this->startDate]));
+    }
+
     public function render(ExpenseService $expenseService)
     {
         return view('livewire.expense-browser', [

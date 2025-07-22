@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RouteController;
+use App\Http\Controllers\CSVExportController;
 
 
 Route::middleware('guest_or_customer')->group(function() {
@@ -27,6 +28,15 @@ Route::middleware('role:customer,admin,admin_officer,cashier')->group(function (
     Route::post('/order', [OrderController::class, 'createOrder'])->name('create.order');
 });
 
+Route::middleware('role:admin,admin_officer,cashier')->group(function () {
+    Route::get('/export/sales', [CSVExportController::class, 'exportSales'])->name('export.sales');
+});
+
+Route::middleware('role:admin,admin_officer')->group(function () {
+    Route::get('/export/expenses', [CSVExportController::class, 'exportExpenses'])->name('export.expenses');
+});
+
+
 
 // Role Specific Routes
 Route::middleware('role:customer')->group(function () {
@@ -35,6 +45,7 @@ Route::middleware('role:customer')->group(function () {
 
 Route::middleware('role:admin')->group(function() {
     Route::get('/admin', [RouteController::class, 'goToAdminPage'])->name('admin');
+    Route::get('/export/all', [CSVExportController::class, 'exportAll'])->name('export.all');
 });
 
 Route::middleware('role:admin_officer')->group(function() {
