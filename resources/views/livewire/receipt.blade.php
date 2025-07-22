@@ -6,7 +6,7 @@
     @if ($order)
         <div x-data="{ show: {{ session('showCard') ? 'true' : 'false' }} }" x-show="show" x-transition x-cloak
             class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black/50 backdrop-blur-xs">
-            <div id="capture-area" class="bg-white flex flex-col rounded-xl font-inter p-6 gap-4 w-[320px] md:w-[450px]">
+            <div id="capture-area" class="bg-white flex flex-col rounded-xl font-inter p-8 gap-4 w-[320px] md:w-[450px]">
                 <div class="flex flex-col items-center justify-center gap-1">
                     <div class="flex items-center gap-2">
                         <img class="w-6 md:w-8" src="{{ asset('images/chlss_logo.png') }}" alt="chlss_logo.png"
@@ -57,21 +57,22 @@
                         <p class="w-[35%] text-center font-medium">₱{{ number_format(session('total'), 2) }}</p>
                     </div>
                 </div>
-                <div class="w-full flex flex-col items-center justify-center text-center text-[#747474] mb-4">
+                <div class="w-full flex flex-col items-center justify-center text-center text-[#747474]">
                     <p class="text-[#747474] text-[0.6rem] md:text-[0.7rem]">Thank you for choosing our services!
                     </p>
                     <p class="text-[#747474] text-[0.6rem] md:text-[0.7rem]">For support, contact us at
                         chldisty888@gmail.com</p>
                 </div>
+                <div id="exclude"
+                    class="w-full flex items-center justify-center text-white mt-4 gap-8 text-xs md:text-sm bg-white p-2 rounded-lg">
+                    <button onclick="downloadAsImage()" class="bg-[#5AA526] py-2 px-4 rounded-md cursor-pointer">
+                        Download
+                    </button>
+                    <button wire:click="clearSession" @click="show = false"
+                        class="bg-black py-2 px-4 rounded-md cursor-pointer">Close</button>
+                </div>
             </div>
             <div id="clone-container" style="position: absolute; top: -9999px; left: -9999px;"></div>
-            <div class="flex items-center text-white mt-6 gap-8 text-xs md:text-sm bg-white p-2 rounded-lg">
-                <button onclick="downloadAsImage()" class="bg-[#5AA526] py-2 px-4 rounded-md cursor-pointer">
-                    Download
-                </button>
-                <button wire:click="clearSession" @click="show = false"
-                    class="bg-black py-2 px-4 rounded-md cursor-pointer">Close</button>
-            </div>
         </div>
     @endif
 </div>
@@ -82,21 +83,25 @@
         const scrollable = document.getElementById('receipt-scroll');
         const cloneContainer = document.getElementById('clone-container');
 
+        // Clone node
         const clone = node.cloneNode(true);
-
         const cloneScrollable = clone.querySelector('#receipt-scroll');
 
-        const originalMaxHeight = scrollable.style.maxHeight;
-        const originalOverflow = scrollable.style.overflow;
-
+        // Show full scroll content
         cloneScrollable.style.maxHeight = 'none';
         cloneScrollable.style.overflow = 'visible';
 
+        // Hide buttons
         const exclude = clone.querySelector('#exclude');
-        if (exclude) exclude.style.display = 'none';
+        if (exclude) {
+            exclude.remove(); // Remove from DOM to avoid rendering
+        }
+
+        // Put clone in hidden container
         cloneContainer.innerHTML = '';
         cloneContainer.appendChild(clone);
 
+        // Ensure DOM is updated
         setTimeout(() => {
             domtoimage.toPng(clone)
                 .then((dataUrl) => {
@@ -107,11 +112,7 @@
                 })
                 .catch((error) => {
                     console.error('Error capturing image:', error);
-                })
-                .finally(() => {
-                    scrollable.style.maxHeight = originalMaxHeight;
-                    scrollable.style.overflow = originalOverflow;
                 });
-        }, 200);
+        }, 100); // Reduced delay should work if you're just hiding
     }
 </script>
