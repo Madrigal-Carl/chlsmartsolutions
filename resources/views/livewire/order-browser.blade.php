@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-6">
     <div class="flex items-center font-poppins gap-4">
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
+            class="w-1/4 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
@@ -18,7 +18,7 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getOrder() }}</h1>
         </div>
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#F97316]">
+            class="w-1/4 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#F97316]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#F97316]">
@@ -36,7 +36,7 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getOrder('pending') }}</h1>
         </div>
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#22C55E]">
+            class="w-1/4 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#22C55E]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#22C55E]">
@@ -48,13 +48,13 @@
                 </svg>
                 <div class="flex flex-col">
                     <p class="text-[0.6rem]">Today</p>
-                    <p class="text-sm font-medium">Completed Order</p>
+                    <p class="text-sm font-medium">Resolved Order</p>
                 </div>
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getOrder('completed') }}</h1>
         </div>
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
+            class="w-1/4 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
             <div class="flex items-center gap-2">
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
