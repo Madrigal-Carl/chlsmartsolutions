@@ -48,7 +48,7 @@
                 </svg>
                 <div class="flex flex-col">
                     <p class="text-[0.6rem]">Today</p>
-                    <p class="text-sm font-medium">Active Order</p>
+                    <p class="text-sm font-medium">Completed Order</p>
                 </div>
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getOrder('completed') }}</h1>

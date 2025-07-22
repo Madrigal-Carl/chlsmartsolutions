@@ -25,9 +25,12 @@ class OrderService
     public function countOrder($status)
     {
         return match ($status) {
-            'completed', 'pending' => Order::where('status', $status)
+            'pending' => Order::where('status', 'pending')
                 ->where('created_at', '<=',now())
                 ->where('expiry_date', '>=',now())
+                ->count(),
+            'completed' => Order::where('status', 'completed')
+                ->whereDate('updated_at', now())
                 ->count(),
 
             'expired' => Order::where('status', 'expired')->count(),
