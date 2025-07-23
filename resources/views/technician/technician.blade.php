@@ -16,10 +16,10 @@
 @endphp
 
 <x-default>
-    <div class="flex bg-[#F4F5F9] min-h-screen p-2">
+    <div class="flex flex-col md:flex-row bg-[#F4F5F9] md:p-2 relative">
         <livewire:sidebar :items="$sidebarItems" />
 
-        <div class="w-full p-6 pb-0">
+        <div class="w-full p-4 md:p-6 pb-0">
             <livewire:content-display :items="$sidebarItems" />
         </div>
     </div>

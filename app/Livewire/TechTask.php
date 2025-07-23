@@ -7,7 +7,6 @@ use Livewire\Component;
 use App\Models\ActivityLog;
 use Livewire\WithPagination;
 use App\Services\TaskService;
-use Illuminate\Support\Carbon;
 use Livewire\WithoutUrlPagination;
 use App\Services\ActivityLogService;
 use Illuminate\Support\Facades\Auth;
@@ -16,14 +15,14 @@ class TechTask extends Component
 {
     use WithPagination, WithoutUrlPagination;
 
-    public $selectedDate;
     public $selectedPrio = 'all';
     public $selectedTask = null;
     public $showModal = false;
+    public $selectedDate;
 
     public function mount()
     {
-        $this->selectedDate = Carbon::now()->format('Y-m-d');
+        $this->selectedDate = now()->format('Y-m-d');
     }
 
     public function selectTask($task_id)

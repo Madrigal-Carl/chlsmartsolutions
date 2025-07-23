@@ -1,6 +1,6 @@
 <div class="flex flex-col gap-4 w-full">
-    <div class="flex items-center justify-between w-full">
-        <div class="flex items-center text-xs gap-4">
+    <div class="flex items-start md:items-center justify-between w-full">
+        <div class="flex flex-col md:flex-row md:items-center text-xs gap-4">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
@@ -29,21 +29,21 @@
             </div>
         </div>
         <button wire:click='markAllAsRead()' class="cursor-pointer">
-            <p class="text-white bg-[#7da163] px-4 py-2 text-sm rounded-md">Mark all as read</p>
+            <p class="text-white bg-[#7da163] px-4 py-2 text-xs md:text-sm rounded-md">Mark all as read</p>
         </button>
     </div>
-    <div wire:poll.3s class="flex flex-col gap-4 w-full">
+    <div wire:poll.3s class="flex flex-col gap-4 w-full h-screen md:h-full">
         @forelse ($notifications as $notification)
             <div type="button" wire:click="markAsRead({{ $notification->id }})"
                 class="w-full transition cursor-pointer
                     {{ $notification->read_at ? 'bg-[#F0F0F0]' : 'bg-white' }} text-[#203D3F] flex flex-col gap-1 relative font-poppins p-4 rounded-md">
-                <p class="absolute top-4 right-4 text-xs text-[#4E4E4E]">
+                <p class="absolute top-4 right-4 text-[0.6rem] md:text-xs text-[#4E4E4E]">
                     {{ \Carbon\Carbon::parse($notification->created_at)->diffForHumans() }}</p>
-                <h1 class="font-semibold">{{ $notification->title }}</h1>
-                <p class="text-[#4E4E4E] text-sm">{{ $notification->message }}</p>
+                <h1 class="font-semibold text-sm md:text-base">{{ $notification->title }}</h1>
+                <p class="text-[#4E4E4E] text-xs md:text-sm">{{ $notification->message }}</p>
             </div>
         @empty
-            <div class="flex items-center justify-center text-gray-400">
+            <div class="flex py-38 items-center justify-center text-gray-400">
                 No Notification Available
             </div>
         @endforelse
