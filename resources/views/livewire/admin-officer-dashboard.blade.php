@@ -112,7 +112,9 @@
                     <h1 class="text-[#29AB91] font-semibold mt-6">{{ $this->totalProduct }}</h1>
                 </div>
             </div>
-            <livewire:expenses-line-chart :date="$startDate" :key="'expenses-line-chart' . $startDate" :height="375" />
+            <div class="h-[275px] md:h-[375px]">
+                <livewire:expenses-line-chart :date="$startDate" :key="'expenses-line-chart' . $startDate" />
+            </div>
         </div>
         <div class="w-[29%] flex flex-col gap-4">
             <livewire:order-overview />

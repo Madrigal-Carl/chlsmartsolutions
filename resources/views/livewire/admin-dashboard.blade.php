@@ -25,8 +25,14 @@
     <div class="flex gap-4 font-poppins">
         <div class="w-[69%] flex flex-col gap-4">
             <livewire:dashboard-overview :date="$startDate" :key="'dashboard-overview' . $startDate" />
-            <livewire:sales-line-chart :date="$startDate" :key="'sales-line-chart' . $startDate" />
-            <livewire:expenses-line-chart :date="$startDate" :key="'expenses-line-chart' . $startDate" />
+            <div class="flex flex-col gap-15">
+                <div class="h-[270px]">
+                    <livewire:sales-line-chart :date="$startDate" :key="'sales-line-chart' . $startDate" />
+                </div>
+                <div class="h-[270px]">
+                    <livewire:expenses-line-chart :date="$startDate" :key="'expenses-line-chart' . $startDate" />
+                </div>
+            </div>
         </div>
         <div class="w-[29%] flex flex-col gap-4">
             <livewire:order-overview :take="4" />

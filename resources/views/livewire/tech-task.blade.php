@@ -67,7 +67,6 @@
                     </calendar-date>
                 </div>
             </div>
-
         </div>
         <div class="w-full overflow-x-auto">
             <div class="bg-white w-[768px] md:w-full flex flex-col items-center rounded-t-md h-fit pb-2">
@@ -84,14 +83,13 @@
                     @forelse ($tasks as $task)
                         <div
                             class="w-full flex items-center text-center text-xs border-b border-[#EEF2F5] last:border-none text-[#484848]">
-                            <div class="w-[8%] border-r border-[#EEF2F5] h-full flex items-center justify-center">
+                            <div class="w-[8%] h-full flex items-center justify-center">
                                 {{ $task->id }}
                             </div>
-                            <div class="w-[27.5%] text-start border-r border-[#EEF2F5] pl-2 py-4 h-full capitalize">
+                            <div class="w-[27.5%] text-start border-x border-[#EEF2F5] pl-2 py-4.5 h-full capitalize">
                                 {{ $task->title }}
                             </div>
-                            <div
-                                class="w-[17.5%] border-r border-[#EEF2F5] py-2 flex items-center justify-center h-full">
+                            <div class="w-[17.5%] py-2 flex items-center justify-center h-full">
                                 @if ($task->priority == 'low')
                                     <div class="bg-[#0000001A] py-2 px-4 w-fit rounded-full">
                                         <p class="text-[#9A9A9A] text-[0.6rem] capitalize">{{ $task->priority }}</p>
@@ -106,10 +104,9 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="w-[17.5%] border-r border-[#EEF2F5] py-4 h-full">
+                            <div class="w-[17.5%] border-x border-[#EEF2F5] py-4.5 h-full">
                                 {{ \Carbon\Carbon::parse($task->expiry_date)->format('F d, Y') }}</div>
-                            <div
-                                class="w-[17.5%] border-r border-[#EEF2F5] py-2 flex items-center justify-center h-full">
+                            <div class="w-[17.5%] py-2 flex items-center justify-center h-full">
                                 @if ($task->status == 'pending')
                                     <div
                                         class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full text-[#c77a0e] flex gap-1 items-center justify-center">
@@ -149,7 +146,8 @@
                                 @endif
 
                             </div>
-                            <div class="w-[13%] py-4 pr-2 flex items-center justify-center h-full">
+                            <div
+                                class="w-[13%] border-l border-[#EEF2F5] py-4 pr-2 flex items-center justify-center h-full">
                                 <button wire:click='selectTask({{ $task->id }})'
                                     class="cursor-pointer text-[#3B82F6]">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
@@ -171,7 +169,8 @@
                 </div>
             </div>
         </div>
-        <div class="w-full flex items-center justify-between text-xs h-fit p-2 bg-white -mt-3 rounded-b-md">
+        <div
+            class="w-full flex flex-col md:flex-row gap-2 items-center justify-between text-xs h-fit p-2 bg-white -mt-3 rounded-b-md">
             <p class="">Showing {{ $tasks->firstItem() ?? 0 }} to {{ $tasks->lastItem() }} of
                 {{ $tasks->total() }}
                 entries</p>

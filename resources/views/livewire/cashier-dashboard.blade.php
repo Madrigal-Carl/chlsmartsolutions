@@ -21,10 +21,10 @@
             Download Report
         </button>
     </div>
-    <div class="flex gap-4 font-poppins">
-        <div class="w-[69%] flex flex-col gap-4">
-            <div class="w-full flex items-center gap-3">
-                <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+    <div class="flex flex-col md:flex-row gap-4 font-poppins">
+        <div class="w-full md:w-[69%] flex flex-col gap-4">
+            <div class="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-3 justify-center md:justify-between">
+                <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
                     <div class="rounded-full bg-[#FF7555] text-white flex justify-center items-center size-13">
                         <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -37,7 +37,7 @@
                     <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">All-time revenue</p>
                     <h1 class="text-[#FF7555] font-semibold mt-6">₱{{ number_format($this->totalRevenue, 2) }}</h1>
                 </div>
-                <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+                <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
                     <div class="rounded-full bg-[#39A1EA] text-white flex justify-center items-center size-13">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -55,7 +55,7 @@
                     <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">Sales made today</p>
                     <h1 class="text-[#39A1EA] font-semibold mt-6">₱{{ number_format($this->salesToday, 2) }}</h1>
                 </div>
-                <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+                <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
                     <div class="rounded-full bg-[#405089] text-white flex justify-center items-center size-13">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -74,7 +74,7 @@
                     <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">Available orders</p>
                     <h1 class="text-[#405089] font-semibold mt-6">{{ $this->orderToday }}</h1>
                 </div>
-                <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+                <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
                     <div class="rounded-full bg-[#FEB558] text-white flex justify-center items-center size-13">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -91,7 +91,7 @@
                     <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">Pending tasks</p>
                     <h1 class="text-[#FEB558] font-semibold mt-6">{{ $this->taskToday }}</h1>
                 </div>
-                <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+                <div class="hidden md:w-1/5 md:flex flex-col items-center justify-center bg-white p-4 rounded-lg">
                     <div class="rounded-full bg-[#29AB91] text-white flex justify-center items-center size-13">
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -108,10 +108,11 @@
                     <h1 class="text-[#29AB91] font-semibold mt-6">{{ $this->totalProduct }}</h1>
                 </div>
             </div>
-            <livewire:sales-line-chart :date="$startDate" :key="'sales-line-chart' . $startDate" :height="375" />
-
+            <div class="h-[275px] md:h-[375px]">
+                <livewire:sales-line-chart :date="$startDate" :key="'sales-line-chart' . $startDate" />
+            </div>
         </div>
-        <div class="w-[29%] flex flex-col gap-4">
+        <div class="w-full md:w-[29%] flex flex-col gap-4 mt-8 mb-4 md:mb-0 md:mt-0">
             <livewire:order-overview />
             <livewire:inventory-overview />
             <livewire:task-overview />

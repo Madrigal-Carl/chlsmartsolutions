@@ -11,12 +11,10 @@ class ExpensesLineChart extends Component
 {
     public $chartData;
     public $startDate;
-    public $height;
 
-    public function mount($date, $height = 300)
+    public function mount($date)
     {
         $this->startDate = $date;
-        $this->height = $height;
         $this->chartData = $this->getChartData();
     }
 

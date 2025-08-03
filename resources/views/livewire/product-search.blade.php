@@ -54,6 +54,6 @@
             <path d="M5 12h14" />
             <path d="M12 5v14" />
         </svg>
-        <p>Add Product</p>
+        <p class="flex md:gap-1">Add <span class="hidden md:block">Product</span></p>
     </button>
 </div>

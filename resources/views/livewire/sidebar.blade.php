@@ -87,8 +87,8 @@
                 <ul
                     class="menu bg-[#203D3F] flex flex-col text-white font-medium tracking-widest gap-2 min-h-screen w-58 p-4">
                     <div class="mt-2 py-4 text-white flex flex-col justify-center items-center px-6 gap-2">
-                        <img src="{{ asset('images/profile.png') }}" alt="profile" class="w-16 rounded-full">
-                        <h1 class="font-semibold mt-1 text-sm">{{ ucfirst(auth()->user()->fullname) }}</h1>
+                        <img src="{{ asset('images/profile.png') }}" alt="profile" class="w-12 rounded-full">
+                        <h1 class="font-semibold mt-1 text-xs">{{ ucfirst(auth()->user()->fullname) }}</h1>
                         @php
                             $user = auth()->user();
                             $role = match ($user->role) {
@@ -102,10 +102,10 @@
                                 },
                             };
                         @endphp
-                        <p class="text-[0.6rem] font-light -mt-1">{{ $role }}</p>
+                        <p class="text-[0.5rem] font-light -mt-1">{{ $role }}</p>
                     </div>
                     @foreach ($items as $item)
-                        <div class="relative px-6 py-1">
+                        <div class="relative px-6 py-1.5">
 
                             @if ($item['label'] == 'notification' && $unreadNotif > 0)
                                 <div wire:poll.3s
@@ -124,7 +124,7 @@
                         </div>
                     @endforeach
                     <hr class="border-[#A7A7A7] my-3 mx-2">
-                    <button class="relative px-6 py-1">
+                    <button class="relative px-6 py-1.5">
                         <div class="flex items-center gap-5 text-white cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -137,7 +137,7 @@
                         </div>
                     </button>
 
-                    <div class="relative px-6 py-1">
+                    <div class="relative px-6 py-1.5">
                         <form method="POST" action="/signout">
                             @csrf
                             <button type="submit" class="cursor-pointer flex items-center gap-5 'text-white'">

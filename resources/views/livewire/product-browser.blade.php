@@ -412,7 +412,6 @@
             </div>
         </div>
     @endif
-
     @if ($activeTab == 'categoryBrowse')
         <div class="flex flex-col gap-4 bg-white rounded-2xl p-4 font-poppins">
             <h1 class="text-[#203D3F] text-lg font-semibold">Category List</h1>

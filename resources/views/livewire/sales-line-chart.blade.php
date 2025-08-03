@@ -9,7 +9,7 @@
         chart: {
             type: 'area',
             stacked: false,
-            height: {{ $height }},
+            height: '100%',
             zoom: {
                 type: 'x',
                 enabled: true,
@@ -71,5 +71,5 @@
 
     const chart = new ApexCharts($el, options);
     chart.render();
-}" class="bg-white font-poppins p-6 rounded-lg">
+}" class="bg-white font-poppins p-4 md:p-6 rounded-lg">
 </div>
