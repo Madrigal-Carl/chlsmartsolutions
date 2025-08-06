@@ -1,7 +1,6 @@
-<div class="flex flex-col gap-6">
-    <div class="flex items-center font-poppins gap-4">
-        <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
+<div class="flex flex-col gap-4 md:gap-6">
+    <div class="flex flex-col md:flex-row items-center font-poppins gap-2 md:gap-4">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-blue-600">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
@@ -16,8 +15,7 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask() }}</h1>
         </div>
-        <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#F97316]">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#F97316]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#F97316]">
@@ -28,7 +26,6 @@
                         d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V9.375ZM6 12a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V12Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75ZM6 15a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V15Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75ZM6 18a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V18Zm2.25 0a.75.75 0 0 1 .75-.75h3.75a.75.75 0 0 1 0 1.5H9a.75.75 0 0 1-.75-.75Z"
                         clip-rule="evenodd" />
                 </svg>
-
                 <div class="flex flex-col">
                     <p class="text-[0.6rem]">Today</p>
                     <p class="text-sm font-medium">Pending Task</p>
@@ -36,7 +33,7 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask('pending') }}</h1>
         </div>
-        <div class="flex-1 flex items-center justify- bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#22C55E]">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#22C55E]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#22C55E]">
@@ -47,7 +44,6 @@
                         d="M3 9.375C3 8.339 3.84 7.5 4.875 7.5h9.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-9.75A1.875 1.875 0 0 1 3 20.625V9.375Zm9.586 4.594a.75.75 0 0 0-1.172-.938l-2.476 3.096-.908-.907a.75.75 0 0 0-1.06 1.06l1.5 1.5a.75.75 0 0 0 1.116-.062l3-3.75Z"
                         clip-rule="evenodd" />
                 </svg>
-
                 <div class="flex flex-col">
                     <p class="text-[0.6rem]">Today</p>
                     <p class="text-sm font-medium">Finished Task</p>
@@ -55,8 +51,7 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask('completed') }}</h1>
         </div>
-        <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#DC2626]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#DC2626]">
@@ -68,7 +63,6 @@
                     <path
                         d="M10.5 10.5a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963 5.23 5.23 0 0 0-3.434-1.279h-1.875a.375.375 0 0 1-.375-.375V10.5Z" />
                 </svg>
-
                 <div class="flex flex-col">
                     <p class="text-[0.6rem]">Overall</p>
                     <p class="text-sm font-medium">Missed Task</p>
@@ -77,13 +71,13 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask('missed') }}</h1>
         </div>
     </div>
-    <div class="flex flex-col font-poppins bg-white rounded-md p-6 gap-4 w-full">
-        <h1 class="text-lg font-semibold">Technicians</h1>
 
+    <div class="flex flex-col w-full gap-4 font-poppins bg-white rounded-md p-6">
+        <h1 class="text-lg font-semibold">Technicians</h1>
         <div class="flex justify-center w-full">
-            <div class="flex gap-4 overflow-x-auto whitespace-nowrap w-[790px] pb-4">
+            <div class="flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 w-full pb-4">
                 @forelse ($technicians as $technician)
-                    <div class="rounded-md border border-[#898989] p-4 bg-white">
+                    <div class="rounded-md border border-[#898989] p-4 bg-white min-w-[220px]">
                         <div class="flex items-center justify-between mb-2 gap-4">
                             <div class="flex flex-col">
                                 <h1 class="font-medium text-sm">{{ $technician->fullname }}</h1>
@@ -96,8 +90,7 @@
                         </div>
                         <div class="flex items-baseline justify-between text-xs text-gray-500">
                             <p>Task Today</p>
-                            <div
-                                class="rounded-full flex items-center w-8 h-8 justify-center bg-[#3B82F6]/20 text-[#1E3A8A] text-lg font-semibold">
+                            <div class="rounded-full flex items-center w-8 h-8 justify-center bg-[#3B82F6]/20 text-[#1E3A8A] text-lg font-semibold">
                                 {{ count($technician->tasks) }}
                             </div>
                         </div>
@@ -110,12 +103,12 @@
     </div>
 
     @if ($activeTab == 'taskBrowse')
-        <div class="flex flex-col rounded-md gap-6">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-6">
-                    <div class="relative text-[#797979]">
+        <div class="flex flex-col rounded-md gap-6 relative">
+            <div class="flex flex-col-reverse md:flex-row items-end md:items-center justify-between gap-4">
+                <div class="flex flex-col md:flex-row gap-4 w-full">
+                    <div class="relative text-[#797979] w-full md:w-[200px]">
                         <select wire:change="$set('selectedStatus', $event.target.value)"
-                            class="w-[200px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
+                            class="w-full md:w-[200px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                             name="status" id="status">
                             <option value="all">All Status</option>
                             <option value="pending">Pending</option>
@@ -127,13 +120,11 @@
                                 <path fill-rule="evenodd"
                                     d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z"
                                     clip-rule="evenodd" />
-                            </svg>
                         </div>
                     </div>
-
-                    <div class="relative text-[#797979]">
+                    <div class="relative text-[#797979] w-full md:w-[200px]">
                         <select wire:change="$set('selectedPrio', $event.target.value)"
-                            class="w-[200px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
+                            class="w-full md:w-[200px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                             name="priority" id="priority">
                             <option value="all">All Priority</option>
                             <option value="low">Low</option>
@@ -145,23 +136,12 @@
                                 <path fill-rule="evenodd"
                                     d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z"
                                     clip-rule="evenodd" />
-                            </svg>
                         </div>
                     </div>
                 </div>
-                <button wire:click="$set('activeTab', 'addTask')"
-                    class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
-                        <path d="M5 12h14" />
-                        <path d="M12 5v14" />
-                    </svg>
-                    <p class="text-sm">Add New Task</p>
-                </button>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 font-poppins">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 font-poppins">
                 @forelse ($tasks as $task)
                     <div class="flex flex-col gap-3 p-4 rounded-md shadow-md bg-white">
                         <div class="flex flex-col">
@@ -251,7 +231,6 @@
                                     <path fill-rule="evenodd"
                                         d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z"
                                         clip-rule="evenodd" />
-                                </svg>
                             </div>
                         </div>
                         <div class="relative text-[#797979] text-sm">
@@ -270,20 +249,18 @@
                                     <path fill-rule="evenodd"
                                         d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z"
                                         clip-rule="evenodd" />
-                                </svg>
                             </div>
                         </div>
                     </div>
                 @empty
-                    <div class="col-span-2 md:col-span-3 text-center text-gray-500">
+                    <div class="col-span-1 sm:col-span-2 md:col-span-3 text-center text-gray-500">
                         No tasks available.
                     </div>
                 @endforelse
             </div>
-            <div class="w-full flex items-center justify-between h-fit p-2">
+            <div class="w-full flex flex-col md:flex-row gap-2 items-center justify-between h-fit p-2 pb-4 md:pb-0">
                 <p class="">Showing {{ $tasks->firstItem() ?? 0 }} to {{ $tasks->lastItem() }} of
-                    {{ $tasks->total() }}
-                    entries</p>
+                    {{ $tasks->total() }} entries</p>
                 <nav>
                     <div class="flex items-center -space-x-px h-8">
                         <button wire:click="previousPage" wire:loading.attr="disabled"
@@ -322,6 +299,16 @@
                 </nav>
             </div>
 
+            <button wire:click="$set('activeTab', 'addTask')"
+                class="fixed bottom-6 right-6 z-20 bg-[#203D3F] hover:bg-[#182f31] text-white rounded-full shadow-lg p-3 flex items-center justify-center transition-colors duration-200"
+                style="box-shadow: 0 4px 16px rgba(32,61,63,0.15);">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                    <path d="M5 12h14" />
+                    <path d="M12 5v14" />
+                </svg>
+            </button>
         </div>
     @endif
 

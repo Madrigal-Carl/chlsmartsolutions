@@ -1,16 +1,16 @@
-<form wire:submit='editProduct' class="rounded-md border border-gray-400 p-4 flex flex-col gap-4">
-    <div class="flex items-center justify-between gap-8">
+<form wire:submit='editProduct' class="rounded-md border border-gray-400 p-4 flex flex-col gap-4 w-full">
+    <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Product Name</p>
             <input type="text" placeholder="Enter Name..." value="{{ $name }}"
                 wire:input="$set('name', $event.target.value)"
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none capitalize text-[#797979]" />
+                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none capitalize text-[#797979] text-sm md:text-base" />
         </div>
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Category</p>
             <div class="flex items-center flex-1 relative text-[#797979]">
                 <select wire:change="$set('categoryId', $event.target.value)"
-                    class="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none capitalize">
+                    class="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none capitalize text-sm md:text-base">
                     <option disabled selected value="{{ $categoryId }}">
                         {{ $categoryName }}</option>
                     @foreach ($categories as $category)
@@ -32,44 +32,40 @@
             <p class="text-sm font-medium">Product Price</p>
             <input wire:input="$set('price', $event.target.value)" value="{{ $price }}" type="number"
                 placeholder="Enter Price..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979] text-sm md:text-base" />
         </div>
     </div>
-    <div class="flex items-center justify-between gap-8">
+    <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Current Stock</p>
-
             <input wire:input="$set('stock', $event.target.value)" value="{{ $stock }}" type="number"
-                placeholder="Enter Quanity..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                placeholder="Enter Quantity..."
+                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979] text-sm md:text-base" />
         </div>
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Minimum Stock</p>
             <input wire:input="$set('stock_min_limit', $event.target.value)" value="{{ $stock_min_limit }}"
-                type="number" placeholder="Enter Quanity..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                type="number" placeholder="Enter Quantity..."
+                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979] text-sm md:text-base" />
         </div>
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Maximum Stock</p>
             <input wire:input="$set('stock_max_limit', $event.target.value)" value="{{ $stock_max_limit }}"
-                type="number" placeholder="Enter Quanity..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                type="number" placeholder="Enter Quantity..."
+                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979] text-sm md:text-base" />
         </div>
     </div>
-
-    <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
+    <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1 w-full">
         <p class="text-sm font-medium">Product Description</p>
         <textarea wire:input="$set('description', $event.target.value)" rows="5"
-            class="border border-gray-500 focus:outline-none text-[#797979] w-full resize-none py-2 px-4 rounded-md"
+            class="border border-gray-500 focus:outline-none text-[#797979] w-full resize-none py-2 px-4 rounded-md text-sm md:text-base"
             placeholder="Enter description here...">{{ $description }}</textarea>
     </div>
-
     <div class="flex items-center w-full">
-        @if ($image && $image != '/products/no_image.png')
+        @if ($image && $image != 'products/no_image.png')
             <div class="relative mt-4">
                 <img src="{{ is_string($image) ? asset('storage/' . $image) : $image->temporaryUrl() }}" alt="Preview"
-                    class="w-40 h-40 object-cover rounded-md shadow border border-gray-300" />
-
+                    class="w-28 h-28 object-cover rounded-md shadow border border-gray-300" />
                 <button type="button" wire:click="$set('image', null)"
                     class="cursor-pointer absolute top-[-10px] right-[-10px] bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
@@ -82,7 +78,7 @@
             </div>
         @else
             <label for="dropzone-file"
-                class="flex flex-col items-center justify-center w-full h-36 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                class="flex flex-col items-center justify-center w-full h-28 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                     <svg class="w-7 h-7 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -96,12 +92,11 @@
                 </div>
                 <input id="dropzone-file" type="file" class="hidden" wire:model="image" />
             </label>
-            {{-- <div wire:loading wire:target="image">Uploading...</div> --}}
         @endif
     </div>
     <div class="w-full flex items-center justify-end">
         <button type="submit"
-            class="bg-[#16A34A] text-white rounded-md px-4 py-2 flex items-center gap-2 cursor-pointer">
+            class="bg-[#16A34A] text-white rounded-md px-4 py-2 flex items-center gap-2 cursor-pointer text-sm md:text-base">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                 class="lucide lucide-check-icon lucide-check">

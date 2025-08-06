@@ -1,7 +1,7 @@
-<div class="flex flex-col gap-6">
-    <div class="flex items-center font-poppins gap-4">
+<div class="flex flex-col gap-4 md:gap-6 pb-4 md:pb-0">
+    <div class="flex flex-col md:flex-row items-center font-poppins gap-2 md:gap-4">
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
@@ -20,7 +20,7 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->allProducts }}</h1>
         </div>
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#10B981]">
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#10B981]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#10B981]">
@@ -36,7 +36,7 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->allCategory }}</h1>
         </div>
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#EAB308]">
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#EAB308]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#EAB308]">
@@ -53,7 +53,7 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ count($this->getStocks('low')) }}</h1>
         </div>
         <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#DC2626]">
@@ -74,24 +74,24 @@
     @if (count($outStocks) > 0 || count($lowStocks) > 0)
         <div class="flex flex-col gap-4">
             @if (count($outStocks) > 0)
-                <div class="flex items-center font-poppins gap-4 border-l-6 border-[#DC2626] p-4 bg-[#DC2626]/16">
+                <div
+                    class="flex flex-col sm:flex-row items-start sm:items-center font-poppins gap-4 border-l-6 border-[#DC2626] p-4 bg-[#DC2626]/16">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                        class="size-10 text-[#DC2626]">
+                        class="hidden md:block size-8 sm:size-10 shrink-0 text-[#DC2626]">
                         <path
                             d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z" />
                         <path
                             d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z" />
                         <path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
                     </svg>
-                    <div class="flex flex-col gap-1 text-[#7C2D12] w-full">
-                        <p class="font-medium text-sm">Out of Stock Alert - {{ count($this->getStocks('out')) }} item(s)
-                            need attention
+                    <div class="flex flex-col gap-2 text-[#7C2D12] w-full">
+                        <p class="font-medium text-sm">
+                            Out of Stock Alert - {{ count($this->getStocks('out')) }} item(s) need attention
                         </p>
-                        <div class="flex items-center gap-2 text-xs font-medium w-full overflow-hidden">
+                        <div class="flex flex-wrap items-center gap-2 text-xs font-medium w-full">
                             @foreach ($outStocks as $outStock)
-                                <div class="bg-[#DC2626]/15 py-1 px-3 rounded-full font-inter h-6">
-                                    <p class="text-[#DC2626] line-clamp-1 capitalize">{{ $outStock->name }}
-                                    </p>
+                                <div class="bg-[#DC2626]/15 py-1 px-3 rounded-full font-inter">
+                                    <p class="text-[#DC2626] line-clamp-1 capitalize">{{ $outStock->name }}</p>
                                 </div>
                             @endforeach
                             @if (count($this->getStocks('out')) - count($outStocks) > 0)
@@ -105,29 +105,30 @@
                     </div>
                 </div>
             @endif
+
             @if (count($lowStocks) > 0)
-                <div class="flex items-center font-poppins gap-4 border-l-6 border-[#EAB308] p-4 bg-[#EAB308]/16">
+                <div
+                    class="flex flex-col sm:flex-row items-start sm:items-center font-poppins gap-4 border-l-6 border-[#EAB308] p-4 bg-[#EAB308]/16">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                        class="size-10 text-[#EAB308]">
+                        class="hidden md:block size-8 sm:size-10 shrink-0 text-[#EAB308]">
                         <path fill-rule="evenodd"
                             d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003ZM12 8.25a.75.75 0 0 1 .75.75v3.75a.75.75 0 0 1-1.5 0V9a.75.75 0 0 1 .75-.75Zm0 8.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"
                             clip-rule="evenodd" />
                     </svg>
-                    <div class="flex flex-col gap-1 text-[#5c4605] w-full">
-                        <p class="font-medium text-sm">Low Stock Alert - {{ count($this->getStocks('low')) }} items(s)
-                            need
-                            attention</p>
-                        <div class="flex items-center gap-2 text-xs font-medium w-full overflow-hidden">
+                    <div class="flex flex-col gap-2 text-[#5c4605] w-full">
+                        <p class="font-medium text-sm">
+                            Low Stock Alert - {{ count($this->getStocks('low')) }} items(s) need attention
+                        </p>
+                        <div class="flex flex-wrap items-center gap-2 text-xs font-medium w-full">
                             @foreach ($lowStocks as $lowStock)
-                                <div class="bg-[#EAB308]/50 py-1 px-3 rounded-full font-inter h-6">
-                                    <p class="line-clamp-1 capitalize">{{ $lowStock->name }}
-                                    </p>
+                                <div class="bg-[#EAB308]/50 py-1 px-3 rounded-full font-inter">
+                                    <p class="line-clamp-1 capitalize">{{ $lowStock->name }}</p>
                                 </div>
                             @endforeach
                             @if (count($this->getStocks('low')) - count($lowStocks) > 0)
                                 <div class="bg-[#EAB308]/50 py-1 px-3 rounded-full font-inter">
-                                    <p class="line-clamp-1">+{{ count($this->getStocks('low')) - count($lowStocks) }}
-                                        more
+                                    <p class="line-clamp-1">
+                                        +{{ count($this->getStocks('low')) - count($lowStocks) }} more
                                     </p>
                                 </div>
                             @endif
@@ -136,13 +137,12 @@
                 </div>
             @endif
         </div>
-
     @endif
     @if (count($topProducts) > 0 && Auth::user()->role != 'cashier')
-        <div class="flex flex-col gap-2 bg-white rounded-md p-4 font-poppins">
-            <h1 class="text-[#203D3F] text-lg font-semibold">Stock Recommendations <span
-                    class="text-[#9F9F9F] text-sm">(14-day usage)</span></h1>
-            <div class="grid grid-cols-2 gap-4">
+        <div class="flex flex-col gap-4 md:gap-2 bg-white rounded-md p-4 font-poppins">
+            <h1 class="text-[#203D3F] text-lg font-semibold flex flex-col md:flex-row md:items-center gap-1">Stock
+                Recommendations <span class="text-[#9F9F9F] text-sm">(14-day usage)</span></h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 @foreach ($topProducts as $product)
                     <div class="p-2 rounded-md bg-[#F4F5F9] flex items-center justify-between gap-6">
                         <div class="flex flex-col">
@@ -210,13 +210,12 @@
     @if ($activeTab == 'productBrowse')
         <div class="flex flex-col gap-4 bg-white rounded-2xl p-4 font-poppins">
             <h1 class="text-[#203D3F] text-lg font-semibold">Product Inventory</h1>
-            <div class="flex items-center justify-between">
-                <div class="flex items-center gap-6">
-                    <div class="relative text-[#797979]">
+            <div class="flex md:items-center justify-between flex-col-reverse md:flex-row gap-2 md:gap-0">
+                <div class="flex flex-col md:flex-row w-full gap-2 md:gap-4">
+                    <div class="relative text-[#797979] w-full md:w-[280px]">
                         <input wire:input.debounce.300ms="$set('search', $event.target.value)" type="text"
                             placeholder="Search products..."
-                            class="w-full pr-10 pl-4 py-2  border border-gray-500 rounded-md focus:outline-none" />
-
+                            class="w-full md:w-[280px] pr-10 pl-4 py-2.5 border border-gray-500 rounded-md focus:outline-none text-sm" />
                         <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="size-5">
@@ -226,9 +225,9 @@
                         </div>
                     </div>
 
-                    <div class="relative text-[#797979]">
+                    <div class="relative text-[#797979] w-full md:w-[280px]">
                         <select wire:change="$set('selectedCategory', $event.target.value)"
-                            class="w-[280px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
+                            class="w-full md:w-[280px] px-4 py-2.5 border border-gray-500 rounded-md focus:outline-none appearance-none text-sm"
                             name="category" id="category">
                             <option value="0">All Category</option>
                             @foreach ($categories as $cat)
@@ -246,10 +245,9 @@
                 </div>
 
                 @if (Auth::user()->role != 'cashier')
-                    <div class="flex items-center gap-6">
-
+                    <div class="flex items-center justify-between gap-4 md:gap-6">
                         <button wire:click="$set('activeTab', 'addProducts')"
-                            class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
+                            class="flex-1 cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2 whitespace-nowrap">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round"
@@ -261,7 +259,7 @@
                         </button>
 
                         <button wire:click="$set('activeTab', 'categoryBrowse')"
-                            class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
+                            class="flex-1 cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-4 md:gap-2">
                             <p class="text-sm">Category</p>
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -275,151 +273,155 @@
                 @endif
 
             </div>
-            <div class="flex flex-col font-inter">
-                <div class="rounded-t-3xl bg-[#EEF2F5] w-full flex items-center text-center p-3">
-                    <div class="w-[35%] text-start pl-1">Product Name</div>
-                    <div class="w-[15%]">Category</div>
-                    <div class="w-[10%]">Stock</div>
-                    <div class="w-[15%]">Price</div>
-                    <div class="w-[15%]">Status</div>
-                    <div class="w-[10%]">Actions</div>
-                </div>
-                <div class="w-full flex flex-col text-center bg-white">
-                    @forelse ($products as $product)
-                        <div
-                            class="w-full flex items-center text-sm border-x border-b border-[#EEF2F5] text-[#484848]">
+            <div class="w-full overflow-x-auto">
+                <div class="min-w-[1010px] flex flex-col font-inter">
+                    <div class="rounded-t-3xl bg-[#EEF2F5] w-full flex items-center text-center p-3">
+                        <div class="w-[35%] text-start pl-1">Product Name</div>
+                        <div class="w-[15%]">Category</div>
+                        <div class="w-[10%]">Stock</div>
+                        <div class="w-[15%]">Price</div>
+                        <div class="w-[15%]">Status</div>
+                        <div class="w-[10%]">Actions</div>
+                    </div>
+                    <div class="w-full flex flex-col text-center bg-white">
+                        @forelse ($products as $product)
                             <div
-                                class="w-[35%] text-start px-1 pl-3 border-x border-[#EEF2F5] py-5.5 flex items-center gap-2">
-                                <img src="{{ asset('storage/' . $product->image_url) }}" alt=""
-                                    class="h-13 w-auto">
-                                <p class="line-clamp-1 capitalize">{{ $product->name }}</p>
-                            </div>
-                            <div class="w-[15%] py-4 px-1">
-                                <p class="line-clamp-1 capitalize">{{ $product->category->name }}</p>
-                            </div>
-                            <div class="w-[10%] py-9.5 px-1 border-x border-[#EEF2F5]">
-                                {{ $product->adjusted_stock }}/{{ $product->inventory->stock_max_limit }}
-                            </div>
-                            <div class="w-[15%] py-4 px-1">₱{{ number_format($product->price, 2) }}</div>
-                            <div class="w-[15%] pr-1 border-x border-[#EEF2F5] py-8 flex items-center justify-center">
-                                @if ($product->adjusted_stock == 0)
-                                    <div
-                                        class="bg-[#dc262633] py-2 px-4 w-fit rounded-full text-[#DC2626] flex gap-1 items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                class="w-full flex items-center text-sm border-x border-b border-[#EEF2F5] text-[#484848]">
+                                <div
+                                    class="w-[35%] text-start px-1 pl-3 border-x border-[#EEF2F5] py-3.5 md:py-5.5 flex items-center gap-2">
+                                    <img src="{{ asset('storage/' . $product->image_url) }}" alt=""
+                                        class="h-13 w-auto">
+                                    <p class="line-clamp-1 capitalize">{{ $product->name }}</p>
+                                </div>
+                                <div class="w-[15%] py-4 px-1">
+                                    <p class="line-clamp-1 capitalize">{{ $product->category->name }}</p>
+                                </div>
+                                <div class="w-[10%] py-7.5 md:py-9.5 px-1 border-x border-[#EEF2F5]">
+                                    {{ $product->adjusted_stock }}/{{ $product->inventory->stock_max_limit }}
+                                </div>
+                                <div class="w-[15%] py-4 px-1">₱{{ number_format($product->price, 2) }}</div>
+                                <div
+                                    class="w-[15%] pr-1 border-x border-[#EEF2F5] py-6 md:py-8 flex items-center justify-center">
+                                    @if ($product->adjusted_stock == 0)
+                                        <div
+                                            class="bg-[#dc262633] py-2 px-4 w-fit rounded-full text-[#DC2626] flex gap-1 items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-trending-up-icon lucide-trending-up">
+                                                <path d="M16 7h6v6" />
+                                                <path d="m22 7-8.5 8.5-5-5L2 17" />
+                                            </svg>
+                                            <p class="text-xs capitalize">Out of Stock</p>
+                                        </div>
+                                    @elseif ($product->adjusted_stock <= $product->inventory->stock_min_limit)
+                                        <div
+                                            class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full text-[#c77a0e] flex gap-1 items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-trending-up-down-icon lucide-trending-up-down">
+                                                <path d="M14.828 14.828 21 21" />
+                                                <path d="M21 16v5h-5" />
+                                                <path d="m21 3-9 9-4-4-6 6" />
+                                                <path d="M21 8V3h-5" />
+                                            </svg>
+                                            <p class="text-xs capitalize">Low Stock</p>
+                                        </div>
+                                    @else
+                                        <div
+                                            class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full text-[#16A34A] flex gap-1 items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                                class="lucide lucide-package-icon lucide-package">
+                                                <path
+                                                    d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
+                                                <path d="M12 22V12" />
+                                                <polyline points="3.29 7 12 12 20.71 7" />
+                                                <path d="m7.5 4.27 9 5.15" />
+                                            </svg>
+                                            <p class="text-xs capitalize">In Stock</p>
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="w-[10%] pr-4 py-3 flex items-center justify-center gap-2 text-xs">
+                                    <button wire:click="editProduct({{ $product->id }})"
+                                        class="text-[#3B82F6] px-4 py-2 rounded {{ Auth::user()->role === 'cashier' ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }}"
+                                        {{ Auth::user()->role === 'cashier' ? 'disabled' : '' }}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-trending-up-icon lucide-trending-up">
-                                            <path d="M16 7h6v6" />
-                                            <path d="m22 7-8.5 8.5-5-5L2 17" />
-                                        </svg>
-                                        <p class="text-xs capitalize">Out of Stock</p>
-                                    </div>
-                                @elseif ($product->adjusted_stock <= $product->inventory->stock_min_limit)
-                                    <div
-                                        class="bg-[#ffeaba] py-2 px-4 w-fit rounded-full text-[#c77a0e] flex gap-1 items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-trending-up-down-icon lucide-trending-up-down">
-                                            <path d="M14.828 14.828 21 21" />
-                                            <path d="M21 16v5h-5" />
-                                            <path d="m21 3-9 9-4-4-6 6" />
-                                            <path d="M21 8V3h-5" />
-                                        </svg>
-                                        <p class="text-xs capitalize">Low Stock</p>
-                                    </div>
-                                @else
-                                    <div
-                                        class="bg-[#c1eacad7] py-2 px-4 w-fit rounded-full text-[#16A34A] flex gap-1 items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                            class="lucide lucide-package-icon lucide-package">
+                                            class="lucide lucide-square-pen-icon lucide-square-pen">
+                                            <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
                                             <path
-                                                d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z" />
-                                            <path d="M12 22V12" />
-                                            <polyline points="3.29 7 12 12 20.71 7" />
-                                            <path d="m7.5 4.27 9 5.15" />
+                                                d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
                                         </svg>
-                                        <p class="text-xs capitalize">In Stock</p>
-                                    </div>
-                                @endif
+                                    </button>
+                                </div>
                             </div>
-                            <div class="w-[10%] pr-4 py-3 flex items-center justify-center gap-2 text-xs">
-                                <button wire:click="editProduct({{ $product->id }})"
-                                    class="text-[#3B82F6] px-4 py-2 rounded {{ Auth::user()->role === 'cashier' ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer' }}"
-                                    {{ Auth::user()->role === 'cashier' ? 'disabled' : '' }}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                        stroke-linecap="round" stroke-linejoin="round"
-                                        class="lucide lucide-square-pen-icon lucide-square-pen">
-                                        <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                                        <path
-                                            d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
-                                    </svg>
-                                </button>
+
+                        @empty
+                            <div class="w-full py-8 flex items-center justify-center text-sm text-[#9A9A9A]">
+                                No Products found.
                             </div>
-                        </div>
+                        @endforelse
+                    </div>
+                </div>
+                <div class="w-full flex flex-col md:flex-row gap-2 items-center justify-between h-fit p-2">
+                    <p class="">Showing {{ $products->firstItem() ?? 0 }} to
+                        {{ $products->lastItem() }} of
+                        {{ $products->total() }}
+                        entries</p>
+                    <nav>
+                        <div class="flex items-center -space-x-px h-8">
+                            <button wire:click="previousPage" wire:loading.attr="disabled"
+                                @if ($products->onFirstPage()) disabled @endif
+                                class="text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center px-3 h-8 ms-0 leading-tight bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
+                                <span class="sr-only">Previous</span>
+                                <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 1 1 5l4 4" />
+                                </svg>
+                            </button>
 
-                    @empty
-                        <div class="w-full py-8 flex items-center justify-center text-sm text-[#9A9A9A]">
-                            No Products found.
-                        </div>
-                    @endforelse
-                    <div class="w-full flex items-center justify-between h-fit p-2">
-                        <p class="">Showing {{ $products->firstItem() ?? 0 }} to
-                            {{ $products->lastItem() }} of
-                            {{ $products->total() }}
-                            entries</p>
-                        <nav>
-                            <div class="flex items-center -space-x-px h-8">
-                                <button wire:click="previousPage" wire:loading.attr="disabled"
-                                    @if ($products->onFirstPage()) disabled @endif
-                                    class="text-gray-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center px-3 h-8 ms-0 leading-tight bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700">
-                                    <span class="sr-only">Previous</span>
-                                    <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M5 1 1 5l4 4" />
-                                    </svg>
-                                </button>
-
-                                @foreach (range(1, $products->lastPage()) as $page)
-                                    <div wire:click="gotoPage({{ $page }})"
-                                        class="flex items-center justify-center px-3 h-8 leading-tight
+                            @foreach (range(1, $products->lastPage()) as $page)
+                                <div wire:click="gotoPage({{ $page }})"
+                                    class="flex items-center justify-center px-3 h-8 leading-tight
                                     {{ $products->currentPage() === $page
                                         ? 'text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700'
                                         : 'text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 cursor-pointer' }}">
-                                        {{ $page }}
-                                    </div>
-                                @endforeach
+                                    {{ $page }}
+                                </div>
+                            @endforeach
 
 
-                                <button wire:click="nextPage" wire:loading.attr="disabled"
-                                    @if (!$products->hasMorePages()) disabled @endif
-                                    class="flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">
-                                    <span class="sr-only">Next</span>
-                                    <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m1 9 4-4-4-4" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </nav>
-                    </div>
+                            <button wire:click="nextPage" wire:loading.attr="disabled"
+                                @if (!$products->hasMorePages()) disabled @endif
+                                class="flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">
+                                <span class="sr-only">Next</span>
+                                <svg class="w-3.5 h-3.5 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </button>
+                        </div>
+                    </nav>
                 </div>
             </div>
+
         </div>
     @endif
     @if ($activeTab == 'categoryBrowse')
         <div class="flex flex-col gap-4 bg-white rounded-2xl p-4 font-poppins">
             <h1 class="text-[#203D3F] text-lg font-semibold">Category List</h1>
-            <div class="flex items-center justify-between">
-                <div class="relative text-[#797979]">
+            <div class="flex flex-col-reverse md:flex-row items-center justify-between w-full gap-2">
+                <div class="relative text-[#797979] w-full md:w-auto">
                     <input wire:input.debounce.300ms="$set('searchCat', $event.target.value)" type="text"
                         placeholder="Search category..."
-                        class="w-full pr-10 pl-4 py-2  border border-gray-500 rounded-md focus:outline-none" />
+                        class="text-sm md:text-base w-full pr-10 pl-4 py-2  border border-gray-500 rounded-md focus:outline-none" />
 
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -429,12 +431,12 @@
                         </svg>
                     </div>
                 </div>
-                <div class="flex items-center gap-6">
+                <div class="flex flex-col-reverse md:flex-row items-end md:items-center gap-2 md:gap-6 w-full md:w-auto">
 
                     <livewire:add-category />
 
                     <button wire:click="$set('activeTab', 'productBrowse')"
-                        class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
+                        class="text-sm md:text-base cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
                         <p class="text-sm">Product</p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -446,7 +448,8 @@
 
                 </div>
             </div>
-            <div class="flex flex-col font-inter">
+            <div class="w-full overflow-x-auto">
+            <div class="min-w-[720px] flex flex-col font-inter">
                 <div class="rounded-t-3xl bg-[#EEF2F5] w-full flex items-center text-center p-3">
                     <div class="w-[40%] text-start pl-1">Category Name</div>
                     <div class="w-[20%]">No. of Products</div>
@@ -513,7 +516,10 @@
                             No Category found.
                         </div>
                     @endforelse
-                    <div class="w-full flex items-center justify-between h-fit p-2">
+                </div>
+            </div>
+            </div>
+            <div class="w-full flex flex-col md:flex-row gap-2 items-center justify-between h-fit p-2">
                         <p class="">Showing {{ $categs->firstItem() ?? 0 }} to {{ $categs->lastItem() }} of
                             {{ $categs->total() }}
                             entries</p>
@@ -554,8 +560,6 @@
                             </div>
                         </nav>
                     </div>
-                </div>
-            </div>
         </div>
     @endif
     @if ($activeTab == 'addProducts')

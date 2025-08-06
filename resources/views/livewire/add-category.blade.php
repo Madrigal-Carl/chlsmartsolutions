@@ -1,8 +1,8 @@
-<div class="flex items-center gap-4">
+<div class="flex items-center gap-4 w-full">
     <div class="relative w-full text-[#797979]">
 
         <input wire:input.debounce.300ms="$set('name', $event.target.value)" type="text" placeholder="Category Name..."
-            class="w-full pr-[100px] pl-4 py-2 border border-gray-500 rounded-md focus:outline-none" />
+            class="text-sm md:text-base w-full pr-[100px] pl-4 py-2 border border-gray-500 rounded-md focus:outline-none" />
 
         <button wire:click='createCategory'
             class="cursor-pointer absolute right-1 top-1 bottom-1 px-4 bg-[#203D3F] rounded-md flex items-center text-white gap-2">

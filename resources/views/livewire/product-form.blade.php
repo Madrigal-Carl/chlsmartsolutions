@@ -1,15 +1,15 @@
-<form wire:submit='createProduct' class="rounded-md border border-gray-400 p-4 flex flex-col gap-4">
-    <div class="flex items-center justify-between gap-8">
+<form wire:submit='createProduct' class="rounded-md border border-gray-400 p-4 flex flex-col gap-4 w-full">
+    <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Product Name</p>
             <input type="text" placeholder="Enter Name..." wire:input="$set('name', $event.target.value)"
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
         </div>
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Category</p>
             <div class="flex items-center flex-1 relative text-[#797979]">
                 <select wire:change="$set('categoryId', $event.target.value)"
-                    class="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none">
+                    class="text-sm md:text-base w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none">
                     <option disabled selected>Select a Category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -27,43 +27,39 @@
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Product Price</p>
             <input wire:input="$set('price', $event.target.value)" type="number" placeholder="Enter Price..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
         </div>
     </div>
-    <div class="flex items-center justify-between gap-8">
+    <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Current Stock</p>
-
-            <input wire:input="$set('stock', $event.target.value)" type="number" placeholder="Enter Quanity..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+            <input wire:input="$set('stock', $event.target.value)" type="number" placeholder="Enter Quantity..."
+                class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
         </div>
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Minimum Stock</p>
             <input wire:input="$set('stock_min_limit', $event.target.value)" type="number"
-                placeholder="Enter Quanity..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                placeholder="Enter Quantity..."
+                class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
         </div>
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Maximum Stock</p>
             <input wire:input="$set('stock_max_limit', $event.target.value)" type="number"
-                placeholder="Enter Quanity..."
-                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+                placeholder="Enter Quantity..."
+                class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
         </div>
     </div>
-
-    <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
+    <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1 w-full">
         <p class="text-sm font-medium">Product Description</p>
         <textarea wire:input="$set('description', $event.target.value)" rows="5"
-            class="border border-gray-500 focus:outline-none text-[#797979] w-full resize-none py-2 px-4 rounded-md"
+            class="text-sm md:text-base border border-gray-500 focus:outline-none text-[#797979] w-full resize-none py-2 px-4 rounded-md"
             placeholder="Enter description here..."></textarea>
     </div>
-
     <div class="flex items-center w-full">
         @if ($image)
             <div class="relative mt-4">
                 <img src="{{ $image->temporaryUrl() }}" alt="Preview"
                     class="w-40 h-40 object-cover rounded-md shadow border border-gray-300" />
-
                 <button type="button" wire:click="$set('image', null)"
                     class="cursor-pointer absolute top-[-10px] right-[-10px] bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs hover:bg-red-600">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"

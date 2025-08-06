@@ -1,7 +1,7 @@
-<div class="flex flex-col gap-6 relative">
+<div class="flex flex-col gap-4 md:gap-6 relative pb-4 md:pb-0">
     <button wire:click='openModal'
-        class="fixed bottom-6 right-6 z-10 md:hidden bg-[#16A34A] text-white rounded-full p-3 shadow-lg flex items-center justify-center hover:bg-[#15803d] transition-colors"
-        style="box-shadow: 0 4px 24px 0 rgba(22, 163, 74, 0.2);">
+        class="fixed bottom-6 right-6 z-20 bg-[#203D3F] hover:bg-[#182f31] text-white rounded-full shadow-lg p-3 flex items-center justify-center transition-colors duration-200"
+                style="box-shadow: 0 4px 16px rgba(32,61,63,0.15);">
         <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14" />
