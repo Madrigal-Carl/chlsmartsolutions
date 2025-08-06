@@ -1,4 +1,4 @@
-<div class="bg-[#203D3F] w-full md:w-[22%] md:rounded-md font-poppins md:h-[calc(100vh-1rem)] md:sticky md:top-2">
+<div class="bg-[#203D3F] w-full md:w-[22%] md:rounded-md font-poppins md:h-[calc(100vh-1rem)] md:sticky md:top-2 z-50">
     <div class="hidden md:flex flex-col">
         <div class="py-10 text-white flex justify-center items-center gap-2">
             <img src="{{ asset('images/chlss_logo.png') }}" alt="chlss_logo" class="w-7">
@@ -86,7 +86,7 @@
                 <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
                 <ul
                     class="menu bg-[#203D3F] flex flex-col text-white font-medium tracking-widest gap-2 min-h-screen w-58 p-4">
-                    <div class="mt-2 py-4 text-white flex flex-col justify-center items-center px-6 gap-2">
+                    <div class="mt-2 py-4 text-white flex flex-col justify-center items-center text-center px-6 gap-2">
                         <img src="{{ asset('images/profile.png') }}" alt="profile" class="w-12 rounded-full">
                         <h1 class="font-semibold mt-1 text-xs">{{ ucfirst(auth()->user()->fullname) }}</h1>
                         @php

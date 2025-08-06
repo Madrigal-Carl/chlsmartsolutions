@@ -1,6 +1,15 @@
-<div class="flex flex-col gap-6">
+<div class="flex flex-col gap-6 relative">
+    <button wire:click='openModal'
+        class="fixed bottom-6 right-6 z-10 md:hidden bg-[#16A34A] text-white rounded-full p-3 shadow-lg flex items-center justify-center hover:bg-[#15803d] transition-colors"
+        style="box-shadow: 0 4px 24px 0 rgba(22, 163, 74, 0.2);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+        </svg>  
+    </button>
     <div class="w-full flex items-center justify-end gap-4">
-        <div class="w-full flex items-center justify-end">
+        <div class="hidden w-full md:flex items-center justify-end">
             <button wire:click='openModal'
                 class="bg-[#16A34A] text-white text-sm rounded-md px-4 py-2 flex items-center gap-2 cursor-pointer">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -33,9 +42,9 @@
             Download Report
         </button>
     </div>
-    <div class="flex items-center font-poppins gap-4">
+    <div class="flex flex-col md:flex-row items-center font-poppins gap-4">
         <div
-            class="h-18 flex-1 flex items-center justify-between rounded-lg pl-4 px-6 gap-4 py-4 text-white bg-gradient-to-r from-[#1859FF] to-[#799EFD]">
+            class="w-full h-18 md:flex-1 flex items-center justify-between rounded-lg pl-4 px-6 gap-4 py-4 text-white bg-gradient-to-r from-[#1859FF] to-[#799EFD]">
             <div class="flex items-center gap-4">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -54,7 +63,7 @@
             <h1 class="ml-4 text-2xl font-bold">₱{{ number_format($this->expense->sum('amount'), 2) }}</h1>
         </div>
         <div
-            class="h-18 flex-1 flex items-center justify-between rounded-lg pl-4 px-6 gap-4 py-4 text-white bg-gradient-to-r from-[#FF0404] to-[#ff8181]">
+            class="w-full h-18 md:flex-1 flex items-center justify-between rounded-lg pl-4 px-6 gap-4 py-4 text-white bg-gradient-to-r from-[#FF0404] to-[#ff8181]">
             <div class="flex items-center gap-4">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -73,7 +82,7 @@
             <h1 class="ml-4 text-2xl font-bold">{{ count($this->expense) }}</h1>
         </div>
         <div
-            class="h-18 flex-1 flex items-center justify-between rounded-lg pl-4 px-6 gap-4 py-4 text-white bg-gradient-to-r from-[#21C25C] to-[#27e16b]">
+            class="w-full h-18 md:flex-1 flex items-center justify-between rounded-lg pl-4 px-6 gap-4 py-4 text-white bg-gradient-to-r from-[#21C25C] to-[#27e16b]">
             <div class="flex items-center gap-4">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -102,9 +111,9 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col items-center w-full gap-4 font-poppins">
+    <div class="flex flex-col md:items-center w-full gap-4 font-poppins">
         <h1 class="text-[#203D3F] text-lg font-semibold text-start w-full">Expenses Category</h1>
-        <div class="flex items-center gap-5 overflow-hidden overflow-x-auto w-[67.5rem] pb-4">
+        <div class="flex items-center gap-5 overflow-hidden overflow-x-auto md:w-[65rem] pb-4">
             <button wire:click="$set('category', 'monthly dues')"
                 class="min-w-63 shrink-0 flex flex-col bg-white rounded-lg p-6 gap-3 cursor-pointer {{ $category === 'monthly dues' ? 'border-4 border-[#3C7AFF]' : '' }}">
                 <div class="flex items-center justify-between gap-10">
@@ -278,7 +287,7 @@
             <div
                 class="flex items-center justify-between px-4 py-2 border-b border-[#E5E7EB] {{ $loop->last ? 'border-none' : '' }}">
                 <div class="flex flex-col">
-                    <h1 class="font-medium">{{ $expense->title }}</h1>
+                    <h1 class="font-medium line-clamp-1">{{ $expense->title }}</h1>
                     <p class="text-[#999999] text-sm">
                         {{ \Carbon\Carbon::parse($expense->expense_date)->format('F d, Y') }}</p>
                 </div>
@@ -290,7 +299,7 @@
             </div>
         @endforelse
 
-        <div class="w-full flex items-center justify-between h-fit p-2 mt-4">
+        <div class="w-full flex flex-col md:flex-row gap-2 items-center justify-between h-fit p-4">
             <p class="">Showing {{ $expenses->firstItem() ?? 0 }} to {{ $expenses->lastItem() }} of
                 {{ $expenses->total() }}
                 entries</p>
@@ -335,8 +344,8 @@
     @if ($showModal)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs">
             <div
-                class="bg-white rounded-xl shadow-lg max-w-[280px] md:max-w-lg gap-6 w-full p-8 relative font-poppins flex flex-col justify-center">
-                <h1 class="text-[#203D3F] text-lg font-semibold">Add New Expense</h1>
+                class="bg-white rounded-xl shadow-lg max-w-[300px] md:max-w-lg gap-3 md:gap-6 w-full p-6 md:p-8 relative font-poppins flex flex-col justify-center">
+                <h1 class="text-[#203D3F] md:text-lg font-semibold">Add New Expense</h1>
                 <livewire:expense-form />
             </div>
         </div>

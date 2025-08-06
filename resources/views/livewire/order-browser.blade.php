@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-4 md:gap-6">
-    <div class="flex flex-wrap md:flex-nowrap items-center font-poppins gap-2 md:gap-4">
+    <div class="flex flex-col md:flex-row items-center justify-between font-poppins gap-2 md:gap-4">
         <div
-            class="w-[47.5%] md:w-1/4 gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-blue-600">
+            class="w-full md:w-[23.5%] gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-blue-600">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
@@ -11,14 +11,14 @@
                         d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
                 </svg>
                 <div class="flex flex-col">
-                    <p class="text-[0.5rem] md:text-[0.6rem]">Overall</p>
-                    <p class="text-xs md:text-sm font-medium">Total Order</p>
+                    <p class="text-[0.6rem]">Overall</p>
+                    <p class="text-sm font-medium">Total Order</p>
                 </div>
             </div>
-            <h1 class="text-lg md:text-2xl font-extrabold">{{ $this->getOrder() }}</h1>
+            <h1 class="text-2xl font-extrabold">{{ $this->getOrder() }}</h1>
         </div>
         <div
-            class="w-[47.5%] md:w-1/4 gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-[#F97316]">
+            class="w-full md:w-[23.5%] gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-[#F97316]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#F97316]">
@@ -29,14 +29,14 @@
                         d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
                 </svg>
                 <div class="flex flex-col">
-                    <p class="text-[0.5rem] md:text-[0.6rem]">Today</p>
-                    <p class="text-xs md:text-sm font-medium">Pending Order</p>
+                    <p class="md:text-[0.6rem]">Today</p>
+                    <p class="text-sm font-medium">Pending Order</p>
                 </div>
             </div>
-            <h1 class="text-lg md:text-2xl font-extrabold">{{ $this->getOrder('pending') }}</h1>
+            <h1 class="text-2xl font-extrabold">{{ $this->getOrder('pending') }}</h1>
         </div>
         <div
-            class="w-[47.5%] md:w-1/4 gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-[#22C55E]">
+            class="w-full md:w-[23.5%] gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-[#22C55E]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#22C55E]">
@@ -47,14 +47,14 @@
                         d="M12.971 1.816A5.23 5.23 0 0 1 14.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 0 1 3.434 1.279 9.768 9.768 0 0 0-6.963-6.963Z" />
                 </svg>
                 <div class="flex flex-col">
-                    <p class="text-[0.5rem] md:text-[0.6rem]">Today</p>
-                    <p class="text-xs md:text-sm font-medium">Resolved Order</p>
+                    <p class="text-[0.6rem]">Today</p>
+                    <p class="text-sm font-medium">Resolved Order</p>
                 </div>
             </div>
-            <h1 class="text-lg md:text-2xl font-extrabold">{{ $this->getOrder('completed') }}</h1>
+            <h1 class="text-2xl font-extrabold">{{ $this->getOrder('completed') }}</h1>
         </div>
         <div
-            class="w-[47.5%] md:w-1/4 gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-[#DC2626]">
+            class="w-full md:w-[23.5%] gap-2 flex items-center justify-between bg-white rounded-lg py-2 px-4 md:py-4 md:px-6 border-l-6 border-[#DC2626]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#DC2626]">
@@ -65,11 +65,11 @@
                         d="M14.25 5.25a5.23 5.23 0 0 0-1.279-3.434 9.768 9.768 0 0 1 6.963 6.963A5.23 5.23 0 0 0 16.5 7.5h-1.875a.375.375 0 0 1-.375-.375V5.25Z" />
                 </svg>
                 <div class="flex flex-col">
-                    <p class="text-[0.5rem] md:text-[0.6rem]">Overall</p>
-                    <p class="text-xs md:text-sm font-medium">Expired Order</p>
+                    <p class="text-[0.6rem]">Overall</p>
+                    <p class="text-sm font-medium">Expired Order</p>
                 </div>
             </div>
-            <h1 class="text-lg md:text-2xl font-extrabold">{{ $this->getOrder('expired') }}</h1>
+            <h1 class="text-2xl font-extrabold">{{ $this->getOrder('expired') }}</h1>
         </div>
     </div>
     <div class="flex flex-col gap-4 bg-white rounded-2xl p-4 mb-4 md:mb-0">
@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="w-full overflow-x-auto">
-                <div class="min-w-[1024px] flex flex-col font-inter">
+                <div class="min-w-[1010px] flex flex-col font-inter">
                     <div class="rounded-t-3xl bg-[#EEF2F5] w-full flex items-center text-center p-3">
                         <div class="w-[10%]"></div>
                         <div class="w-[30%] text-start pl-1">Reference Id</div>

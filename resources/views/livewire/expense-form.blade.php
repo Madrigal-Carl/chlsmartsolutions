@@ -1,12 +1,12 @@
 <form wire:submit='createExpense' class="flex flex-col gap-3">
     <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
-        <p class="text-sm font-medium">Expense Title</p>
+        <p class="text-xs md:text-sm font-medium">Expense Title</p>
         <input wire:input="$set('title', $event.target.value)" type="text" placeholder="e.g. Electric Bill"
-            class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+            class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
     </div>
     <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
-        <p class="text-sm font-medium">Category</p>
-        <div class="flex items-center flex-1 relative text-[#797979]">
+        <p class="text-xs md:text-sm font-medium">Category</p>
+        <div class="text-sm md:text-base flex items-center flex-1 relative text-[#797979]">
             <select wire:change="$set('category', $event.target.value)"
                 class="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none">
                 <option disabled selected>Select a Category</option>
@@ -26,18 +26,18 @@
         </div>
     </div>
     <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
-        <p class="text-sm font-medium">Amount(₱)</p>
+        <p class="text-xs md:text-sm font-medium">Amount(₱)</p>
         <input wire:input="$set('amount', $event.target.value)" type="number" placeholder="0.00"
-            class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+            class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
     </div>
     <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
-        <p class="text-sm font-medium">Date of Expense</p>
+        <p class="text-xs md:text-sm font-medium">Date of Expense</p>
         <div class="flex items-center relative text-[#797979]">
             <input wire:input="$set('expense_date', $event.target.value)" type="date" id="date"
-                class="hide-calendar w-full pr-10 pl-4 py-2 border border-gray-500 rounded-md focus:outline-none" />
+                class="text-sm md:text-base hide-calendar w-full pr-10 pl-4 py-2 border border-gray-500 rounded-md focus:outline-none" />
             <svg onclick="document.getElementById('date').showPicker()"
-                class="absolute top-2 right-4 cursor-pointer text-gray-600 hover:text-gray-800"
-                xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none"
+                class="absolute top-2 right-4 cursor-pointer text-gray-600 hover:text-gray-800 size-5 md:size-6"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M8 2v4" />
                 <path d="M16 2v4" />
@@ -48,18 +48,18 @@
         </div>
     </div>
     <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
-        <p class="text-sm font-medium">Notes/Remarks (Optional)</p>
+        <p class="text-xs md:text-sm font-medium">Notes/Remarks (Optional)</p>
         <textarea wire:input="$set('remarks', $event.target.value)" name="description" id="description" rows="5"
-            class="border border-gray-500 focus:outline-none text-[#797979] w-full resize-none py-2 px-4 rounded-md"
+            class="text-sm md:text-base border border-gray-500 focus:outline-none text-[#797979] w-full resize-none py-2 px-4 rounded-md"
             placeholder="Enter Notes/Remarks here..."></textarea>
     </div>
 
-    <div class="flex items-center gap-4 mt-6">
+    <div class="flex flex-col md:flex-row items-center gap-2 md:gap-4 md:mt-6">
         <button type="button" wire:click='cancel'
-            class="flex-1 py-2 border border-[#4f4f4f] rounded-md text-sm cursor-pointer">
+            class="w-full flex-1 py-2 border border-[#4f4f4f] rounded-md text-xs md:text-sm cursor-pointer">
             Cancel
         </button>
-        <button class="flex-1 py-2 bg-[#203D3F] rounded-md text-sm text-white cursor-pointer" type="submit">
+        <button class="w-full flex-1 py-2 bg-[#203D3F] rounded-md text-xs md:text-sm text-white cursor-pointer" type="submit">
             Save Expense
         </button>
     </div>
