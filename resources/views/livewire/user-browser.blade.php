@@ -1,7 +1,6 @@
-<div class="flex flex-col gap-6">
-    <div class="flex items-center font-poppins gap-4">
-        <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-8 py-4 border-l-6 border-blue-600">
+<div class="flex flex-col gap-4 md:gap-6 pb-4 md:pb-0">
+    <div class="flex flex-col md:flex-row items-center font-poppins gap-2 md:gap-4 w-full">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-blue-600">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
@@ -18,11 +17,9 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getStaff('staff') }}</h1>
         </div>
-        <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-8 py-4 border-l-6 border-[#DC2626]">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#DC2626]">
             <div class="flex items-center gap-2">
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                 class="size-9 text-[#DC2626]">
                 <path
                     d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
@@ -31,10 +28,10 @@
                 <p class="text-[0.6rem]">Active</p>
                 <p class="text-sm font-medium">Admin Officer</p>
             </div>
+            </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getStaff('admin_officer') }}</h1>
         </div>
-        <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-8 py-4 border-l-6 border-[#22C55E]">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#22C55E]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#22C55E]">
@@ -48,8 +45,7 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getStaff('cashier') }}</h1>
         </div>
-        <div
-            class="flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-8 py-4 border-l-6 border-[#F97316]">
+        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-10 py-4 border-l-6 border-[#F97316]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#F97316]">
@@ -64,10 +60,11 @@
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getStaff('technician') }}</h1>
         </div>
     </div>
+
     <div class="bg-white rounded-md w-full flex flex-col gap-4 p-4 font-poppins">
-        <div class="flex items-center w-full justify-between">
-            <div class="flex items-center gap-4">
-                <div class="relative text-[#797979]">
+        <div class="flex items-center w-full justify-between flex-col md:flex-row gap-4">
+            <div class="flex items-center gap-4 flex-wrap w-full">
+                <div class="relative text-[#797979] w-full md:w-auto">
                     <input wire:input.debounce.300ms="$set('search', $event.target.value)" type="text"
                         placeholder="Search user..."
                         class="w-full pr-10 pl-4 py-2  border border-gray-500 rounded-md focus:outline-none" />
@@ -79,9 +76,9 @@
                         </svg>
                     </div>
                 </div>
-                <div class="relative text-[#797979]">
+                <div class="relative text-[#797979] flex-1 md:flex-none">
                     <select wire:change="$set('selectedRole', $event.target.value)"
-                        class="w-[180px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none">
+                        class="w-full md:w-[180px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none">
                         <option value="all">All Roles</option>
                         <option value="admin_officer">Admin Officer</option>
                         <option value="cashier">Cashier</option>
@@ -95,9 +92,9 @@
                         </svg>
                     </div>
                 </div>
-                <div class="relative text-[#797979]">
+                <div class="relative text-[#797979] flex-1 md:flex-none">
                     <select wire:change="$set('selectedStatus', $event.target.value)"
-                        class="w-[150px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none">
+                        class="w-full md:w-[150px] px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none">
                         <option value="all">All Status</option>
                         <option value="active">Active</option>
                         <option value="revoked">Revoked</option>
@@ -112,7 +109,7 @@
                 </div>
             </div>
             <button wire:click="openModal"
-                class="cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2">
+                class="hidden whitespace-nowrap cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md md:flex items-center text-white gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                     class="lucide lucide-plus-icon lucide-plus">
@@ -122,46 +119,49 @@
                 <p class="text-sm">Add New User</p>
             </button>
         </div>
-        <div class="flex flex-col">
-            <div class="flex items-center w-full py-5 text-center border-b border-[#E5E7EB] font-medium">
-                <div class="w-[40%] text-start">Name</div>
-                <div class="w-[15%]">Role</div>
-                <div class="w-[15%]">Status</div>
-                <div class="w-[15%]">Joined At</div>
-                <div class="w-[15%]">Action</div>
-            </div>
-            @forelse ($users as $user)
-                <div class="flex items-center text-center border-b border-[#E5E7EB] py-4 text-[#4E4E4E] text-sm">
-                    <div class="w-[40%] text-start capitalize">{{ $user->fullname }}</div>
-                    @php
-                        $role = match ($user->role) {
-                            'admin_officer' => 'Admin Officer',
-                            'cashier' => 'Cashier',
-                            'technician' => 'Technician',
-                        };
-                    @endphp
-                    <div class="w-[15%]">{{ $role }}</div>
-                    <div
-                        class="w-[15%] capitalize {{ $user->status == 'revoked' ? 'text-red-600' : 'text-[#16A34A]' }}">
-                        {{ $user->status }}</div>
-                    <div class="w-[15%]">{{ \Carbon\Carbon::parse($user->created_at)->format('F d, Y') }}</div>
-                    <div class="w-[15%]">
-                        <label class="inline-flex items-center cursor-pointer">
-                            <input type="checkbox" value="" class="sr-only peer"
-                                wire:click="updateStatus({{ $user->id }})" @checked($user->status === 'active')>
-                            <div
-                                class="relative w-10 h-5 bg-gray-400 rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4.5 after:transition-all peer-checked:bg-black">
+        <div class="w-full overflow-x-auto">
+            <div class="min-w-[800px] md:w-full flex flex-col font-inter">
+                <div class="rounded-t-3xl bg-[#EEF2F5] w-full flex items-center text-center p-3">
+                    <div class="w-[40%] text-start pl-1">Name</div>
+                    <div class="w-[15%]">Role</div>
+                    <div class="w-[15%]">Status</div>
+                    <div class="w-[15%]">Joined At</div>
+                    <div class="w-[15%]">Action</div>
+                </div>
+                <div class="w-full flex flex-col text-center bg-white">
+                    @forelse ($users as $user)
+                        <div class="w-full flex items-center text-sm border-x border-b border-[#EEF2F5] text-[#484848]">
+                            <div class="w-[40%] text-start capitalize px-1 pl-3 py-4">{{ $user->fullname }}</div>
+                            @php
+                                $role = match ($user->role) {
+                                    'admin_officer' => 'Admin Officer',
+                                    'cashier' => 'Cashier',
+                                    'technician' => 'Technician',
+                                };
+                            @endphp
+                            <div class="w-[15%] py-4">{{ $role }}</div>
+                            <div class="w-[15%] capitalize py-4 {{ $user->status == 'revoked' ? 'text-red-600' : 'text-[#16A34A]' }}">
+                                {{ $user->status }}</div>
+                            <div class="w-[15%] py-4 whitespace-nowrap">{{ \Carbon\Carbon::parse($user->created_at)->format('F d, Y') }}</div>
+                            <div class="w-[15%] py-4 flex items-center justify-center">
+                                <label class="inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" value="" class="hidden peer"
+                                        wire:click="updateStatus({{ $user->id }})" @checked($user->status === 'active')>
+                                    <div
+                                        class="relative w-10 h-5 bg-gray-400 rounded-full peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4.5 after:transition-all peer-checked:bg-black">
+                                    </div>
+                                </label>
                             </div>
-                        </label>
-                    </div>
+                        </div>
+                    @empty
+                        <div class="w-full py-8 flex items-center justify-center text-sm text-[#9A9A9A]">
+                            No Staff found.
+                        </div>
+                    @endforelse
                 </div>
-            @empty
-                <div class="w-full py-8 flex items-center justify-center text-sm text-[#9A9A9A]">
-                    No Staff found.
-                </div>
-            @endforelse
+            </div>
         </div>
-        <div class="w-full flex items-center justify-between h-fit p-2">
+        <div class="w-full flex flex-col md:flex-row gap-2 items-center justify-between h-fit p-2">
             <p class="">Showing {{ $users->firstItem() ?? 0 }} to {{ $users->lastItem() }} of
                 {{ $users->total() }}
                 entries</p>
@@ -177,7 +177,6 @@
                                 stroke-width="2" d="M5 1 1 5l4 4" />
                         </svg>
                     </button>
-
                     @foreach (range(1, $users->lastPage()) as $page)
                         <div wire:click="gotoPage({{ $page }})"
                             class="flex items-center justify-center px-3 h-8 leading-tight
@@ -187,8 +186,6 @@
                             {{ $page }}
                         </div>
                     @endforeach
-
-
                     <button wire:click="nextPage" wire:loading.attr="disabled"
                         @if (!$users->hasMorePages()) disabled @endif
                         class="flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700">
@@ -203,12 +200,23 @@
             </nav>
         </div>
     </div>
+
+    <button wire:click="openModal"
+        class="fixed md:hidden bottom-6 right-6 z-20 bg-[#203D3F] hover:bg-[#14505c] text-white rounded-full shadow-lg flex items-center justify-center p-4 transition-all duration-200"
+        style="box-shadow: 0 4px 16px rgba(32,61,63,0.15);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-plus-icon lucide-plus">
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+        </svg>
+    </button>
+
     @if ($showModal)
         <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs">
             <div
-                class="bg-white rounded-xl shadow-lg max-w-[280px] md:max-w-md gap-2 w-full p-8 relative flex flex-col font-poppins">
+                class="bg-white rounded-xl shadow-lg max-w-[300px] md:max-w-md gap-2 w-full p-6 md:p-8 relative flex flex-col font-poppins">
                 <h1 class="font-bold text-lg">Register Staff</h1>
-
                 <livewire:user-form />
             </div>
         </div>

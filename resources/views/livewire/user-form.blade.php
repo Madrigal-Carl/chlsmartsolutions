@@ -43,12 +43,12 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-end w-full gap-4 mt-6 text-sm">
+    <div class="flex flex-col md:flex-row items-center justify-end w-full gap-2 md:gap-4 mt-4 md:mt-6 text-sm">
         <button wire:click='cancel' type="button"
-            class="cursor-pointer flex gap-2 items-center py-2 px-4 bg-[#F2F2F2] rounded-md">
+            class="w-full md:w-auto cursor-pointer flex gap-2 items-center justify-center py-2 px-4 bg-[#F2F2F2] rounded-md">
             Cancel
         </button>
-        <button class="cursor-pointer flex gap-2 items-center py-2 px-4 bg-[#203D3F] rounded-md text-white"
+        <button class="w-full md:w-auto cursor-pointer flex gap-2 items-center justify-center py-2 px-4 bg-[#203D3F] rounded-md text-white"
             type="submit">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

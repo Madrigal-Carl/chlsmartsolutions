@@ -20,8 +20,7 @@
             Download Report
         </button>
     </div>
-
-    <div class="flex flex-col md:flex-row gap-8 font-poppins">
+    <div class="flex flex-col md:flex-row gap-4 font-poppins">
         <div class="w-full md:w-[69%] flex flex-col gap-4">
             <div class="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-3 justify-center md:justify-between">
                 <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
@@ -112,7 +111,7 @@
                 </div>
             </div>
             <div class="h-[275px] md:h-[375px]">
-                <livewire:expenses-line-chart :date="$startDate" :key="'expenses-line-chart' . $startDate" />
+                <livewire:sales-line-chart :date="$startDate" :key="'sales-line-chart' . $startDate" />
             </div>
         </div>
         <div class="w-full md:w-[29%] flex flex-col gap-4 mt-8 mb-4 md:mb-0 md:mt-0">

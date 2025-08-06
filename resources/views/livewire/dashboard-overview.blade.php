@@ -1,5 +1,5 @@
-<div class="w-full flex items-center gap-3">
-    <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+<div class="w-full flex flex-wrap md:flex-nowrap gap-2 md:gap-3 justify-center md:justify-between">
+    <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
         <div class="rounded-full bg-[#FF7555] text-white flex justify-center items-center size-13">
             <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -12,7 +12,7 @@
         <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">All-time revenue</p>
         <h1 class="text-[#FF7555] font-semibold mt-6">₱{{ number_format($this->totalRevenue, 2) }}</h1>
     </div>
-    <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+    <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
         <div class="rounded-full bg-[#39A1EA] text-white flex justify-center items-center size-13">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -28,7 +28,7 @@
         <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">All-time expenses</p>
         <h1 class="text-[#39A1EA] font-semibold mt-6">₱{{ number_format($this->totalExpenses, 2) }}</h1>
     </div>
-    <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+    <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
         <div class="rounded-full bg-[#405089] text-white flex justify-center items-center size-13">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -47,7 +47,7 @@
         <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">Completed orders</p>
         <h1 class="text-[#405089] font-semibold mt-6">{{ $this->order }}</h1>
     </div>
-    <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+    <div class="w-[48%] md:w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
         <div class="rounded-full bg-[#FEB558] text-white flex justify-center items-center size-13">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -61,7 +61,7 @@
         <p class="text-[#BDBEC3] font-lighter text-[0.6rem]">Active employees</p>
         <h1 class="text-[#FEB558] font-semibold mt-6">{{ $this->staff }}</h1>
     </div>
-    <div class="w-1/5 flex flex-col items-center justify-center bg-white p-4 rounded-lg">
+    <div class="hidden md:w-1/5 md:flex flex-col items-center justify-center bg-white p-4 rounded-lg">
         <div class="rounded-full bg-[#29AB91] text-white flex justify-center items-center size-13">
             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

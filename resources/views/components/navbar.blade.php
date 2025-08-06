@@ -18,7 +18,7 @@
             </button>
         @else
             <a href="/signin">
-                <div class="bg-[#5AA526] px-2 py-2 md:px-6 rounded-xl">
+                <div class="bg-[#5AA526] px-4 py-2 md:px-6 rounded-xl">
                     <p class="text-white font-bold text-sm">SIGN IN</p>
                 </div>
             </a>

@@ -2,8 +2,8 @@
     <h1 class="text-[#203D3F] font-semibold">Expenses Overview</h1>
     <p class="text-[0.6rem] text-[#BDBEC3] mb-2">Recent transactions</p>
     @forelse ($expenses as $expense)
-        <div class="flex items-center justify-between py-2 text-sm">
-            <p class="w-1/2">{{ \Carbon\Carbon::parse($expense->expense_date)->format('F d, Y') }}</p>
+        <div class="flex items-center justify-between py-2 gap-2 text-sm">
+            <p class="w-1/2 whitespace-nowrap">{{ \Carbon\Carbon::parse($expense->expense_date)->format('F d, Y') }}</p>
             <p class="text-[#FF7555] font-medium">₱{{ number_format($expense->amount, 2) }}</p>
         </div>
     @empty

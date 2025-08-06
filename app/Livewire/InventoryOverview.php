@@ -26,7 +26,7 @@ class InventoryOverview extends Component
     {
         $products = Product::with('inventory', 'orderProducts.order')->get();
 
-        return $products->filter(function ($product) {
+        $filtered = $products->filter(function ($product) {
             $inventory = $product->inventory;
 
             $pendingQuantity = $product->orderProducts
@@ -36,7 +36,18 @@ class InventoryOverview extends Component
             $adjustedStock = $inventory->stock + $pendingQuantity;
 
             return $adjustedStock === 0 || $adjustedStock <= $inventory->stock_min_limit;
-        })->take($this->take)->values();
+        });
+
+        // Sort by least quantity first
+        $sorted = $filtered->sortBy(function ($product) {
+            $inventory = $product->inventory;
+            $pendingQuantity = $product->orderProducts
+                ->where('order.status', 'pending')
+                ->sum('quantity');
+            return $inventory->stock + $pendingQuantity;
+        });
+
+        return $sorted->take($this->take)->values();
     }
 
 
