@@ -43,7 +43,7 @@
                         class="flex flex-col items-center max-h-[100px] overflow-hidden overflow-y-auto custom-scrollbar">
                         @foreach ($order->orderProducts as $item)
                             <div class="flex items-center w-full">
-                                <div class="w-[50%] line-clamp-1">{{ $item->product->name }}</div>
+                                <div class="w-[50%] line-clamp-1">{{ ucwords($item->product->name) }}</div>
                                 <div class="w-[15%] text-center">x{{ $item->quantity }}</div>
                                 <div class="w-[35%] text-center">
                                     ₱{{ number_format($item->quantity * $item->product->price, 2) }}</div>

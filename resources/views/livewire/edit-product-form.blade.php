@@ -1,6 +1,12 @@
 <form wire:submit='editProduct' class="rounded-md border border-gray-400 p-4 flex flex-col gap-4 w-full">
     <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
+            <p class="text-sm font-medium">Serial Number</p>
+            <input type="text" placeholder="Enter Serial Number..." value="{{ $serial_number }}"
+                wire:input="$set('serial_number', $event.target.value)"
+                class="w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none capitalize text-[#797979] text-sm md:text-base" />
+        </div>
+        <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Product Name</p>
             <input type="text" placeholder="Enter Name..." value="{{ $name }}"
                 wire:input="$set('name', $event.target.value)"
@@ -9,14 +15,12 @@
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Category</p>
             <div class="flex items-center flex-1 relative text-[#797979]">
-                <select wire:change="$set('categoryId', $event.target.value)"
+                <select wire:model.live='categoryId'
                     class="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none capitalize text-sm md:text-base">
-                    <option disabled selected value="{{ $categoryId }}">
-                        {{ $categoryName }}</option>
                     @foreach ($categories as $category)
-                        @if ($category->id != $categoryId)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endif
+                        <option value="{{ $category->id }}">
+                            {{ $category->name }}
+                        </option>
                     @endforeach
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
@@ -97,9 +101,9 @@
     <div class="w-full flex items-center justify-end">
         <button type="submit"
             class="bg-[#16A34A] text-white rounded-md px-4 py-2 flex items-center gap-2 cursor-pointer text-sm md:text-base">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                class="lucide lucide-check-icon lucide-check">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" class="lucide lucide-check-icon lucide-check">
                 <path d="M20 6 9 17l-5-5" />
             </svg>
             <p>Save Product</p>

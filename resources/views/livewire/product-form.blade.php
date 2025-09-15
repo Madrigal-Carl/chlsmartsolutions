@@ -1,6 +1,12 @@
 <form wire:submit='createProduct' class="rounded-md border border-gray-400 p-4 flex flex-col gap-4 w-full">
     <div class="flex flex-col md:flex-row gap-4 w-full">
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
+            <p class="text-sm font-medium">Serial Number</p>
+            <input type="text" placeholder="Enter Serial Number..."
+                wire:input="$set('serial_number', $event.target.value)"
+                class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
+        </div>
+        <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Product Name</p>
             <input type="text" placeholder="Enter Name..." wire:input="$set('name', $event.target.value)"
                 class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
@@ -26,7 +32,8 @@
         </div>
         <div class="flex-1 flex flex-col text-[#4f4f4f] gap-1">
             <p class="text-sm font-medium">Product Price</p>
-            <input wire:input="$set('price', $event.target.value)" type="number" placeholder="Enter Price..."
+            <input wire:input="$set('price', $event.target.value)" type="number" step="0.01"
+                placeholder="Enter Price..."
                 class="text-sm md:text-base w-full pl-4 py-2 border border-gray-500 rounded-md focus:outline-none text-[#797979]" />
         </div>
     </div>

@@ -21,6 +21,7 @@ class ProductFactory extends Factory
         $category = Category::inRandomOrder()->first() ?? Category::factory()->create();
 
         $product = [
+            'serial_number' => $this->faker->regexify('(SN|SSD)-[0-9]{10,14}'),
             'name' => $this->faker->words(3, true),
             'description' => $this->faker->paragraph(),
             'price' => $this->faker->randomFloat(2, 100, 3000),

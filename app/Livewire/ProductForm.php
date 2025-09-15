@@ -14,6 +14,7 @@ use Illuminate\Validation\ValidationException;
 class ProductForm extends Component
 {
     use WithFileUploads;
+    public $serial_number;
     public $name;
     public $categoryId;
     public $price;
@@ -27,6 +28,7 @@ class ProductForm extends Component
     {
         try {
             $this->validate([
+                'serial_number' => 'required|unique:products,serial_number|max:35',
                 'name' => 'required|unique:products,name|max:255',
                 'categoryId' => 'required|exists:categories,id',
                 'price' => 'required|min:0',
@@ -36,6 +38,9 @@ class ProductForm extends Component
                 'description' => 'required',
                 'image' => 'nullable|image|mimes:jpg,jpeg,png|max:5120',
             ], [
+                'serial_number.required' => 'Serial Number is required.',
+                'serial_number.unique' => 'Serial Number already existed.',
+                'serial_number.max' => 'Serial Number must not exceed 50 characters.',
                 'name.required' => 'Product name is required.',
                 'name.unique' => 'Product name already existed.',
                 'name.max' => 'Product name must not exceed 255 characters.',
@@ -61,6 +66,7 @@ class ProductForm extends Component
         }
 
         $data = [
+            'serial_number' => $this->serial_number,
             'name' => $this->name,
             'category_id' => $this->categoryId,
             'price' => $this->price,
@@ -84,11 +90,11 @@ class ProductForm extends Component
         ]);
 
         app(NotificationService::class)->createNotif(
-                    Auth::user()->id,
-                    "Product Added Successfully",
-                    "{$product->name} has been successfully added to your inventory.",
-                    ['admin', 'cashier', 'admin_officer'],
-                );
+            Auth::user()->id,
+            "Product Added Successfully",
+            "{$product->name} has been successfully added to your inventory.",
+            ['admin', 'cashier', 'admin_officer'],
+        );
 
         notyf()->success('Product created successfully');
         return redirect()->route('landing.page');

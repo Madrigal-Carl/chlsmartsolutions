@@ -12,6 +12,7 @@ use Illuminate\Validation\ValidationException;
 class EditProductForm extends Component
 {
     use WithFileUploads;
+    public $serial_number;
     public $name;
     public $categoryId;
     public $categoryName;
@@ -28,6 +29,7 @@ class EditProductForm extends Component
         $product = Product::with('inventory', 'category')->find($id);
         if ($product) {
             $this->selectedProductId = $product->id;
+            $this->serial_number = $product->serial_number;
             $this->name = $product->name;
             $this->categoryId = $product->category_id;
             $this->categoryName = $product->category->name;
@@ -47,6 +49,7 @@ class EditProductForm extends Component
         $hasChanges = false;
 
         $fields = [
+            'serial_number' => $this->serial_number !== $product->serial_number,
             'name' => $this->name !== $product->name,
             'categoryId' => $this->categoryId != $product->category_id,
             'price' => $this->price != $product->price,
@@ -71,6 +74,7 @@ class EditProductForm extends Component
 
         try {
             $this->validate([
+                'serial_number' => 'required|max:50|unique:products,serial_number,' . $product->id,
                 'name' => 'required|max:255|unique:products,name,' . $product->id,
                 'categoryId' => 'required|exists:categories,id',
                 'price' => 'required|min:0',
@@ -80,6 +84,9 @@ class EditProductForm extends Component
                 'description' => 'required',
                 'image' => 'nullable|max:5120'
             ], [
+                'serial_number.required' => 'Serial Number is required.',
+                'serial_number.max' => 'Serial Number must not exceed 50 characters.',
+                'serial_number.unique' => 'This Serial Number is already taken.',
                 'name.required' => 'Product name is required.',
                 'name.max' => 'Product name must not exceed 255 characters.',
                 'name.unique' => 'This product name is already taken.',
@@ -114,6 +121,7 @@ class EditProductForm extends Component
         }
 
         $product->update([
+            'serial_number' => $this->serial_number,
             'name' => $this->name,
             'category_id' => $this->categoryId,
             'price' => $this->price,

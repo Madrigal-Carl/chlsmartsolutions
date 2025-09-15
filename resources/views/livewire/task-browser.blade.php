@@ -1,6 +1,7 @@
 <div class="flex flex-col gap-4 md:gap-6">
     <div class="flex flex-col md:flex-row items-center font-poppins gap-2 md:gap-4">
-        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-blue-600">
+        <div
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-blue-600">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-blue-600">
@@ -15,7 +16,8 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask() }}</h1>
         </div>
-        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#F97316]">
+        <div
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#F97316]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#F97316]">
@@ -33,7 +35,8 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask('pending') }}</h1>
         </div>
-        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#22C55E]">
+        <div
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#22C55E]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#22C55E]">
@@ -51,7 +54,8 @@
             </div>
             <h1 class="ml-4 text-2xl font-extrabold">{{ $this->getTask('completed') }}</h1>
         </div>
-        <div class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#DC2626]">
+        <div
+            class="w-full flex-1 flex items-center justify-between bg-white rounded-lg pl-4 px-6 py-4 border-l-6 border-[#DC2626]">
             <div class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                     class="size-9 text-[#DC2626]">
@@ -75,7 +79,8 @@
     <div class="flex flex-col w-full gap-4 font-poppins bg-white rounded-md p-6">
         <h1 class="text-lg font-semibold">Technicians</h1>
         <div class="flex justify-center w-full">
-            <div class="flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 w-full pb-4">
+            <div
+                class="flex gap-4 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 w-full pb-4">
                 @forelse ($technicians as $technician)
                     <div class="rounded-md border border-[#898989] p-4 bg-white min-w-[220px]">
                         <div class="flex items-center justify-between mb-2 gap-4">
@@ -90,7 +95,8 @@
                         </div>
                         <div class="flex items-baseline justify-between text-xs text-gray-500">
                             <p>Task Today</p>
-                            <div class="rounded-full flex items-center w-8 h-8 justify-center bg-[#3B82F6]/20 text-[#1E3A8A] text-lg font-semibold">
+                            <div
+                                class="rounded-full flex items-center w-8 h-8 justify-center bg-[#3B82F6]/20 text-[#1E3A8A] text-lg font-semibold">
                                 {{ count($technician->tasks) }}
                             </div>
                         </div>
@@ -138,7 +144,18 @@
                                     clip-rule="evenodd" />
                         </div>
                     </div>
+
                 </div>
+                <button wire:click="$set('activeTab', 'addTask')"
+                    class="flex-1 cursor-pointer px-4 py-2 bg-[#203D3F] rounded-md flex items-center text-white gap-2 whitespace-nowrap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus">
+                        <path d="M5 12h14" />
+                        <path d="M12 5v14" />
+                    </svg>
+                    <p class="text-sm">Add New Task</p>
+                </button>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 font-poppins">
@@ -300,7 +317,7 @@
             </div>
 
             <button wire:click="$set('activeTab', 'addTask')"
-                class="fixed bottom-6 right-6 z-20 bg-[#203D3F] hover:bg-[#182f31] text-white rounded-full shadow-lg p-3 flex items-center justify-center transition-colors duration-200"
+                class="md:hidden fixed bottom-6 right-6 z-20 bg-[#203D3F] hover:bg-[#182f31] text-white rounded-full shadow-lg p-3 flex items-center justify-center transition-colors duration-200"
                 style="box-shadow: 0 4px 16px rgba(32,61,63,0.15);">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
