@@ -222,26 +222,18 @@
                                         clip-rule="evenodd" />
                                 </svg>
 
-                                <p class="text-sm">{{ $task->customer_phone }}</p>
+                                <p class="text-sm">+63{{ $task->customer_phone }}</p>
                             </div>
                         </div>
                         <div class="relative text-[#797979] text-sm">
                             <select wire:change="updatePriority({{ $task->id }}, $event.target.value)"
                                 class="capitalize w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                                 name="priority" id="priority">
-                                @if ($task->priority === 'low')
-                                    <option value="{{ $task->priority }}">{{ $task->priority }}</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="high">High</option>
-                                @elseif ($task->priority === 'medium')
-                                    <option value="low">Low</option>
-                                    <option value="{{ $task->priority }}">{{ $task->priority }}</option>
-                                    <option value="high">High</option>
-                                @elseif ($task->priority === 'high')
-                                    <option value="low">Low</option>
-                                    <option value="medium">Medium</option>
-                                    <option value="{{ $task->priority }}">{{ $task->priority }}</option>
-                                @endif
+                                <option value="low" {{ $task->priority === 'low' ? 'selected' : '' }}>Low</option>
+                                <option value="medium" {{ $task->priority === 'medium' ? 'selected' : '' }}>Medium
+                                </option>
+                                <option value="high" {{ $task->priority === 'high' ? 'selected' : '' }}>High
+                                </option>
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">
                                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -254,11 +246,15 @@
                             <select wire:change="updateAssignedTech({{ $task->id }}, $event.target.value)"
                                 class="w-full px-4 py-2 border border-gray-500 rounded-md focus:outline-none appearance-none"
                                 name="technician" id="technician">
-                                <option value="{{ $task->user->id }}">{{ $task->user->fullname }}</option>
+
+                                <option value="" {{ !$task->user_id ? 'selected' : '' }}>Select Technician
+                                </option>
+
                                 @foreach ($technicians as $tech)
-                                    @if ($task->user->id != $tech->id)
-                                        <option value="{{ $tech->id }}">{{ $tech->fullname }}</option>
-                                    @endif
+                                    <option value="{{ $tech->id }}"
+                                        {{ $task->user_id == $tech->id ? 'selected' : '' }}>
+                                        {{ $tech->fullname }}
+                                    </option>
                                 @endforeach
                             </select>
                             <div class="pointer-events-none absolute inset-y-0 right-2 flex items-center">

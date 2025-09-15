@@ -47,6 +47,26 @@ class CheckTaskExpiry extends Command
             $this->info("Task ID {$task->id} has expired.");
         }
 
-        $this->info('Checked for expired tasks.');
+        $oneWeekAgo = Carbon::now()->subWeek();
+
+        $overdueTasks = Task::where('status', 'unassigned')
+            ->where('created_at', '<=', $oneWeekAgo)
+            ->get();
+
+        foreach ($overdueTasks as $task) {
+            $task->status = 'overdue';
+            $task->save();
+
+            $notifier->createNotif(
+                null,
+                'Task Overdue',
+                "The task '{$task->title}' created by {$task->customer_name} has been marked as overdue.",
+                ['cashier', 'admin_officer'],
+            );
+
+            $this->info("Task ID {$task->id} has been marked as overdue.");
+        }
+
+        $this->info('Checked for expired and overdue tasks.');
     }
 }

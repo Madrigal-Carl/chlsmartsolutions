@@ -4,10 +4,12 @@ namespace App\Livewire;
 
 use App\Models\Task;
 use Livewire\Component;
+use Illuminate\Support\Str;
 use Livewire\WithPagination;
 use App\Services\TaskService;
 use App\Services\UserService;
 use Livewire\WithoutUrlPagination;
+use App\Services\NotificationService;
 
 class TaskBrowser extends Component
 {
@@ -39,12 +41,36 @@ class TaskBrowser extends Component
         $task = Task::find($task_id);
 
         if ($task) {
-            $task->user_id = $user_id;
+            $oldTechnicianId = $task->user_id;
+
+            $task->user_id = $user_id ?: null;
+            if (!$oldTechnicianId && $task->user_id && $task->status === 'unassigned') {
+                $task->status = 'pending';
+            }
             $task->save();
+
+            if ($task->user_id) {
+                app(NotificationService::class)->createNotif(
+                    $task->user_id,
+                    "Task Assigned Successfully",
+                    'The task titled "' . Str::title($task->title) . '" requested by ' . $task->customer_name . ' has been assigned to you.',
+                    ['technician'],
+                );
+            }
+
+            if ($oldTechnicianId && $oldTechnicianId != $task->user_id) {
+                app(NotificationService::class)->createNotif(
+                    $oldTechnicianId,
+                    "Task Reassigned",
+                    'The task titled "' . Str::title($task->title) . '" requested by ' . $task->customer_name . ' has been reassigned to another technician.',
+                    ['technician'],
+                );
+            }
 
             notyf()->success('Assigned successfully');
         }
     }
+
 
     public function render(TaskService $taskService, UserService $userService)
     {
@@ -57,6 +83,4 @@ class TaskBrowser extends Component
             'technicians' => $technicians,
         ]);
     }
-
-
 }

@@ -111,45 +111,7 @@
                     <p class="text-neutral-600 text-sm md:text-md">Ask us anything and we would love to hear from you
                     </p>
                 </div>
-                <form action="" class="flex flex-col gap-6 w-full">
-                    <div class="flex flex-col md:flex-row gap-4">
-                        <div class="relative w-full">
-                            <select
-                                class="w-full px-4 py-3 text-[#797979] bg-gray-100 border border-gray-300 rounded-md appearance-none focus:outline-none">
-                                <option value="" disabled selected>Service</option>
-                                <option value="repair">Repair</option>
-                                <option value="installation">Installation</option>
-                                <option value="consulting">Consulting</option>
-                            </select>
-
-                            <!-- Custom dropdown icon -->
-                            <div class="pointer-events-none absolute inset-y-0 right-4 flex items-center">
-                                <svg class="w-6 h-6 text-[#797979]" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 10.939l3.71-3.71a.75.75 0 011.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0l-4.24-4.24a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </div>
-
-
-
-                        <input type="text" placeholder="Contact"
-                            class="flex-1 px-4 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none ">
-                    </div>
-
-                    <input type="email" placeholder="Email address"
-                        class="px-4 py-3 border border-gray-300 bg-gray-100 rounded-md focus:outline-none ">
-
-                    <textarea rows="5" placeholder="Enter your question or message"
-                        class="px-4 py-3 border border-gray-300 bg-gray-100 rounded-md resize-none focus:outline-none "></textarea>
-
-                    <button type="submit"
-                        class="cursor-pointer mt-4 bg-[#5AA526] hover:bg-[#48841b] text-white font-semibold py-3 px-6 rounded-md transition">
-                        Send Message
-                    </button>
-                </form>
-
+                <livewire:help-form />
             </div>
             <div class="flex flex-col gap-6 items-center">
                 <img class="h-76 hidden md:block" src="{{ asset('images/customer/help.png') }}" alt="help.png">

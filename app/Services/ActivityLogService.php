@@ -3,8 +3,6 @@
 namespace App\Services;
 
 use App\Models\ActivityLog;
-use Illuminate\Support\Str;
-use App\Models\Notification;
 
 class ActivityLogService
 {

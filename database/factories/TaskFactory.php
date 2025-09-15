@@ -21,7 +21,7 @@ class TaskFactory extends Factory
             'priority' => $this->faker->randomElement(['low', 'medium', 'high']),
             'description' => $this->faker->paragraph(),
             'customer_name' => $this->faker->name(),
-            'customer_phone' => $this->faker->unique()->numerify('+639#########'),
+            'customer_phone' => $this->faker->unique()->numerify('9#########'),
             'status' => $this->faker->randomElement(['pending', 'completed', 'missed']),
             'user_id' => 4,
             'expiry_date' => $this->faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),

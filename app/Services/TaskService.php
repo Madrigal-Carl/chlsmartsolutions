@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Carbon\Carbon;
 use App\Models\Task;
 
 class TaskService
@@ -23,8 +24,8 @@ class TaskService
     public function getFilteredTask($status, $prio)
     {
         return Task::with('user')
-            ->when($status && $status !== 'all', fn ($query) => $query->where('status', $status))
-            ->when($prio && $prio !== 'all', fn ($query) => $query->where('priority', $prio))
+            ->when($status && $status !== 'all', fn($query) => $query->where('status', $status))
+            ->when($prio && $prio !== 'all', fn($query) => $query->where('priority', $prio))
             ->orderBy('expiry_date', 'asc')
             ->paginate(9);
     }
@@ -43,5 +44,16 @@ class TaskService
         };
     }
 
+    public function createTask(array $data, bool $withExpiry = true): Task
+    {
+        if ($withExpiry) {
+            $data['expiry_date'] = $data['expiry_date'] ?? now()->addWeek();
+        } else {
+            $data['expiry_date'] = null;
+        }
 
+        $data['user_id'] = $data['user_id'] ?? null;
+
+        return Task::create($data);
+    }
 }

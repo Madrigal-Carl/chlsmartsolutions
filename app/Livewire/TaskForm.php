@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
-use App\Models\Task;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use App\Services\TaskService;
 use App\Services\UserService;
 use App\Services\NotificationService;
 use Illuminate\Validation\ValidationException;
@@ -35,7 +35,7 @@ class TaskForm extends Component
             $validator = $this->validate([
                 'title' => 'required',
                 'priority' => 'required',
-                'expiry_date' => 'required|date|after_or_equal:today',
+                'expiry_date' => 'nullable|date|after_or_equal:today',
                 'user_id' => 'required|exists:users,id',
                 'customer_name' => 'required',
                 'customer_phone' => 'required|regex:/^9[0-9]{9}$/',
@@ -43,7 +43,6 @@ class TaskForm extends Component
             ], [
                 'title.required' => 'The task title is required.',
                 'priority.required' => 'Please select a priority level.',
-                'expiry_date.required' => 'The expiration date is required.',
                 'expiry_date.after_or_equal' => 'The expiration date cannot be earlier than today.',
                 'user_id.required' => 'Please assign a technician.',
                 'user_id.exists' => 'The selected technician is invalid or does not exist.',
@@ -57,14 +56,14 @@ class TaskForm extends Component
             return;
         }
 
-        $task = Task::create($validator);
+        $task = app(TaskService::class)->createTask($validator, true);
 
         app(NotificationService::class)->createNotif(
-                    $task->user_id,
-                    "Task Assigned Successfully",
-                    'The task titled "' . Str::title($task->title) . '" requested by ' . $task->customer_name . ' has been assigned successfully.',
-                    ['technician'],
-                );
+            $task->user_id,
+            "Task Created Successfully",
+            'The task titled "' . Str::title($task->title) . '" requested by ' . $task->customer_name . ' has been created successfully.',
+            ['technician'],
+        );
 
         notyf()->success('Task created successfully');
 

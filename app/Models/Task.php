@@ -14,6 +14,7 @@ class Task extends Model
         'description',
         'customer_name',
         'customer_phone',
+        'status',
         'user_id',
         'expiry_date',
     ];

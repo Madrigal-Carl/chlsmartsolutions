@@ -18,8 +18,8 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->string('customer_name');
             $table->string('customer_phone');
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->enum('status', ['pending', 'completed', 'missed'])->default('pending');
+            $table->foreignId('user_id')->nullable()->constrained()->nullOnDelete();
+            $table->enum('status', ['pending', 'completed', 'missed', 'unassigned', 'overdue'])->default('pending');
             $table->date('expiry_date');
             $table->timestamps();
         });
